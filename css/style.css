@@ -2981,172 +2981,301 @@ header {
 }
 
 /* --- INCLUSIVE ISLAND SECTION --- */
-.inclusive-island-section {
-    background-color: #ffffff;
-    padding: 8rem 0;
+/* \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550
+   SOCIAL IMPACT SECTION  —  Valore Sociale & Inclusione
+   Target: famiglie + sponsor / partner
+   Prefisso: .si-   (no conflitti con stili esistenti)
+   \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550 */
+
+.si-section {
+    padding: 7rem 0 6rem;
+    background: var(--bg-light);
 }
 
-.inclusive-island-card {
-    background: #fcfdfe;
-    border-radius: 40px;
-    overflow: hidden;
-    border: 1px solid rgba(77, 163, 255, 0.1);
-    box-shadow: 0 40px 100px rgba(18, 59, 99, 0.08);
+/* \u2500\u2500 Header centrato \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+.si-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 5rem;
 }
 
-.inclusive-island-grid {
-    display: grid;
-    grid-template-columns: 45% 55%;
-    min-height: 700px;
-}
-
-.inclusive-visual-side {
-    position: relative;
-    padding: 4rem;
-    background-color: #f1f8ff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.inclusive-image-container {
-    position: relative;
-    width: 100%;
-    max-width: 480px;
-}
-
-.inclusive-main-img {
-    width: 100%;
-    height: auto;
-    border-radius: 30px;
-    box-shadow: 0 30px 60px rgba(18, 59, 99, 0.15);
-}
-
-.inclusive-floating-badge {
-    position: absolute;
-    bottom: -15px;
-    right: -15px;
-    background: var(--bg-white);
-    padding: 0.8rem 1.2rem;
-    border-radius: 15px;
-    box-shadow: var(--shadow-lg);
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    z-index: 2;
-    border: 1px solid rgba(77, 163, 255, 0.1);
-}
-
-.inclusive-floating-badge i {
-    color: #4CAF50;
-    font-size: 1rem;
-}
-
-.inclusive-floating-badge span {
-    font-weight: 800;
-    font-size: 0.75rem;
-    color: var(--secondary-blue);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.inclusive-content-side {
-    padding: 5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.inclusive-label {
+.si-eyebrow {
     display: inline-block;
-    color: var(--primary-blue);
-    font-weight: 800;
     text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    margin-bottom: 1.2rem;
-}
-
-.inclusive-title-island {
-    font-size: 2.8rem;
-    color: var(--secondary-blue);
-    line-height: 1.1;
+    letter-spacing: 2.5px;
     font-weight: 800;
-    margin-bottom: 2rem;
+    font-size: 0.78rem;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
 }
 
-.inclusive-description-p {
+.si-title {
+    font-size: clamp(2rem, 4vw, 2.9rem);
+    font-weight: 800;
+    color: var(--secondary-blue);
+    line-height: 1.15;
+    margin-bottom: 1.4rem;
+    letter-spacing: -0.5px;
+}
+
+.si-lead {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: var(--text-muted);
-    margin-bottom: 3rem;
-}
-
-.inclusive-steps-list {
-    display: grid;
-    gap: 2rem;
-    margin-bottom: 4rem;
-}
-
-.step-item-island {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-}
-
-.step-icon-circle {
-    width: 55px;
-    height: 55px;
-    background: rgba(77, 163, 255, 0.1);
-    color: var(--primary-blue);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 1.2rem;
-}
-
-.step-info strong {
-    display: block;
-    color: var(--secondary-blue);
-    font-size: 1.1rem;
-    margin-bottom: 0.3rem;
-}
-
-.step-info p {
-    font-size: 0.9rem;
     color: var(--text-muted);
     margin: 0;
 }
 
-.inclusive-island-footer {
-    border-top: 1px solid rgba(0,0,0,0.05);
-    padding-top: 3rem;
+/* \u2500\u2500 Benefit cards \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+.si-benefits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.8rem;
+    margin-bottom: 4rem;
 }
 
-.partnership-pitch {
-    margin-top: 1.5rem;
-    font-size: 0.85rem;
-    color: var(--text-muted);
+.si-card {
+    background: var(--bg-white);
+    border-radius: 20px;
+    padding: 2.2rem 2rem 2.2rem;
+    border: 1px solid rgba(18, 59, 99, 0.06);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
 }
 
-.partnership-pitch a {
+/* Linea accent sinistra — non invasiva, elegante */
+.si-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--primary-blue) 0%, rgba(77, 163, 255, 0.2) 100%);
+    border-radius: 3px 0 0 3px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.si-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+}
+
+.si-card:hover::before {
+    opacity: 1;
+}
+
+.si-card-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(77, 163, 255, 0.1);
     color: var(--primary-blue);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    margin-bottom: 1.4rem;
+    flex-shrink: 0;
+}
+
+.si-card-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--secondary-blue);
+    margin-bottom: 0.7rem;
+    line-height: 1.3;
+}
+
+.si-card-body {
+    font-size: 0.93rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* \u2500\u2500 CTA actions block \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+.si-actions {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    background: var(--bg-white);
+    border-radius: 28px;
+    border: 1px solid rgba(18, 59, 99, 0.07);
+    box-shadow: 0 20px 60px rgba(18, 59, 99, 0.07);
+    overflow: hidden;
+}
+
+/* Separatore verticale */
+.si-actions-divider {
+    width: 1px;
+    background: rgba(18, 59, 99, 0.08);
+    align-self: stretch;
+    margin: 3rem 0;
+}
+
+/* Blocco singolo (famiglia o sponsor) */
+.si-action-block {
+    padding: 3.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+}
+
+/* Label piccola sopra il titolo */
+.si-action-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #25D366;           /* WhatsApp green — segnala calore / accessibilità */
+    background: rgba(37, 211, 102, 0.08);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    margin-bottom: 1.2rem;
+}
+
+.si-action-label--sponsor {
+    color: var(--secondary-blue);
+    background: rgba(18, 59, 99, 0.07);
+}
+
+.si-action-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--secondary-blue);
+    line-height: 1.35;
+    margin-bottom: 0.9rem;
+}
+
+.si-action-desc {
+    font-size: 0.94rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    flex-grow: 1;
+}
+
+/* \u2500\u2500 Pulsanti \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+/* CTA primaria: famiglie — WhatsApp green, caldo e diretto */
+.si-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #25D366;
+    color: #ffffff;
+    padding: 0.85rem 1.7rem;
+    border-radius: 50px;
     font-weight: 700;
-    text-decoration: underline;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
 }
 
-/* Responsività Professionale */
-@media (max-width: 1200px) {
-    .inclusive-content-side { padding: 3rem; }
-    .inclusive-title-island { font-size: 2.2rem; }
+.si-btn-primary:hover {
+    background: #1ebe5d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    color: #ffffff;
 }
 
+.si-btn-primary:focus-visible {
+    outline: 3px solid #25D366;
+    outline-offset: 3px;
+}
+
+/* CTA secondaria: sponsor — navy autorevole */
+.si-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    color: var(--secondary-blue);
+    padding: 0.82rem 1.7rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: 2px solid var(--secondary-blue);
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.si-btn-secondary:hover {
+    background: var(--secondary-blue);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(18, 59, 99, 0.2);
+}
+
+.si-btn-secondary:focus-visible {
+    outline: 3px solid var(--secondary-blue);
+    outline-offset: 3px;
+}
+
+/* \u2500\u2500 Responsive \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
 @media (max-width: 992px) {
-    .inclusive-island-grid { grid-template-columns: 1fr; }
-    .inclusive-visual-side { padding: 3rem 2rem; min-height: 400px; }
-    .inclusive-content-side { padding: 4rem 2rem; }
+    .si-benefits {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .si-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .si-actions-divider {
+        width: auto;
+        height: 1px;
+        margin: 0 3rem;
+        align-self: auto;
+    }
+
+    .si-action-block {
+        padding: 2.5rem 2.5rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .si-section {
+        padding: 5rem 0 4rem;
+    }
+
+    .si-header {
+        margin-bottom: 3.5rem;
+    }
+
+    .si-benefits {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .si-card {
+        padding: 1.6rem 1.5rem;
+    }
+
+    .si-action-block {
+        padding: 2rem 1.5rem;
+    }
+
+    .si-actions-divider {
+        margin: 0 1.5rem;
+    }
+
+    .si-btn-primary,
+    .si-btn-secondary {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem 1.5rem;
+    }
 }
 
 /* --- HERO MODERN REDESIGN --- */

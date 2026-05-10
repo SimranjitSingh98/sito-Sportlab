@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momenti di Squadra | ASD Sport Lab Pattinaggio</title>
+    <meta name="description" content="Guarda le foto e i momenti più belli della nostra scuola di pattinaggio a Pontecagnano. Allenamenti, gare, sorrisi e tanto sport.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header {
+            padding-top: 150px;
+            padding-bottom: 60px;
+            background-color: var(--bg-light);
+            text-align: center;
+            border-bottom: 1px solid rgba(18, 59, 99, 0.05);
+        }
+        
+        .full-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .full-gallery-item {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: var(--border-radius-lg);
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(18, 59, 99, 0.03);
+        }
+        
+        .full-gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header id="header" style="box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="ASD Sport Lab" class="logo-img">
+            </a>
+            
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html#perche-noi">Perché Noi</a></li>
+                    <li><a href="index.html#corsi">Corsi</a></li>
+                    <li><a href="index.html#prova">Prima Prova</a></li>
+                    <li><a href="index.html#staff">Staff</a></li>
+                    <li><a href="gallery.html" style="color: var(--primary-blue);">Gallery</a></li>
+                    <li><a href="index.html#contatti">Contatti</a></li>
+                </ul>
+                <a href="https://wa.me/390000000000" class="btn btn-primary nav-cta"><i class="fab fa-whatsapp"></i> Scrivici</a>
+            </nav>
+
+            <button class="mobile-menu-btn" aria-label="Apri menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav-overlay">
+        <div class="mobile-nav-menu">
+            <button class="close-menu-btn" aria-label="Chiudi menu"><i class="fas fa-times"></i></button>
+            <ul>
+                <li><a href="index.html#perche-noi">Perché Noi</a></li>
+                <li><a href="index.html#corsi">Corsi</a></li>
+                <li><a href="index.html#prova">Prima Prova</a></li>
+                <li><a href="index.html#staff">Staff</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="index.html#contatti">Contatti</a></li>
+            </ul>
+            <a href="https://wa.me/390000000000" class="btn btn-cta"><i class="fab fa-whatsapp"></i> Scrivici su WhatsApp</a>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>In Pista, <span class="text-accent">Insieme</span></h1>
+            <p class="lead" style="max-width: 600px; margin: 0 auto;">Tutti i momenti più emozionanti dei nostri atleti durante gli allenamenti e le gare.</p>
+        </div>
+    </section>
+
+    <!-- Main Gallery Content -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 2rem;">
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Clicca sulle immagini per vederle intere (è possibile integrare in seguito un plugin per lo zoom).</p>
+            </div>
+            
+            <div class="full-gallery-grid">
+                <!-- Esempi di foto, sostituiscile con le tue immagini locali (es: src="images/foto1.jpg") -->
+                <img src="images/allenamento_con_tanti_bambini.png" alt="Allenamento con tanti bambini" class="full-gallery-item">
+                <img src="images/bambini_che_giocano_sui_pattini.png" alt="Bambini che giocano sui pattini" class="full-gallery-item">
+                <img src="images/bambine_con_medaglia.JPG" alt="Bambine con medaglia" class="full-gallery-item">
+                <img src="images/allenatore_con_atlete.JPG" alt="Allenatore con atlete" class="full-gallery-item">
+                <img src="images/bambine_con_pattini_pregara.JPG" alt="Bambine nel pre gara" class="full-gallery-item">
+                <img src="images/stage_Siena_col_campione_del_mondo.JPG" alt="Stage a Siena col Campione del Mondo" class="full-gallery-item">
+                
+                <!-- AGGIUNGI QUI LE TUE FOTO: -->
+                <!-- <img src="PERCORSO_DELLA_TUA_FOTO" alt="Descrizione" class="full-gallery-item"> -->
+            </div>
+            
+            <div class="text-center" style="margin-top: 5rem;">
+                <a href="index.html" class="btn btn-outline btn-large"><i class="fas fa-arrow-left"></i> Torna alla Home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-info">
+                <h3>ASD Sport Lab</h3>
+                <p>La scuola di pattinaggio per bambini e ragazzi a Pontecagnano. Dai primi passi in pista all'attività agonistica.</p>
+            </div>
+            <div class="footer-social">
+                <a href="#" aria-label="Seguici su Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Seguici su Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2025 ASD Sport Lab. Tutti i diritti riservati. Pattinodromo Via Lazio 8, Pontecagnano (SA).</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/390000000000" class="floating-wa" aria-label="Contattaci su WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>

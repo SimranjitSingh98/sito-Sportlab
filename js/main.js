@@ -88,120 +88,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- SEZIONE EVENTI E TRASFERTE (Archivio Dinamico) ---
-    const sportLabEvents = [
-        // Eventi Futuri (In Programma)
-        {
-            year: 2024,
-            isFuture: true,
-            title: "Campionato Italiano Pista",
-            location: "Cassano d'Adda (MI)",
-            dateStr: "In Programma",
-            image: "images/atleta_in_pista_campionatiitaliani2026.jpg",
-            category: "Campionato Italiano",
-            description: "Il prossimo grande traguardo! I nostri atleti si stanno allenando intensamente per l'appuntamento più importante dell'anno. Non vediamo l'ora di scendere in pista.",
-            footerNote: "Seguici su Instagram per gli aggiornamenti"
-        },
-        {
-            year: 2024,
-            isFuture: true,
-            title: "Circuito Nord-Ovest",
-            location: "San Benedetto del Tronto (AP)",
-            dateStr: "Estate 2024",
-            image: "images/atleta_sportlab_in_trasferta.JPG",
-            category: "Circuito",
-            description: "Tappa fondamentale del circuito. Una trasferta che ci vedrà confrontarci con le migliori squadre del centro-nord in una bellissima location sul mare.",
-            footerNote: "Gara fondamentale per il ranking"
-        },
-        // Eventi Passati
-        {
-            year: 2024,
-            isFuture: false,
-            title: "Campionato Regionale Sprint",
-            location: "Napoli, Campania",
-            dateStr: "Marzo 2024",
-            image: "images/foto_napoli_regionali_2026.JPG",
-            category: "Regionale",
-            description: "Sulla storica pista di Napoli, i nostri velocisti hanno dimostrato carattere. Ottima prova per i ragazzi delle categorie G/E alla loro prima vera gara regionale.",
-            footerNote: "Tante emozioni per i più piccoli"
-        },
-        {
-            year: 2023,
-            isFuture: false,
-            title: "Trofeo del Mare",
-            location: "Pescara, Abruzzo",
-            dateStr: "Maggio 2023",
-            image: "images/podio_trofeo_pollenza.JPG",
-            category: "Trofeo Nazionale",
-            description: "Trasferta entusiasmante sulla costa adriatica. Due giorni intensi di gare su pista dove abbiamo portato a casa ottimi piazzamenti e condiviso bellissimi momenti in spiaggia.",
-            footerNote: "Oltre la gara, un weekend di squadra"
-        },
-        {
-            year: 2023,
-            isFuture: false,
-            title: "Internazionali d'Italia",
-            location: "L'Aquila, Abruzzo",
-            dateStr: "Aprile 2023",
-            image: "images/atleti_agonisti_a_benevento.png",
-            category: "Gara Internazionale",
-            description: "Confronto di altissimo livello su una delle piste più prestigiose d'Italia. I nostri atleti hanno dimostrato determinazione confrontandosi con atleti da tutta Europa.",
-            footerNote: "Test importante per il gruppo agonisti"
-        },
-        {
-            year: 2022,
-            isFuture: false,
-            title: "Campionato Nazionale",
-            location: "Roma, Lazio",
-            dateStr: "Giugno 2022",
-            image: "images/podio_roma_2025.JPG",
-            category: "Campionato Nazionale",
-            description: "Una grandissima emozione per i nostri ragazzi gareggiare nella Capitale contro i migliori d'Italia. Molti podi conquistati e un'esperienza formativa indimenticabile.",
-            footerNote: "Il consolidamento del nostro gruppo"
-        }
-    ];
-
+    // --- SEZIONE EVENTI E TRASFERTE (Caricamento da JSON) ---
     const yearSelector = document.getElementById('yearSelector');
     const eventsGrid = document.getElementById('eventsGrid');
     const yearStats = document.getElementById('yearStats');
     const eventsEmpty = document.getElementById('eventsEmpty');
 
     if (yearSelector && eventsGrid) {
-        // Estrai anni unici e ordinali decrescenti
-        const years = [...new Set(sportLabEvents.map(e => e.year))].sort((a, b) => b - a);
-        
-        let currentYear = years.length > 0 ? years[0] : new Date().getFullYear();
 
-        // Genera i Pill per gli anni
-        years.forEach(year => {
-            const btn = document.createElement('button');
-            btn.className = `year-pill ${year === currentYear ? 'active' : ''}`;
-            btn.textContent = year;
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.year-pill').forEach(p => p.classList.remove('active'));
-                btn.classList.add('active');
-                currentYear = year;
-                renderEvents();
-            });
-            yearSelector.appendChild(btn);
-        });
+        // Badge stato: mappa il valore JSON → etichetta + classe CSS
+        const statoConfig = {
+            programmato: { label: 'In Programma', cssClass: 'status-programmato', icon: 'fas fa-arrow-right' },
+            completato:  { label: 'Completato',   cssClass: 'status-completato',  icon: 'fas fa-check' }
+        };
+
+        let allAnni = [];
+        let currentAnno = null;
 
         const renderEvents = () => {
-            // Animazione uscita
             eventsGrid.classList.remove('visible');
             yearStats.classList.remove('visible');
-            
+
             setTimeout(() => {
-                const filteredEvents = sportLabEvents.filter(e => e.year === currentYear);
-                
-                // Ordina: Prima i futuri, poi i passati
-                filteredEvents.sort((a, b) => {
-                    if (a.isFuture === b.isFuture) return 0;
-                    return a.isFuture ? -1 : 1;
-                });
+                const annoData = allAnni.find(a => a.anno === currentAnno);
+                const eventi = annoData ? annoData.eventi : [];
 
                 eventsGrid.innerHTML = '';
-                
-                if (filteredEvents.length === 0) {
+
+                if (eventi.length === 0) {
                     eventsGrid.style.display = 'none';
                     yearStats.style.display = 'none';
                     eventsEmpty.style.display = 'block';
@@ -209,49 +123,98 @@ document.addEventListener('DOMContentLoaded', () => {
                     eventsGrid.style.display = 'grid';
                     eventsEmpty.style.display = 'none';
                     yearStats.style.display = 'block';
-                    
-                    // Calcolo Stats
-                    const uniqueCities = new Set(filteredEvents.map(e => e.location.split(',')[0].trim())).size;
-                    const statsText = `Nel ${currentYear} la squadra è stata protagonista in <span>${filteredEvents.length} eventi</span> in <span>${uniqueCities} ${uniqueCities === 1 ? 'città' : 'città'} diverse</span>.`;
-                    yearStats.innerHTML = statsText;
 
-                    filteredEvents.forEach(ev => {
-                        const card = document.createElement('div');
-                        card.className = 'event-card';
-                        
-                        const statusBadge = ev.isFuture 
-                            ? `<div class="event-status">In Programma</div>` 
+                    // Riepilogo anno
+                    const riepilogo = annoData.riepilogo || '';
+                    yearStats.innerHTML = riepilogo;
+
+                    // Ordine: programmato prima, poi completato
+                    const ordinati = [...eventi].sort((a, b) => {
+                        const ordine = { programmato: 0, completato: 1 };
+                        return (ordine[a.stato] ?? 9) - (ordine[b.stato] ?? 9);
+                    });
+
+                    ordinati.forEach(ev => {
+                        const cfg = statoConfig[ev.stato] || { label: ev.stato, cssClass: 'status-completato', icon: 'fas fa-circle' };
+                        const isProgrammato = ev.stato === 'programmato';
+
+                        const coverHTML = ev.cover
+                            ? `<div class="event-card-img">
+                                   <span class="event-status ${cfg.cssClass}">${cfg.label}</span>
+                                   <img src="${ev.cover}" alt="${ev.titolo}" loading="lazy">
+                               </div>`
+                            : `<div class="event-card-img event-card-img--no-cover">
+                                   <span class="event-status ${cfg.cssClass}">${cfg.label}</span>
+                                   <div class="event-cover-placeholder"><i class="fas fa-route"></i></div>
+                               </div>`;
+
+                        const notaHTML = ev.nota
+                            ? `<div class="event-footer"><i class="${cfg.icon}"></i> ${ev.nota}</div>`
                             : '';
 
+                        const card = document.createElement('div');
+                        card.className = 'event-card';
                         card.innerHTML = `
-                            <div class="event-card-img">
-                                ${statusBadge}
-                                <img src="${ev.image}" alt="${ev.title}">
-                            </div>
+                            ${coverHTML}
                             <div class="event-card-content">
                                 <div class="event-meta">
-                                    <span class="badge-event">${ev.category}</span>
-                                    <span class="date-loc"><i class="fas fa-map-marker-alt"></i> ${ev.location} &bull; ${ev.dateStr}</span>
+                                    <span class="date-loc"><i class="fas fa-map-marker-alt"></i> ${ev.luogo}</span>
+                                    <span class="date-loc"><i class="fas fa-calendar-alt"></i> ${ev.periodo}</span>
                                 </div>
-                                <h3>${ev.title}</h3>
-                                <p>${ev.description}</p>
-                                ${ev.footerNote ? `<div class="event-footer">${ev.isFuture ? '<i class="fas fa-arrow-right"></i>' : '<i class="fas fa-check"></i>'} ${ev.footerNote}</div>` : ''}
+                                <h3>${ev.titolo}</h3>
+                                <p>${ev.descrizione}</p>
+                                ${notaHTML}
                             </div>
                         `;
                         eventsGrid.appendChild(card);
                     });
                 }
-                
-                // Animazione entrata
+
                 setTimeout(() => {
                     eventsGrid.classList.add('visible');
                     yearStats.classList.add('visible');
                 }, 50);
-                
-            }, 300); // Wait for fade out
+            }, 300);
         };
 
-        // Inizializza
-        renderEvents();
+        const initTabs = () => {
+            yearSelector.innerHTML = '';
+            allAnni.forEach((annoObj, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `year-pill${idx === 0 ? ' active' : ''}`;
+                btn.textContent = annoObj.anno;
+                btn.setAttribute('data-year', annoObj.anno);
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.year-pill').forEach(p => p.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentAnno = annoObj.anno;
+                    renderEvents();
+                });
+                yearSelector.appendChild(btn);
+            });
+
+            if (allAnni.length > 0) {
+                currentAnno = allAnni[0].anno;
+                renderEvents();
+            }
+        };
+
+        // Fetch JSON (compatibile GitHub Pages, nessun backend)
+        fetch('content/trasferte.json')
+            .then(res => {
+                if (!res.ok) throw new Error('Impossibile caricare trasferte.json');
+                return res.json();
+            })
+            .then(data => {
+                // Ordina per anno decrescente
+                allAnni = (data.anni || []).sort((a, b) => b.anno - a.anno);
+                initTabs();
+            })
+            .catch(err => {
+                console.warn('Trasferte: ' + err.message);
+                eventsGrid.style.display = 'none';
+                if (yearStats) yearStats.style.display = 'none';
+                if (eventsEmpty) eventsEmpty.style.display = 'block';
+            });
     }
 });

@@ -1,0 +1,76 @@
+{
+  "anni": [
+    {
+      "anno": 2024,
+      "riepilogo": "Nel 2024 la squadra ha vissuto una stagione intensa tra gare regionali, circuiti e la grande sfida dei Campionati Italiani.",
+      "eventi": [
+        {
+          "stato": "programmato",
+          "titolo": "Campionato Italiano Pista",
+          "luogo": "Cassano d'Adda (MI)",
+          "periodo": "Estate 2024",
+          "descrizione": "Il prossimo grande traguardo! I nostri atleti si stanno allenando intensamente per l'appuntamento più importante dell'anno. Non vediamo l'ora di scendere in pista.",
+          "nota": "Seguici su Instagram per gli aggiornamenti",
+          "cover": "images/atleta_in_pista_campionatiitaliani2026.jpg"
+        },
+        {
+          "stato": "programmato",
+          "titolo": "Circuito Nord-Ovest",
+          "luogo": "San Benedetto del Tronto (AP)",
+          "periodo": "Estate 2024",
+          "descrizione": "Tappa fondamentale del circuito. Una trasferta che ci vedrà confrontarci con le migliori squadre del centro-nord in una bellissima location sul mare.",
+          "nota": "Gara fondamentale per il ranking",
+          "cover": "images/atleta_sportlab_in_trasferta.JPG"
+        },
+        {
+          "stato": "completato",
+          "titolo": "Campionato Regionale Sprint",
+          "luogo": "Napoli, Campania",
+          "periodo": "Marzo 2024",
+          "descrizione": "Sulla storica pista di Napoli, i nostri velocisti hanno dimostrato carattere. Ottima prova per i ragazzi delle categorie G/E alla loro prima vera gara regionale.",
+          "nota": "Tante emozioni per i più piccoli",
+          "cover": "images/foto_napoli_regionali_2026.JPG"
+        }
+      ]
+    },
+    {
+      "anno": 2023,
+      "riepilogo": "Il 2023 è stato un anno di crescita: trasferte in Abruzzo, conferme sul ranking e tantissimi momenti da ricordare fuori dalla pista.",
+      "eventi": [
+        {
+          "stato": "completato",
+          "titolo": "Trofeo del Mare",
+          "luogo": "Pescara, Abruzzo",
+          "periodo": "Maggio 2023",
+          "descrizione": "Trasferta entusiasmante sulla costa adriatica. Due giorni intensi di gare su pista dove abbiamo portato a casa ottimi piazzamenti e condiviso bellissimi momenti in spiaggia.",
+          "nota": "Oltre la gara, un weekend di squadra",
+          "cover": "images/podio_trofeo_pollenza.JPG"
+        },
+        {
+          "stato": "completato",
+          "titolo": "Internazionali d'Italia",
+          "luogo": "L'Aquila, Abruzzo",
+          "periodo": "Aprile 2023",
+          "descrizione": "Confronto di altissimo livello su una delle piste più prestigiose d'Italia. I nostri atleti hanno dimostrato determinazione confrontandosi con atleti da tutta Europa.",
+          "nota": "Test importante per il gruppo agonisti",
+          "cover": "images/atleti_agonisti_a_benevento.png"
+        }
+      ]
+    },
+    {
+      "anno": 2022,
+      "riepilogo": "Il 2022 ha segnato un punto di svolta: la squadra si è consolidata e ha conquistato podi importanti nel panorama nazionale.",
+      "eventi": [
+        {
+          "stato": "completato",
+          "titolo": "Campionato Nazionale",
+          "luogo": "Roma, Lazio",
+          "periodo": "Giugno 2022",
+          "descrizione": "Una grandissima emozione per i nostri ragazzi gareggiare nella Capitale contro i migliori d'Italia. Molti podi conquistati e un'esperienza formativa indimenticabile.",
+          "nota": "Il consolidamento del nostro gruppo",
+          "cover": "images/podio_roma_2025.JPG"
+        }
+      ]
+    }
+  ]
+}

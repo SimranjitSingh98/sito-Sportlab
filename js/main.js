@@ -139,13 +139,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         const isProgrammato = ev.stato === 'programmato';
 
                         const coverHTML = ev.cover
-                            ? `<div class="event-card-img">
+                            ? `<div class="event-card-media">
                                    <span class="event-status ${cfg.cssClass}">${cfg.label}</span>
                                    <img src="${ev.cover}" alt="${ev.titolo}" loading="lazy">
                                </div>`
-                            : `<div class="event-card-img event-card-img--no-cover">
+                            : `<div class="event-card-media event-card-media--placeholder">
                                    <span class="event-status ${cfg.cssClass}">${cfg.label}</span>
-                                   <div class="event-cover-placeholder"><i class="fas fa-route"></i></div>
+                                   <span class="event-cover-placeholder"><i class="fas fa-route"></i></span>
                                </div>`;
 
                         const notaHTML = ev.nota

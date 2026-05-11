@@ -74,20 +74,20 @@
       "riepilogo": "Nel 2024 la squadra ha vissuto una stagione intensa tra gare regionali, circuiti e la grande sfida dei Campionati Italiani.",
       "eventi": [
         {
-          "stato": "completato",
+          "stato": "programmato",
           "titolo": "Campionato Italiano Pista",
           "luogo": "Cassano d'Adda (MI)",
-          "periodo": "Giugno 2024",
-          "descrizione": "Una delle tappe più prestigiose della stagione. I nostri atleti si sono confrontati con i migliori talenti nazionali, portando a casa un'esperienza fondamentale e confermando la crescita tecnica di tutto il gruppo.",
-          "nota": "Un appuntamento che ha segnato la nostra stagione",
-          "cover": "images/atleta_ai-campionait_italiani.jpg"
+          "periodo": "Estate 2024",
+          "descrizione": "Il prossimo grande traguardo! I nostri atleti si stanno allenando intensamente per l'appuntamento più importante dell'anno. Non vediamo l'ora di scendere in pista.",
+          "nota": "Seguici su Instagram per gli aggiornamenti",
+          "cover": "images/atleta_in_pista_campionatiitaliani2026.jpg"
         },
         {
-          "stato": "completato",
+          "stato": "programmato",
           "titolo": "Circuito Nord-Ovest",
           "luogo": "San Benedetto del Tronto (AP)",
-          "periodo": "Luglio 2024",
-          "descrizione": "Tappa fondamentale del circuito in una bellissima location sul mare. Una trasferta che ha visto la squadra protagonista in un contesto altamente competitivo, utile per scalare il ranking nazionale.",
+          "periodo": "Estate 2024",
+          "descrizione": "Tappa fondamentale del circuito. Una trasferta che ci vedrà confrontarci con le migliori squadre del centro-nord in una bellissima location sul mare.",
           "nota": "Gara fondamentale per il ranking",
           "cover": "images/atleta_sportlab_in_trasferta.JPG"
         },
@@ -128,7 +128,7 @@
     },
     {
       "anno": 2022,
-      "riepilogo": "Il 2022 ha segnato un punto di svolta: la squadra si è consolidata e ha conquistato podi importanti nel panorama nazionale.",
+      "riepilogo": "Il 2022 Haaaa segnato un punto di svolta: la squadra si è consolidata e ha conquistato podi importanti nel panorama nazionale.",
       "eventi": [
         {
           "stato": "completato",

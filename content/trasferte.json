@@ -1,6 +1,75 @@
 {
   "anni": [
     {
+      "anno": 2026,
+      "riepilogo": "Il 2026 rappresenta un anno di grande crescita per Sportlab, con trasferte in tutta Italia, risultati di prestigio e una presenza costante nelle principali competizioni nazionali e regionali.",
+      "eventi": [
+        {
+          "stato": "completato",
+          "titolo": "Campionato Regionale Strada Campania",
+          "luogo": "Napoli",
+          "periodo": "02/05/2026",
+          "descrizione": "Un risultato di grande valore per la nostra società: ai Campionati Regionali Strada di Napoli, organizzati da ASD SEBS Fiera dello Sport, Sportlab ha conquistato il primo posto in Campania. Un fine settimana intenso, vissuto con impegno, entusiasmo e spirito di squadra, che ha confermato la qualità del lavoro svolto quotidianamente in pista. I nostri atleti hanno saputo esprimere determinazione, maturità e passione, regalando alla società un traguardo importante e fortemente significativo. Questo successo rappresenta un ulteriore passo nel percorso di crescita del gruppo e uno stimolo prezioso in vista dei prossimi obiettivi nazionali.",
+          "nota": "Primo posto in Campania, con lo sguardo già rivolto ai Campionati Italiani.",
+          "cover": "images/campionato_regionale_strada_napoli_2026.jpg"
+        },
+        {
+          "stato": "completato",
+          "titolo": "Trofeo Indoor CUS Unical",
+          "luogo": "Rende (CS)",
+          "periodo": "22/03/2026",
+          "descrizione": "La trasferta di Rende ha rappresentato un momento importante di confronto e crescita per i nostri giovani atleti. Al Trofeo Indoor CUS Unical, organizzato dal CUS Unical, Sportlab ha partecipato con entusiasmo a una competizione che ha permesso ai ragazzi di misurarsi con nuove realtà sportive e con avversari provenienti da contesti diversi dal nostro. Per molti è stata una delle prime esperienze fuori regione, utile non solo dal punto di vista tecnico, ma anche umano ed educativo. Giornate come questa rafforzano il senso di gruppo, aiutano a costruire autonomia e rendono ancora più concreto il valore formativo del pattinaggio.",
+          "nota": "Una trasferta che unisce esperienza, crescita e divertimento.",
+          "cover": "images/trofeo_indoor_cus_unical_rende_2026.jpg"
+        },
+        {
+          "stato": "completato",
+          "titolo": "XI Memorial Gilda Leoperdi - 1° Trofeo Città di Pollenza",
+          "luogo": "Pollenza (MC)",
+          "periodo": "26/04/2026",
+          "descrizione": "Il weekend tra Terni e Pollenza ha rappresentato una tappa di grande valore sportivo per Sportlab. Al Memorial Gilda Leoperdi e al Trofeo Città di Pollenza, organizzati da A.P.D. Juvenilia, i nostri atleti hanno affrontato una competizione di alto livello, confrontandosi con società e pattinatori provenienti da tutta Italia. La squadra ha mostrato compattezza, qualità e spirito competitivo, ottenendo un risultato di rilievo anche nella classifica di società. Oltre ai piazzamenti, ciò che emerge è la crescita costante del gruppo, capace di affrontare trasferte impegnative con serietà, entusiasmo e una forte identità di squadra.",
+          "nota": "Un weekend nazionale che conferma la crescita della squadra.",
+          "cover": "images/memorial_gilda_leoperdi_pollenza_2026.jpg"
+        },
+        {
+          "stato": "completato",
+          "titolo": "1° Trofeo degli Appennini - XIV Memorial D. Pioli",
+          "luogo": "Terni",
+          "periodo": "25/04/2026",
+          "descrizione": "Al 1° Trofeo degli Appennini - XIV Memorial D. Pioli, organizzato da Euro Sport Club a Terni, Sportlab ha vissuto una splendida esperienza di sport e confronto. La partecipazione a una manifestazione con atleti provenienti da tutta Italia ha permesso ai nostri ragazzi di mettersi in gioco in un contesto altamente competitivo, dimostrando determinazione e continuità nel percorso di crescita. I risultati ottenuti, insieme all’impegno di tutta la squadra, raccontano una società viva, presente e capace di confrontarsi con realtà di primo piano nel panorama nazionale. Una tappa importante, resa ancora più significativa dal lavoro condiviso con staff e famiglie.",
+          "nota": "Sportlab in crescita, gara dopo gara.",
+          "cover": "images/trofeo_appennini_terni_2026.jpg"
+        },
+        {
+          "stato": "completato",
+          "titolo": "1° Maggio Ferrara Inline - Trofeo Internazionale del Lavoro",
+          "luogo": "Piazza Ariostea, Ferrara",
+          "periodo": "01/05/2026",
+          "descrizione": "Nella prestigiosa cornice di Piazza Ariostea, Sportlab ha preso parte al 1° Maggio Ferrara Inline - Trofeo Internazionale del Lavoro, una manifestazione di grande tradizione e richiamo. Per i nostri atleti, in particolare per la categoria junior e senior, è stata un’occasione preziosa per confrontarsi in un contesto internazionale e vivere una nuova esperienza di alto livello. La trasferta ha rappresentato un ulteriore momento di crescita, utile ad accumulare esperienza, rafforzare la mentalità sportiva e dare continuità a un percorso fatto di impegno, sacrificio e passione.",
+          "nota": "Una trasferta prestigiosa che arricchisce il percorso sportivo.",
+          "cover": "images/ferrara_inline_trofeo_lavoro_2026.jpg"
+        },
+        {
+          "stato": "completato",
+          "titolo": "3° Trofeo della Befana",
+          "luogo": "Pescara",
+          "periodo": "06/01/2026",
+          "descrizione": "Il 3° Trofeo della Befana ha aperto l’anno agonistico con una trasferta utile e significativa a Pescara, organizzata dal Centro Sportivo Pattinaggio Pescara. La squadra ha affrontato la competizione con spirito positivo, ottenendo una classifica di società che testimonia la presenza costante di Sportlab nel panorama delle gare nazionali. Per i nostri atleti è stata un’occasione importante per tornare in pista dopo la pausa, rimettersi in gioco e iniziare la stagione con la giusta determinazione. Un appuntamento che ha unito esperienza, partecipazione e voglia di crescere.",
+          "nota": "Una partenza di stagione utile per ritrovare ritmo e competitività.",
+          "cover": "images/trofeo_befana_pescara_2026.jpg"
+        },
+        {
+          "stato": "completato",
+          "titolo": "3° Trofeo Città di Pescara",
+          "luogo": "Pescara",
+          "periodo": "29/11/2025 - 30/11/2025",
+          "descrizione": "Il 3° Trofeo Città di Pescara ha rappresentato il primo importante impegno della nuova stagione. Organizzato da A.S.D. Centro Sportivo Pattinaggio Pescara, l’evento ha visto la partecipazione di numerose società da tutta Italia, offrendo un confronto tecnico di alto livello. Sportlab ha ottenuto un ottimo piazzamento nella classifica per società, confermando la solidità del lavoro svolto e la qualità del gruppo. Oltre al risultato, la trasferta ha dato ai nostri atleti una preziosa occasione per misurarsi in un contesto competitivo reale, affrontando la gara con impegno, concentrazione e spirito di squadra.",
+          "nota": "Ottimo avvio di stagione con un risultato importante su scala nazionale.",
+          "cover": "images/trofeo_citta_pescara_2025.jpg"
+        }
+      ]
+    },
+    {
       "anno": 2024,
       "riepilogo": "Nel 2024 la squadra ha vissuto una stagione intensa tra gare regionali, circuiti e la grande sfida dei Campionati Italiani.",
       "eventi": [
@@ -27,7 +96,7 @@
           "titolo": "Campionato Regionale Sprint",
           "luogo": "Napoli, Campania",
           "periodo": "Marzo 2024",
-          "descrizione": "Sulla storica pista di Napoli, i nostri velocisti hanno dimostrato carattere. Ottima prova per i ragazzi delle categorie G/E alla loro prima vera gara regionale.",
+          "descrizione": "Sulla storica pista di Napoli, i nostri velocisti hanno dimostrato carattere e continuità. Per i ragazzi delle categorie G/E, alla loro prima vera esperienza regionale, è stata una giornata ricca di emozioni, concentrazione e orgoglio. La partecipazione a questo appuntamento ha confermato il valore del lavoro svolto in allenamento e la crescita progressiva del gruppo. Un’esperienza importante, che ha lasciato entusiasmo e fiducia per il futuro.",
           "nota": "Tante emozioni per i più piccoli",
           "cover": "images/foto_napoli_regionali_2026.JPG"
         }
@@ -42,7 +111,7 @@
           "titolo": "Trofeo del Mare",
           "luogo": "Pescara, Abruzzo",
           "periodo": "Maggio 2023",
-          "descrizione": "Trasferta entusiasmante sulla costa adriatica. Due giorni intensi di gare su pista dove abbiamo portato a casa ottimi piazzamenti e condiviso bellissimi momenti in spiaggia.",
+          "descrizione": "La trasferta di Pescara ha regalato alla squadra un fine settimana intenso e ricco di esperienza. Il Trofeo del Mare ha rappresentato un’occasione preziosa per confrontarsi in gara, vivere il clima della competizione e condividere anche momenti di gruppo al di fuori della pista. I risultati ottenuti e l’atmosfera positiva hanno reso questa esperienza particolarmente significativa, confermando quanto le trasferte siano fondamentali per la crescita sportiva e umana degli atleti.",
           "nota": "Oltre la gara, un weekend di squadra",
           "cover": "images/podio_trofeo_pollenza.JPG"
         },
@@ -51,7 +120,7 @@
           "titolo": "Internazionali d'Italia",
           "luogo": "L'Aquila, Abruzzo",
           "periodo": "Aprile 2023",
-          "descrizione": "Confronto di altissimo livello su una delle piste più prestigiose d'Italia. I nostri atleti hanno dimostrato determinazione confrontandosi con atleti da tutta Europa.",
+          "descrizione": "A L’Aquila, in occasione degli Internazionali d’Italia, Sportlab ha preso parte a una competizione di altissimo livello su una delle piste più prestigiose del panorama nazionale. Il confronto con atleti provenienti da diverse realtà italiane ed europee ha offerto ai nostri ragazzi un’esperienza molto formativa, utile per misurare il proprio percorso e affrontare con maggiore consapevolezza le sfide future. Un appuntamento importante, che ha confermato la determinazione e la serietà del gruppo agonisti.",
           "nota": "Test importante per il gruppo agonisti",
           "cover": "images/atleti_agonisti_a_benevento.png"
         }
@@ -66,7 +135,7 @@
           "titolo": "Campionato Nazionale",
           "luogo": "Roma, Lazio",
           "periodo": "Giugno 2022",
-          "descrizione": "Una grandissima emozione per i nostri ragazzi gareggiare nella Capitale contro i migliori d'Italia. Molti podi conquistati e un'esperienza formativa indimenticabile.",
+          "descrizione": "Gareggiare nella Capitale contro i migliori atleti d’Italia è stata una grandissima emozione per tutto il gruppo. Il Campionato Nazionale ha rappresentato un momento di forte crescita, arricchito da risultati importanti, podi conquistati e un’esperienza che resterà nel percorso di Sportlab. Per la squadra è stato un passaggio fondamentale, capace di rafforzare identità, fiducia e ambizione sportiva.",
           "nota": "Il consolidamento del nostro gruppo",
           "cover": "images/podio_roma_2025.JPG"
         }

@@ -11,7 +11,7 @@
           "periodo": "31/05/2026",
           "descrizione": "Il Manduria Roller Trophy rappresenta il prossimo appuntamento della stagione per Sportlab. Una gara di categoria B su pista che offrirà ai nostri atleti una nuova occasione per confrontarsi in un contesto competitivo nazionale, accumulare esperienza e dare continuità al lavoro svolto in allenamento.",
           "nota": "Prossima tappa stagionale in Puglia.",
-          "cover": ""
+          "cover": "images/immaginiWebp/fisr.webp"
         },
         {
           "stato": "programmato",
@@ -20,7 +20,7 @@
           "periodo": "05/06/2026 - 07/06/2026",
           "descrizione": "A Elmas andrà in scena uno dei grandi appuntamenti nazionali dedicati alle categorie R e R12. Per Sportlab sarà una trasferta di grande valore tecnico, utile per misurarsi con il meglio del panorama italiano e vivere un’esperienza ad altissimo livello agonistico.",
           "nota": "Campionato italiano giovanile su pista.",
-          "cover": ""
+          "cover": "images/immaginiWebp/fisr.webp"
         },
         {
           "stato": "programmato",
@@ -29,7 +29,7 @@
           "periodo": "11/06/2026 - 13/06/2026",
           "descrizione": "I Giochi Nazionali per Società Bruno Tiezzi rappresentano uno dei momenti più importanti per il settore giovanile. Una trasferta che unisce agonismo, crescita e spirito di squadra, in un contesto nazionale dove ogni esperienza contribuisce alla formazione sportiva e personale dei ragazzi.",
           "nota": "Grande appuntamento nazionale per il settore G/E.",
-          "cover": ""
+          "cover": "images/immaginiWebp/fisr.webp"
         },
         {
           "stato": "programmato",
@@ -38,7 +38,7 @@
           "periodo": "20/06/2026 - 21/06/2026",
           "descrizione": "Il 3° Memorial Nazionale Pierfrancesco Mazza sarà una nuova tappa di confronto per il gruppo Sportlab. Una competizione di categoria B su pista che offrirà alla squadra l’opportunità di proseguire il proprio percorso stagionale in un contesto tecnico di rilievo.",
           "nota": "Trasferta nazionale di due giorni.",
-          "cover": ""
+          "cover": "images/immaginiWebp/fisr.webp"
         },
         {
           "stato": "programmato",
@@ -47,7 +47,7 @@
           "periodo": "26/06/2026 - 28/06/2026",
           "descrizione": "Il Campionato Italiano su pista per le categorie Allievi, Junior e Senior rappresenta uno degli obiettivi principali della stagione. Per Sportlab sarà un banco di prova fondamentale, dove confrontarsi con i migliori atleti d’Italia e dare valore al lavoro costruito durante l’anno.",
           "nota": "Uno dei grandi obiettivi stagionali.",
-          "cover": ""
+          "cover": "images/immaginiWebp/fisr.webp"
         },
         {
           "stato": "programmato",
@@ -56,7 +56,7 @@
           "periodo": "17/07/2026 - 19/07/2026",
           "descrizione": "A Torino Sportlab sarà attesa da un importante appuntamento su strada riservato alle categorie R e R12. Sarà un’occasione preziosa per vivere il campionato italiano in una disciplina diversa dalla pista, ampliando il bagaglio tecnico e competitivo degli atleti.",
           "nota": "Appuntamento tricolore su strada per R e R12.",
-          "cover": ""
+          "cover": "images/immaginiWebp/fisr.webp"
         },
         {
           "stato": "programmato",
@@ -65,7 +65,7 @@
           "periodo": "05/08/2026 - 09/08/2026",
           "descrizione": "La 6 Giorni International 2026 sarà una delle trasferte più prestigiose dell’anno. Una manifestazione di categoria A, articolata su più giornate, che rappresenta per Sportlab un’esperienza di altissimo profilo tecnico, agonistico e formativo.",
           "nota": "Evento internazionale di grande prestigio.",
-          "cover": ""
+          "cover": "images/immaginiWebp/fisr.webp"
         },
         {
           "stato": "programmato",
@@ -74,7 +74,7 @@
           "periodo": "04/09/2026 - 06/09/2026",
           "descrizione": "Il Campionato Italiano su Strada per le categorie Allievi, Junior e Senior, insieme al Campionato Italiano m100, chiuderà una parte centrale della stagione con un appuntamento di altissimo valore nazionale. Per Sportlab sarà una sfida importante, da affrontare con ambizione, preparazione e spirito di squadra.",
           "nota": "Chiusura estiva con un grande evento nazionale.",
-          "cover": ""
+          "cover": "images/immaginiWebp/fisr.webp"
         },
 
         {
@@ -138,7 +138,7 @@
           "periodo": "20/02/2026 - 22/02/2026",
           "descrizione": "Il Campionato Italiano Indoor Ragazzi - Trofeo Skate Italia di Pescara ha offerto ai nostri giovani atleti un’importante occasione di crescita e confronto a livello nazionale. Un’esperienza formativa intensa, capace di lasciare entusiasmo, motivazione e maggiore consapevolezza per il prosieguo della stagione.",
           "nota": "Primo grande banco di prova nazionale per i più giovani.",
-          "cover": ""
+          "cover": "images/trasferte2026/campionato_indoor_pescara_ragazzi.webp"
         },
         {
           "stato": "completato",

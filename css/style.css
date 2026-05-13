@@ -3492,44 +3492,36 @@ header {
 
 
 /* =========================
-   PARLANO DI NOI
+   PARLANO DI NOI / PRESS
 ========================= */
 
-.media-mention-section {
+.media-press-section {
   background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
 }
 
-.media-mention-grid {
-  display: grid;
-  grid-template-columns: 1.25fr 0.85fr;
-  gap: 2rem;
-  align-items: stretch;
-  margin-top: 3.5rem;
-}
-
-.media-cover-card {
+.media-hero-card {
   display: block;
+  margin-top: 3rem;
   text-decoration: none;
   color: inherit;
 }
 
-.media-cover-frame {
+.media-hero-frame {
   position: relative;
   aspect-ratio: 16 / 9;
-  border-radius: 28px;
+  border-radius: 30px;
   overflow: hidden;
-  box-shadow: 0 18px 50px rgba(18, 59, 99, 0.12);
+  box-shadow: 0 20px 55px rgba(18, 59, 99, 0.14);
   background: #dfeaf7;
-  isolation: isolate;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-.media-cover-card:hover .media-cover-frame {
+.media-hero-card:hover .media-hero-frame {
   transform: translateY(-6px);
-  box-shadow: 0 28px 65px rgba(18, 59, 99, 0.18);
+  box-shadow: 0 28px 70px rgba(18, 59, 99, 0.18);
 }
 
-.media-cover-frame img {
+.media-hero-frame img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -3537,15 +3529,15 @@ header {
   object-fit: cover;
 }
 
-.media-cover-overlay {
+.media-hero-overlay {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(8, 21, 36, 0.10) 0%, rgba(8, 21, 36, 0.25) 35%, rgba(8, 21, 36, 0.72) 100%);
+    linear-gradient(180deg, rgba(9, 23, 40, 0.08) 0%, rgba(9, 23, 40, 0.2) 38%, rgba(9, 23, 40, 0.74) 100%);
   z-index: 1;
 }
 
-.media-top-badge {
+.media-hero-badge {
   position: absolute;
   top: 20px;
   left: 20px;
@@ -3553,40 +3545,40 @@ header {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   color: var(--secondary-blue);
   padding: 0.7rem 1rem;
   border-radius: 999px;
   font-size: 0.82rem;
   font-weight: 800;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
 }
 
-.media-play-button {
+.media-hero-play {
   position: absolute;
   left: 50%;
   top: 50%;
   z-index: 3;
   transform: translate(-50%, -50%);
-  width: 88px;
-  height: 88px;
+  width: 86px;
+  height: 86px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   color: var(--secondary-blue);
-  font-size: 1.4rem;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+  font-size: 1.3rem;
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.18);
   transition: transform 0.3s ease, background 0.3s ease;
 }
 
-.media-cover-card:hover .media-play-button {
-  transform: translate(-50%, -50%) scale(1.06);
+.media-hero-card:hover .media-hero-play {
+  transform: translate(-50%, -50%) scale(1.05);
   background: var(--accent-color);
 }
 
-.media-cover-content {
+.media-hero-content {
   position: absolute;
   left: 0;
   right: 0;
@@ -3596,129 +3588,137 @@ header {
   color: #fff;
 }
 
-.media-kicker {
+.media-source {
   display: inline-block;
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 1.6px;
   font-weight: 800;
   color: var(--accent-color);
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.85rem;
 }
 
-.media-cover-content h3 {
+.media-hero-content h3 {
   color: #fff;
-  font-size: clamp(1.4rem, 2.3vw, 2rem);
-  line-height: 1.15;
-  margin-bottom: 0.8rem;
-  max-width: 14ch;
+  font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+  line-height: 1.12;
+  margin-bottom: 0.75rem;
+  max-width: 16ch;
 }
 
-.media-cover-content p {
+.media-hero-content p {
   color: rgba(255, 255, 255, 0.88);
-  font-size: 0.98rem;
-  line-height: 1.7;
-  max-width: 58ch;
   margin: 0;
+  font-size: 1rem;
+  max-width: 58ch;
 }
 
-.media-side-copy {
+.press-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.8rem;
+  margin-top: 2rem;
+}
+
+.press-card {
+  padding: 2rem;
+  border-radius: 24px;
   height: 100%;
-  padding: 2.5rem;
-  border-radius: 28px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
-.media-side-copy h3 {
-  font-size: 1.8rem;
+.press-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.press-outlet {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  font-weight: 800;
+  color: var(--primary-blue);
+}
+
+.press-year {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.press-title {
+  font-size: 1.3rem;
+  line-height: 1.35;
   margin-bottom: 1rem;
   color: var(--secondary-blue);
 }
 
-.media-side-copy p {
+.press-excerpt {
   color: var(--text-muted);
+  font-size: 0.97rem;
+  line-height: 1.7;
   margin-bottom: 1.4rem;
 }
 
-.media-points {
-  display: grid;
-  gap: 1rem;
-  margin: 0 0 2rem 0;
-  padding: 0;
-  list-style: none;
+.press-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 800;
+  color: var(--secondary-blue);
+  text-decoration: none;
+  transition: var(--transition);
 }
 
-.media-points li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  color: var(--text-body);
-  font-weight: 600;
-  line-height: 1.6;
-}
-
-.media-points li i {
+.press-link:hover {
   color: var(--primary-blue);
-  margin-top: 0.2rem;
-  flex-shrink: 0;
-}
-
-.media-cta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: auto;
+  transform: translateX(3px);
 }
 
 @media (max-width: 992px) {
-  .media-mention-grid {
+  .press-grid {
     grid-template-columns: 1fr;
   }
 
-  .media-side-copy {
-    padding: 2rem;
-  }
-
-  .media-cover-content h3 {
+  .media-hero-content h3 {
     max-width: 100%;
   }
 }
 
 @media (max-width: 640px) {
-  .media-cover-frame {
+  .media-hero-frame {
     border-radius: 22px;
   }
 
-  .media-top-badge {
+  .media-hero-badge {
     top: 14px;
     left: 14px;
-    padding: 0.6rem 0.85rem;
+    padding: 0.6rem 0.8rem;
     font-size: 0.72rem;
   }
 
-  .media-play-button {
+  .media-hero-play {
     width: 72px;
     height: 72px;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
   }
 
-  .media-cover-content {
+  .media-hero-content {
     padding: 1.2rem;
   }
 
-  .media-cover-content p {
+  .media-hero-content p {
     font-size: 0.9rem;
   }
 
-  .media-side-copy {
-    border-radius: 22px;
-    padding: 1.5rem;
+  .press-card {
+    padding: 1.4rem;
+    border-radius: 20px;
   }
 
-  .media-cta-row .btn {
-    width: 100%;
-    justify-content: center;
+  .press-title {
+    font-size: 1.08rem;
   }
 }

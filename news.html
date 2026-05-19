@@ -6,10 +6,16 @@
     <title>News & Aggiornamenti | ASD Sport Lab</title>
     <meta name="description" content="Resta aggiornato su tutte le novità, i successi regionali e nazionali, e le iniziative di pattinaggio inclusivo di ASD Sport Lab a Pontecagnano e Salerno.">
     
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="News & Aggiornamenti | ASD Sport Lab">
+    <meta property="og:description" content="Tutte le novità, i successi sportivi e i percorsi inclusivi della nostra associazione di pattinaggio a Pontecagnano.">
+    <meta property="og:image" content="images/logo.png">
+    <meta property="og:type" content="website">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -19,13 +25,12 @@
 </head>
 <body>
 
-    <!-- Header & Navigation -->
-    <header id="header" style="box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+    <!-- Header & Navigation (identico a index.html) -->
+    <header id="header">
         <div class="container header-container">
             <a href="index.html" class="logo">
-                <img src="images/logo.png" alt="ASD Sport Lab" class="logo-img">
+                <img src="images/logo.png" alt="ASD Sport Lab - Scuola di Pattinaggio Pontecagnano Salerno" class="logo-img">
             </a>
-            
             <nav class="main-nav">
                 <ul class="nav-links">
                     <li><a href="index.html#perche-noi">Perché Noi</a></li>
@@ -33,16 +38,13 @@
                     <li><a href="index.html#prova">Prova Gratuita</a></li>
                     <li><a href="index.html#staff">Staff</a></li>
                     <li><a href="index.html#eventi">Trasferte</a></li>
-                    <li><a href="news.html" style="color: var(--primary-blue);">News</a></li>
+                    <li><a href="news.html" class="nav-link-active">News</a></li>
                     <li><a href="index.html#contatti">Contatti</a></li>
                 </ul>
-                <a href="https://wa.me/393454294187?text=Ciao%20vorrei%20avere%20piu%20informazioni%20riguardo%20i%20corsi%20di%20pattinaggio" 
-                   class="btn btn-primary nav-cta" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Scrivici</a>
+                <a href="https://wa.me/393454294187?text=Ciao%20vorrei%20avere%20piu%20informazioni%20riguardo%20i%20corsi%20di%20pattinaggio"
+                    class="btn btn-primary nav-cta"><i class="fab fa-whatsapp"></i> Scrivici</a>
             </nav>
-
-            <button class="mobile-menu-btn" aria-label="Apri menu">
-                <i class="fas fa-bars"></i>
-            </button>
+            <button class="mobile-menu-btn" aria-label="Apri menu"><i class="fas fa-bars"></i></button>
         </div>
     </header>
 
@@ -59,21 +61,26 @@
                 <li><a href="news.html">News</a></li>
                 <li><a href="index.html#contatti">Contatti</a></li>
             </ul>
-            <a href="https://wa.me/393454294187?text=Ciao%20vorrei%20avere%20piu%20informazioni%20riguardo%20i%20corsi%20di%20pattinaggio" 
-               class="btn btn-cta" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Contattaci su WhatsApp</a>
+            <a href="https://wa.me/393454294187?text=Ciao%20vorrei%20avere%20piu%20informazioni%20riguardo%20i%20corsi%20di%20pattinaggio"
+                class="btn btn-cta"><i class="fab fa-whatsapp"></i> Contattaci su WhatsApp</a>
         </div>
     </div>
 
-    <!-- Page Header (Nascondibile via JS in vista dettaglio) -->
-    <section class="page-header" id="newsPageHeader">
+    <!-- Page Hero Header -->
+    <section class="news-page-hero" id="newsPageHeader">
         <div class="container">
+            <nav class="news-breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <span class="breadcrumb-sep"><i class="fas fa-chevron-right"></i></span>
+                <span class="breadcrumb-current">News</span>
+            </nav>
             <h1>News & <span class="text-accent">Aggiornamenti</span></h1>
-            <p class="lead" style="max-width: 600px; margin: 0 auto;">Tutte le novità, i successi sportivi e i percorsi inclusivi della nostra associazione.</p>
+            <p class="lead">Tutte le novità, i successi sportivi e i percorsi inclusivi della nostra associazione.</p>
         </div>
     </section>
 
     <!-- Main News Section -->
-    <section class="section">
+    <section class="section news-main-section">
         <div class="container">
 
             <!-- 1. VISTA ARCHIVIO (Tutte le news) -->
@@ -88,7 +95,7 @@
                     </div>
 
                     <!-- Year Stats / Riepilogo -->
-                    <div class="year-stats text-center" id="yearStatsNews">
+                    <div class="news-year-riepilogo text-center" id="yearStatsNews">
                         <!-- Generato via JS -->
                     </div>
 
@@ -97,7 +104,7 @@
                         <!-- Cards generate via JS -->
                     </div>
 
-                    <!-- Empty State (Hidden by default) -->
+                    <!-- Empty State -->
                     <div class="events-empty" id="newsEmpty" style="display: none;">
                         <i class="fas fa-newspaper"></i>
                         <h3>Nessun aggiornamento per questo anno</h3>
@@ -153,26 +160,36 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer (identico a index.html) -->
     <footer class="footer">
-        <div class="container footer-container">
+        <div class="container footer-grid">
             <div class="footer-info">
-                <h3>ASD Sport Lab</h3>
-                <p>La scuola di pattinaggio per bambini e ragazzi a Pontecagnano. Dai primi passi in pista all'attività agonistica.</p>
+                <h3 class="footer-title">ASD Sport Lab</h3>
+                <p class="footer-description">La scuola di pattinaggio per bambini e ragazzi a Pontecagnano. Dai primi
+                    passi fino all'attività agonistica nazionale, in un ambiente sano, educativo e inclusivo.</p>
             </div>
-            <div class="footer-social">
-                <a href="https://www.facebook.com/sportLABPontecagnano" target="_blank" rel="noopener" aria-label="Seguici su Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/sportlab_pontecagnano" target="_blank" rel="noopener" aria-label="Seguici su Instagram"><i class="fab fa-instagram"></i></a>
+            <div class="footer-social-box">
+                <p class="footer-social-label">Seguici sui social</p>
+                <div class="footer-social-icons">
+                    <a href="https://www.facebook.com/sportLABPontecagnano/" aria-label="Seguici su Facebook"
+                        class="social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://instagram.com/sportlab_pontecagnano" target="_blank"
+                        aria-label="Seguici su Instagram" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom text-center">
-            <p>&copy; 2026 ASD Sport Lab. Tutti i diritti riservati. Pattinodromo Via Lazio 8, Pontecagnano (SA).</p>
+            <p>&copy; 2025 ASD Sport Lab. Tutti i diritti riservati. Pattinodromo Via Lazio 8, 84098 Pontecagnano (SA).</p>
         </div>
     </footer>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/393454294187?text=Ciao%20vorrei%20avere%20piu%20informazioni%20riguardo%20i%20corsi%20di%20pattinaggio" 
-       class="floating-wa" target="_blank" rel="noopener" aria-label="Contattaci su WhatsApp">
+    <a href="https://wa.me/393454294187?text=Ciao%20vorrei%20avere%20piu%20informazioni%20riguardo%20i%20corsi%20di%20pattinaggio"
+        class="floating-wa" aria-label="Contattaci su WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 

@@ -3713,6 +3713,11 @@ header {
     font-size: 0.9rem;
   }
 
+  .press-card {
+    padding: 1.4rem;
+    border-radius: 20px;
+  }
+
   .press-title {
     font-size: 1.08rem;
   }

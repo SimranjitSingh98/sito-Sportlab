@@ -217,4 +217,252 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (eventsEmpty) eventsEmpty.style.display = 'block';
             });
     }
+
+    // --- SEZIONE NEWS (Caricamento da JSON e Routing) ---
+    const latestNewsGrid = document.getElementById('latestNewsGrid');
+    const newsGrid = document.getElementById('newsGrid');
+    const yearSelectorNews = document.getElementById('yearSelectorNews');
+    const yearStatsNews = document.getElementById('yearStatsNews');
+    const newsEmpty = document.getElementById('newsEmpty');
+    const newsArchiveView = document.getElementById('newsArchiveView');
+    const newsDetailView = document.getElementById('newsDetailView');
+    const newsPageHeader = document.getElementById('newsPageHeader');
+
+    if (latestNewsGrid || newsGrid) {
+        let rawDataNews = null;
+
+        const getAllNews = (data) => {
+            let all = [];
+            if (data && data.anni) {
+                data.anni.forEach(annoObj => {
+                    const list = annoObj.news || annoObj.eventi || [];
+                    list.forEach(item => {
+                        all.push({
+                            ...item,
+                            anno: annoObj.anno
+                        });
+                    });
+                });
+            }
+            return all;
+        };
+
+        const createNewsCard = (item, allNewsList) => {
+            const card = document.createElement('div');
+            card.className = 'news-card';
+            
+            const coverHTML = item.cover 
+                ? `<div class="news-card-media">
+                       <img src="${item.cover}" alt="${item.titolo}" loading="lazy">
+                   </div>`
+                : `<div class="news-card-media news-card-media--placeholder">
+                       <span class="news-cover-placeholder"><i class="fas fa-newspaper"></i></span>
+                   </div>`;
+                   
+            card.innerHTML = `
+                ${coverHTML}
+                <div class="news-card-content">
+                    <div class="news-card-meta">
+                        <span class="news-date"><i class="far fa-calendar-alt"></i> ${item.data}</span>
+                    </div>
+                    <h3>${item.titolo}</h3>
+                    <p>${item.descrizioneBreve}</p>
+                    <a href="news.html?slug=${item.slug}" class="news-card-link">Leggi notizia <i class="fas fa-arrow-right"></i></a>
+                </div>
+            `;
+
+            const link = card.querySelector('.news-card-link');
+            if (link && window.location.pathname.includes('news.html') && allNewsList) {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.history.pushState({ slug: item.slug }, '', `news.html?slug=${item.slug}`);
+                    renderNewsDetail(item.slug, allNewsList);
+                });
+            }
+
+            return card;
+        };
+
+        const renderNewsDetail = (slug, allNews) => {
+            const article = allNews.find(n => n.slug === slug);
+            if (!article) {
+                showArchiveView();
+                return;
+            }
+
+            document.getElementById('newsDetailTitle').textContent = article.titolo;
+            document.getElementById('newsDetailDate').textContent = article.data;
+            document.title = `${article.titolo} | ASD Sport Lab`;
+
+            const coverImg = document.getElementById('newsDetailCover');
+            if (article.cover) {
+                coverImg.src = article.cover;
+                coverImg.alt = article.titolo;
+                coverImg.style.display = 'block';
+            } else {
+                coverImg.style.display = 'none';
+            }
+
+            const bodyContainer = document.getElementById('newsDetailBody');
+            bodyContainer.innerHTML = '';
+            const paragraphs = article.descrizioneCompleta.split('\n');
+            paragraphs.forEach(pText => {
+                const trimmed = pText.trim();
+                if (trimmed) {
+                    const p = document.createElement('p');
+                    p.textContent = trimmed;
+                    bodyContainer.appendChild(p);
+                }
+            });
+
+            const footerContainer = document.getElementById('newsDetailFooter');
+            if (article.nota) {
+                footerContainer.innerHTML = `<i class="fas fa-info-circle"></i> <span>${article.nota}</span>`;
+                footerContainer.style.display = 'flex';
+            } else {
+                footerContainer.style.display = 'none';
+            }
+
+            if (newsArchiveView) newsArchiveView.style.display = 'none';
+            if (newsPageHeader) newsPageHeader.style.display = 'none';
+            if (newsDetailView) newsDetailView.style.display = 'block';
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        const showArchiveView = () => {
+            document.title = 'News & Aggiornamenti | ASD Sport Lab';
+            if (newsDetailView) newsDetailView.style.display = 'none';
+            if (newsArchiveView) newsArchiveView.style.display = 'block';
+            if (newsPageHeader) newsPageHeader.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            const newUrl = window.location.pathname;
+            window.history.pushState({}, '', newUrl);
+        };
+
+        // Popstate handler per navigazione avanti/indietro nel browser
+        window.addEventListener('popstate', (e) => {
+            if (newsGrid) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const slug = urlParams.get('slug');
+                if (slug && rawDataNews) {
+                    const allNewsList = getAllNews(rawDataNews);
+                    renderNewsDetail(slug, allNewsList);
+                } else {
+                    if (newsDetailView) newsDetailView.style.display = 'none';
+                    if (newsArchiveView) newsArchiveView.style.display = 'block';
+                    if (newsPageHeader) newsPageHeader.style.display = 'block';
+                    document.title = 'News & Aggiornamenti | ASD Sport Lab';
+                }
+            }
+        });
+
+        // Pulsante indietro nella vista dettaglio
+        const backBtn = document.getElementById('backToNewsBtn');
+        if (backBtn) {
+            backBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                showArchiveView();
+            });
+        }
+
+        // Carica dati
+        fetch('content/news.json')
+            .then(res => {
+                if (!res.ok) throw new Error('Impossibile caricare news.json');
+                return res.json();
+            })
+            .then(data => {
+                rawDataNews = data;
+                const allNewsList = getAllNews(data);
+
+                // 1. Logica per homepage preview
+                if (latestNewsGrid) {
+                    const previewNews = allNewsList.slice(0, 3);
+                    latestNewsGrid.innerHTML = '';
+                    previewNews.forEach(item => {
+                        const card = createNewsCard(item, null);
+                        latestNewsGrid.appendChild(card);
+                    });
+                    latestNewsGrid.classList.add('visible');
+                }
+
+                // 2. Logica per pagina news completa (archivio + dettaglio)
+                if (newsGrid && yearSelectorNews) {
+                    let allAnniNews = (data.anni || []).sort((a, b) => b.anno - a.anno);
+                    let currentAnnoNews = allAnniNews.length > 0 ? allAnniNews[0].anno : null;
+
+                    const renderNewsArchive = () => {
+                        newsGrid.classList.remove('visible');
+                        if (yearStatsNews) yearStatsNews.classList.remove('visible');
+
+                        setTimeout(() => {
+                            const annoData = allAnniNews.find(a => a.anno === currentAnnoNews);
+                            const newsItems = annoData ? (annoData.news || []) : [];
+
+                            newsGrid.innerHTML = '';
+
+                            if (newsItems.length === 0) {
+                                newsGrid.style.display = 'none';
+                                if (yearStatsNews) yearStatsNews.style.display = 'none';
+                                if (newsEmpty) newsEmpty.style.display = 'block';
+                            } else {
+                                newsGrid.style.display = 'grid';
+                                if (newsEmpty) newsEmpty.style.display = 'none';
+                                if (yearStatsNews) {
+                                    yearStatsNews.style.display = 'block';
+                                    yearStatsNews.innerHTML = annoData.riepilogo || '';
+                                }
+
+                                newsItems.forEach(item => {
+                                    const card = createNewsCard(item, allNewsList);
+                                    newsGrid.appendChild(card);
+                                });
+                            }
+
+                            setTimeout(() => {
+                                newsGrid.classList.add('visible');
+                                if (yearStatsNews) yearStatsNews.classList.add('visible');
+                            }, 50);
+                        }, 300);
+                    };
+
+                    const initNewsTabs = () => {
+                        yearSelectorNews.innerHTML = '';
+                        allAnniNews.forEach((annoObj, idx) => {
+                            const btn = document.createElement('button');
+                            btn.className = `year-pill${idx === 0 ? ' active' : ''}`;
+                            btn.textContent = annoObj.anno;
+                            btn.setAttribute('data-year', annoObj.anno);
+                            btn.addEventListener('click', () => {
+                                document.querySelectorAll('#yearSelectorNews .year-pill').forEach(p => p.classList.remove('active'));
+                                btn.classList.add('active');
+                                currentAnnoNews = annoObj.anno;
+                                renderNewsArchive();
+                            });
+                            yearSelectorNews.appendChild(btn);
+                        });
+
+                        renderNewsArchive();
+                    };
+
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const slug = urlParams.get('slug');
+
+                    if (slug) {
+                        renderNewsDetail(slug, allNewsList);
+                    } else {
+                        initNewsTabs();
+                    }
+                }
+            })
+            .catch(err => {
+                console.warn('Errore News: ' + err.message);
+                if (latestNewsGrid) latestNewsGrid.innerHTML = '<p class="text-center">Impossibile caricare le ultime news.</p>';
+                if (newsGrid) newsGrid.style.display = 'none';
+                if (yearStatsNews) yearStatsNews.style.display = 'none';
+                if (newsEmpty) newsEmpty.style.display = 'block';
+            });
+    }
 });

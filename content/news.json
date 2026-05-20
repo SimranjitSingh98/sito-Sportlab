@@ -6,49 +6,13 @@
       "news": [
         {
           "stato": "in-evidenza",
-          "titolo": "Trionfo ai Campionati Regionali Strada: ASD Sport Lab è Campione di Campania!",
-          "data": "02/05/2026",
-          "descrizioneBreve": "Un traguardo storico per la nostra associazione: conquistato il gradino più alto del podio a Napoli.",
-          "descrizioneCompleta": "Un fine settimana indimenticabile per gli atleti e le famiglie di ASD Sport Lab. Nella splendida cornice dei Campionati Regionali su Strada, tenutisi a Napoli il 2 maggio 2026, la nostra società ha conquistato il titolo di Campione di Campania, posizionandosi al primo posto nella classifica generale delle società.\n\nGli atleti di tutte le categorie, dai giovanissimi ai senior, hanno dato prova di straordinaria determinazione, spirito di squadra e preparazione tecnica. Ciascuno ha contribuito con le proprie prestazioni e il proprio entusiasmo a questo storico risultato, che ripaga i mesi di intensi allenamenti e sacrifici quotidiani in pista.\n\nIl presidente Pierluigi Di Somma ha espresso profondo orgoglio: 'Questo trionfo non è solo una vittoria sportiva, ma la testimonianza della qualità del nostro progetto educativo e dell'incredibile unione del nostro gruppo. Un grazie immenso va a tutti gli allenatori, agli atleti e alle famiglie che ci sostengono ogni giorno con passione e fiducia.'\n\nCon questo titolo in tasca, la squadra guarda già con rinnovata energia ed entusiasmo ai prossimi Campionati Italiani, pronta ad affrontare nuove sfide sul territorio nazionale.",
-          "nota": "Grazie di cuore a tutti i sostenitori, agli atleti e alle famiglie!",
-          "cover": "images/trasferte2026/campionato_regionale_strada_napoli_2026.webp",
-          "slug": "campionato-regionale-strada-campania-2026"
-        },
-        {
-          "stato": "in-evidenza",
-          "titolo": "SportLab e Inclusione: il pattinaggio come veicolo di crescita e partecipazione",
-          "data": "15/01/2026",
-          "descrizioneBreve": "I nostri percorsi personalizzati con supporto 1:1 e l'importanza dell'inclusione sociale nello sport.",
-          "descrizioneCompleta": "L'inclusione sociale e l'accessibilità allo sport non sono per noi semplici concetti, ma il motore quotidiano di ogni nostra attività in pista. ASD Sport Lab continua a sviluppare e potenziare i propri percorsi di pattinaggio inclusivo dedicati a bambini con diverse abilità, avvalendosi di figure professionali altamente qualificate.\n\nGrazie alla presenza in staff di Aurora Storzillo, maestro di pattinaggio e Tecnico del Comportamento Certificato (RBT) specializzata in Analisi Comportamentale Applicata (ABA), ASD Sport Lab offre percorsi individualizzati e di gruppo capaci di integrare le esigenze di ciascun atleta in modo sicuro e stimolante.\n\nAttraverso una stretta collaborazione con le famiglie e una costante formazione tecnica dello staff, il pattinaggio diventa uno strumento concreto per lo sviluppo motorio, emotivo e relazionale, confermando il ruolo dell'associazione come pilastro sociale nel territorio salernitano.",
-          "nota": "Contattaci per programmare un colloquio conoscitivo riservato con i nostri tecnici.",
-          "cover": "images/immaginiWebp/bambino_con_pattini.webp",
-          "slug": "pattinaggio-inclusivo-valore-sociale"
-        }
-      ]
-    },
-    {
-      "anno": 2025,
-      "riepilogo": "Le notizie, gli eventi e i momenti salienti della passata stagione sportiva 2024/2025.",
-      "news": [
-        {
-          "stato": "attivo",
-          "titolo": "Lorenzo Pepe conquista il podio nazionale agli Internazionali d'Italia a L'Aquila",
-          "data": "10/10/2025",
-          "descrizioneBreve": "Lorenzo Pepe trionfa negli 800 metri a L'Aquila, portando ASD Sport Lab ai vertici del pattinaggio nazionale.",
-          "descrizioneCompleta": "Una straordinaria prestazione che inorgoglisce tutto il territorio e l'intero staff di ASD Sport Lab: ai prestigiosi Internazionali d’Italia svoltisi a L’Aquila, il nostro atleta Lorenzo Pepe ha dominato la gara degli 800 metri, conquistando un prestigioso podio nazionale.\n\nMisurandosi con i migliori pattinatori provenienti da ogni parte d'Italia, Lorenzo ha mostrato una maturità tattica e una forma fisica eccezionali. La gara è stata intensa e combattuta fino all'ultimo metro, ma la grinta e la lucidità dell'atleta pontecagnanese hanno fatto la differenza in volata.\n\nQuesto traguardo rappresenta un punto di riferimento fondamentale per la crescita tecnica del nostro vivaio agonistico, a dimostrazione che con dedizione, costanza e il giusto supporto tecnico si possono raggiungere traguardi di rilievo nazionale partendo dal nostro pattinodromo di Via Lazio.",
-          "nota": "Foto e intervista completa dell'atleta disponibili sui nostri canali social ufficiali.",
-          "cover": "images/immaginiWebp/Servizio_tv_oggi_regionali_Strada_2026.webp",
-          "slug": "lorenzo-pepe-podio-internazionali-italia"
-        },
-        {
-          "stato": "attivo",
-          "titolo": "Corsi di Pattinaggio 2025/2026: Aperte le iscrizioni per tutte le età e livelli",
-          "data": "01/09/2025",
-          "descrizioneBreve": "Ripartono gli allenamenti di ASD Sport Lab a Pontecagnano. Vieni a provare gratuitamente con noi!",
-          "descrizioneCompleta": "Con l'inizio di settembre riaprono ufficialmente le porte del Pattinodromo di Via Lazio per la nuova stagione sportiva 2025/2026. ASD Sport Lab propone un'offerta formativa completa e adatta a tutti i livelli, dai primi passi all'avviamento agonistico, fino ai corsi dedicati agli adulti e amatori.\n\nPer facilitare l'inserimento dei nuovi iscritti, la società offre prove gratuite in totale sicurezza, fornendo gratuitamente tutta l'attrezzatura necessaria (pattini, casco e protezioni igienizzate).\n\nLe lezioni sono tenute da maestri qualificati FISR e tecnici specializzati anche nel supporto educativo e nell'inclusione, garantendo un ambiente sano, stimolante e inclusivo per tutti i bambini e ragazzi.",
-          "nota": "Le lezioni si tengono presso il Pattinodromo di Via Lazio, Pontecagnano (SA).",
-          "cover": "images/immaginiWebp/pattinaggioAdulti.webp",
-          "slug": "apertura-iscrizioni-corsi-pattinaggio-2025-2026"
+          "titolo": "L'Amministrazione Comunale incontra SportLab: nasce una partnership istituzionale per il futuro del pattinaggio a Pontecagnano",
+          "data": "18/05/2026",
+          "descrizioneBreve": "Il Sindaco, gli assessori e un tecnico federale sono venuti direttamente in pista: un riconoscimento ufficiale del valore di SportLab sul territorio e l'inizio di una collaborazione concreta per l'omologazione del pattinodromo.",
+          "descrizioneCompleta": "Lunedì 18 maggio 2026 ha segnato una tappa importante nella storia di ASD Sport Lab. Il Sindaco di Pontecagnano Faiano, il consigliere delegato allo sport Gaetano Nappo, numerosi membri dell'amministrazione e l'Ing. Sergio Landi – tecnico incaricato dalla Federazione Italiana Sport Rotellistici per la valutazione degli impianti – hanno scelto di venire direttamente in pista, tra i nostri atleti e le nostre famiglie. Un gesto che parla da solo.\n\nDa quando nel 2017 abbiamo aperto le porte del pattinodromo di Via Lazio, SportLab è cresciuta anno dopo anno fino a diventare una realtà solida, radicata e riconosciuta: oggi contiamo 130 atleti attivi, dai 4 anni in su, con un settore agonistico che compete e si afferma a livello nazionale e un settore inclusivo che offre percorsi personalizzati per ragazzi con disabilità. Quasi dieci anni di lavoro silenzioso, fatto di passione, sacrificio e valori autentici — impegno, rispetto, spirito di squadra.\n\nQuell'impegno, lunedì, è stato riconosciuto ufficialmente. L'incontro è stato serio e costruttivo: abbiamo aperto un dialogo diretto con l'amministrazione, illustrato le criticità strutturali del nostro impianto e tracciato insieme una roadmap concreta verso l'omologazione federale. Avere al tavolo la competenza tecnica dell'ingegnere federale e la volontà politica dell'amministrazione non è cosa di poco conto — è il segnale che il percorso che abbiamo intrapreso è quello giusto.\n\nL'omologazione del pattinodromo è un obiettivo strategico per tutta la comunità: significa strutture adeguate per i nostri atleti, possibilità di ospitare gare e campionati di livello nazionale, e una casa degna di un progetto sportivo che guarda lontano. Da oggi, SportLab non cammina più da sola: cammina con il supporto dell'amministrazione comunale, in una collaborazione istituzionale che darà nuova forza e nuove prospettive al pattinaggio del nostro territorio.",
+          "nota": "Un grazie sincero al Sindaco, al Consigliere Nappo, a tutta l'amministrazione e all'Ing. Sergio Landi per la presenza, l'ascolto e la concretezza dimostrati. Il futuro di SportLab si costruisce così — insieme. 💙🛼",
+          "cover": "images/eventi/sindacoMaggio2026.webp",
+          "slug": "sindaco-incontra-sportlab-2026"
         }
       ]
     }

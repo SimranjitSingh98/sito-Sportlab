@@ -18,7 +18,7 @@
           "titolo": "Campionato Italiano su Pista cat. R - Trofeo Skate Italia cat. R12",
           "luogo": "Elmas (CA)",
           "periodo": "05/06/2026 - 07/06/2026",
-          "descrizione": "A Elmas andrà in scena uno dei grandi appuntamenti nazionali dedicati alle categorie R e R12. Per Sportlab sarà una trasferta di grande valore tecnico, utile per misurarsi con il meglio del panorama italiano e vivere un’esperienza ad altissimo livello agonistico.",
+          "descrizione": "A Elmas andrà in scena uno dei grandi appuntamenti nazionali dedicati alle categorie R e R12. Per Sportlab sarà una trasferta di grande valore tecnico, utile per misurarsi con il meglio del panorama italiano e vivere un'esperienza ad altissimo livello agonistico.",
           "nota": "Campionato italiano giovanile su pista.",
           "cover": "images/immaginiWebp/fisr.webp"
         },
@@ -36,7 +36,7 @@
           "titolo": "3° Memorial Nazionale Pierfrancesco Mazza",
           "luogo": "San Giorgio Ionico (TA)",
           "periodo": "20/06/2026 - 21/06/2026",
-          "descrizione": "Il 3° Memorial Nazionale Pierfrancesco Mazza sarà una nuova tappa di confronto per il gruppo Sportlab. Una competizione di categoria B su pista che offrirà alla squadra l’opportunità di proseguire il proprio percorso stagionale in un contesto tecnico di rilievo.",
+          "descrizione": "Il 3° Memorial Nazionale Pierfrancesco Mazza sarà una nuova tappa di confronto per il gruppo Sportlab. Una competizione di categoria B su pista che offrirà alla squadra l'opportunità di proseguire il proprio percorso stagionale in un contesto tecnico di rilievo.",
           "nota": "Trasferta nazionale di due giorni.",
           "cover": "images/immaginiWebp/fisr.webp"
         },
@@ -45,7 +45,7 @@
           "titolo": "Campionato Italiano su pista cat. A/J/S",
           "luogo": "Bellusco (MB)",
           "periodo": "26/06/2026 - 28/06/2026",
-          "descrizione": "Il Campionato Italiano su pista per le categorie Allievi, Junior e Senior rappresenta uno degli obiettivi principali della stagione. Per Sportlab sarà un banco di prova fondamentale, dove confrontarsi con i migliori atleti d’Italia e dare valore al lavoro costruito durante l’anno.",
+          "descrizione": "Il Campionato Italiano su pista per le categorie Allievi, Junior e Senior rappresenta uno degli obiettivi principali della stagione. Per Sportlab sarà un banco di prova fondamentale, dove confrontarsi con i migliori atleti d'Italia e dare valore al lavoro costruito durante l'anno.",
           "nota": "Uno dei grandi obiettivi stagionali.",
           "cover": "images/immaginiWebp/fisr.webp"
         },
@@ -54,7 +54,7 @@
           "titolo": "Campionato Italiano Strada cat. R - Trofeo Skate Italia cat. R12",
           "luogo": "Torino",
           "periodo": "17/07/2026 - 19/07/2026",
-          "descrizione": "A Torino Sportlab sarà attesa da un importante appuntamento su strada riservato alle categorie R e R12. Sarà un’occasione preziosa per vivere il campionato italiano in una disciplina diversa dalla pista, ampliando il bagaglio tecnico e competitivo degli atleti.",
+          "descrizione": "A Torino Sportlab sarà attesa da un importante appuntamento su strada riservato alle categorie R e R12. Sarà un'occasione preziosa per vivere il campionato italiano in una disciplina diversa dalla pista, ampliando il bagaglio tecnico e competitivo degli atleti.",
           "nota": "Appuntamento tricolore su strada per R e R12.",
           "cover": "images/immaginiWebp/fisr.webp"
         },
@@ -63,7 +63,7 @@
           "titolo": "6 Giorni International 2026",
           "luogo": "Santa Maria Nuova (AN)",
           "periodo": "05/08/2026 - 09/08/2026",
-          "descrizione": "La 6 Giorni International 2026 sarà una delle trasferte più prestigiose dell’anno. Una manifestazione di categoria A, articolata su più giornate, che rappresenta per Sportlab un’esperienza di altissimo profilo tecnico, agonistico e formativo.",
+          "descrizione": "La 6 Giorni International 2026 sarà una delle trasferte più prestigiose dell'anno. Una manifestazione di categoria A, articolata su più giornate, che rappresenta per Sportlab un'esperienza di altissimo profilo tecnico, agonistico e formativo.",
           "nota": "Evento internazionale di grande prestigio.",
           "cover": "images/immaginiWebp/fisr.webp"
         },
@@ -76,7 +76,6 @@
           "nota": "Chiusura estiva con un grande evento nazionale.",
           "cover": "images/immaginiWebp/fisr.webp"
         },
-
         {
           "stato": "completato",
           "titolo": "Campionato Regionale Strada Campania",
@@ -91,9 +90,18 @@
           "titolo": "1° Maggio Ferrara Inline - Trofeo Internazionale del Lavoro",
           "luogo": "Piazza Ariostea, Ferrara",
           "periodo": "01/05/2026",
-          "descrizione": "Nella prestigiosa cornice di Piazza Ariostea, Sportlab ha preso parte al 1° Maggio Ferrara Inline - Trofeo Internazionale del Lavoro, una manifestazione di grande tradizione e richiamo. Per i nostri atleti, in particolare per la categoria junior e senior, è stata un’occasione preziosa per confrontarsi in un contesto internazionale e vivere una nuova esperienza di alto livello.",
+          "descrizione": "Nella prestigiosa cornice di Piazza Ariostea, Sportlab ha preso parte al 1° Maggio Ferrara Inline - Trofeo Internazionale del Lavoro, una manifestazione di grande tradizione e richiamo. Per i nostri atleti, in particolare per la categoria junior e senior, è stata un'occasione preziosa per confrontarsi in un contesto internazionale e vivere una nuova esperienza di alto livello.",
           "nota": "Una trasferta prestigiosa che arricchisce il percorso sportivo.",
           "cover": "images/trasferte2026/ferrara_inline_trofeo_lavoro_2026.webp"
+        },
+        {
+          "stato": "completato",
+          "titolo": "International Vesmaco Race",
+          "luogo": "Senigallia (AN)",
+          "periodo": "14/05/2026 - 17/05/2026",
+          "descrizione": "Quattro giorni di grande pattinaggio internazionale a Senigallia, con la manifestazione organizzata da Luna Sports Academy che ha radunato atleti da tutta Italia e dall'estero. A rappresentare i colori di Sportlab, il nostro piccolo campione Lollo: una prova maiuscola, combattuta con grinta e personalità, dimostrandosi all'altezza di un contesto internazionale di alto livello. Una risposta importante dopo i Regionali, che ci conferma ancora una volta che il lavoro quotidiano in pista sta dando i suoi frutti. Lollo, siamo orgogliosi di te — e questo è solo l'inizio!",
+          "nota": "Grandi prestazioni in un contesto internazionale. Lollo, avanti così! 🛼💙",
+          "cover": "images/trasferte2026/senigallia2026.webp"
         },
         {
           "stato": "completato",
@@ -136,7 +144,7 @@
           "titolo": "Campionato Italiano Indoor Ragazzi - Trofeo Skate Italia",
           "luogo": "Pescara",
           "periodo": "20/02/2026 - 22/02/2026",
-          "descrizione": "Il Campionato Italiano Indoor Ragazzi - Trofeo Skate Italia di Pescara ha offerto ai nostri giovani atleti un’importante occasione di crescita e confronto a livello nazionale. Un’esperienza formativa intensa, capace di lasciare entusiasmo, motivazione e maggiore consapevolezza per il prosieguo della stagione.",
+          "descrizione": "Il Campionato Italiano Indoor Ragazzi - Trofeo Skate Italia di Pescara ha offerto ai nostri giovani atleti un'importante occasione di crescita e confronto a livello nazionale. Un'esperienza formativa intensa, capace di lasciare entusiasmo, motivazione e maggiore consapevolezza per il prosieguo della stagione.",
           "nota": "Primo grande banco di prova nazionale per i più giovani.",
           "cover": "images/trasferte2026/campionato_indoor_pescara_ragazzi.webp"
         },
@@ -145,7 +153,7 @@
           "titolo": "3° Trofeo della Befana",
           "luogo": "Pescara",
           "periodo": "06/01/2026",
-          "descrizione": "Il 3° Trofeo della Befana ha aperto l’anno agonistico con una trasferta utile e significativa a Pescara, organizzata dal Centro Sportivo Pattinaggio Pescara. La squadra ha affrontato la competizione con spirito positivo, ottenendo una classifica di società che testimonia la presenza costante di Sportlab nel panorama delle gare nazionali.",
+          "descrizione": "Il 3° Trofeo della Befana ha aperto l'anno agonistico con una trasferta utile e significativa a Pescara, organizzata dal Centro Sportivo Pattinaggio Pescara. La squadra ha affrontato la competizione con spirito positivo, ottenendo una classifica di società che testimonia la presenza costante di Sportlab nel panorama delle gare nazionali.",
           "nota": "Una partenza di stagione utile per ritrovare ritmo e competitività.",
           "cover": "images/trasferte2026/trofeo_befana_pescara_2026.webp"
         },
@@ -154,7 +162,7 @@
           "titolo": "3° Trofeo Città di Pescara",
           "luogo": "Pescara",
           "periodo": "29/11/2025 - 30/11/2025",
-          "descrizione": "Il 3° Trofeo Città di Pescara ha rappresentato il primo importante impegno della nuova stagione. Organizzato da A.S.D. Centro Sportivo Pattinaggio Pescara, l’evento ha visto la partecipazione di numerose società da tutta Italia, offrendo un confronto tecnico di alto livello.",
+          "descrizione": "Il 3° Trofeo Città di Pescara ha rappresentato il primo importante impegno della nuova stagione. Organizzato da A.S.D. Centro Sportivo Pattinaggio Pescara, l'evento ha visto la partecipazione di numerose società da tutta Italia, offrendo un confronto tecnico di alto livello.",
           "nota": "Ottimo avvio di stagione con un risultato importante su scala nazionale.",
           "cover": "images/trasferte2026/trofeo_citta_pescara_2025.webp"
         }
@@ -202,7 +210,7 @@
           "titolo": "Trofeo del Mare",
           "luogo": "Pescara, Abruzzo",
           "periodo": "Maggio 2023",
-          "descrizione": "La trasferta di Pescara ha regalato alla squadra un fine settimana intenso e ricco di esperienza. Il Trofeo del Mare ha rappresentato un’occasione preziosa per confrontarsi in gara, vivere il clima della competizione e condividere anche momenti di gruppo al di fuori della pista.",
+          "descrizione": "La trasferta di Pescara ha regalato alla squadra un fine settimana intenso e ricco di esperienza. Il Trofeo del Mare ha rappresentato un'occasione preziosa per confrontarsi in gara, vivere il clima della competizione e condividere anche momenti di gruppo al di fuori della pista.",
           "nota": "Oltre la gara, un weekend di squadra.",
           "cover": "images/podio_trofeo_pollenza.JPG"
         },
@@ -211,7 +219,7 @@
           "titolo": "Internazionali d'Italia",
           "luogo": "L'Aquila, Abruzzo",
           "periodo": "Aprile 2023",
-          "descrizione": "A L’Aquila, in occasione degli Internazionali d’Italia, Sportlab ha preso parte a una competizione di altissimo livello su una delle piste più prestigiose del panorama nazionale.",
+          "descrizione": "A L'Aquila, in occasione degli Internazionali d'Italia, Sportlab ha preso parte a una competizione di altissimo livello su una delle piste più prestigiose del panorama nazionale.",
           "nota": "Test importante per il gruppo agonisti.",
           "cover": "images/atleti_agonisti_a_benevento.png"
         }
@@ -226,7 +234,7 @@
           "titolo": "Campionato Nazionale",
           "luogo": "Roma, Lazio",
           "periodo": "Giugno 2022",
-          "descrizione": "Gareggiare nella Capitale contro i migliori atleti d’Italia è stata una grandissima emozione per tutto il gruppo. Il Campionato Nazionale ha rappresentato un momento di forte crescita, arricchito da risultati importanti, podi conquistati e un’esperienza che resterà nel percorso di Sportlab.",
+          "descrizione": "Gareggiare nella Capitale contro i migliori atleti d'Italia è stata una grandissima emozione per tutto il gruppo. Il Campionato Nazionale ha rappresentato un momento di forte crescita, arricchito da risultati importanti, podi conquistati e un'esperienza che resterà nel percorso di Sportlab.",
           "nota": "Il consolidamento del nostro gruppo.",
           "cover": "images/podio_roma_2025.JPG"
         }

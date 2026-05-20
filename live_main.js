@@ -294,15 +294,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('newsDetailDate').textContent = article.data;
             document.title = `${article.titolo} | ASD Sport Lab`;
 
-            // Update breadcrumb with truncated title
-            const breadcrumbTitle = document.getElementById('breadcrumbTitle');
-            if (breadcrumbTitle) {
-                const shortTitle = article.titolo.length > 35 
-                    ? article.titolo.substring(0, 35) + '…' 
-                    : article.titolo;
-                breadcrumbTitle.textContent = shortTitle;
-            }
-
             const coverImg = document.getElementById('newsDetailCover');
             if (article.cover) {
                 coverImg.src = article.cover;
@@ -332,20 +323,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 footerContainer.style.display = 'none';
             }
 
-            // Show detail, hide archive — keep main header (#header) always visible
             if (newsArchiveView) newsArchiveView.style.display = 'none';
             if (newsPageHeader) newsPageHeader.style.display = 'none';
             if (newsDetailView) newsDetailView.style.display = 'block';
             
-            window.scrollTo({ top: 0, behavior: 'instant' });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
         const showArchiveView = () => {
             document.title = 'News & Aggiornamenti | ASD Sport Lab';
             if (newsDetailView) newsDetailView.style.display = 'none';
             if (newsArchiveView) newsArchiveView.style.display = 'block';
-            if (newsPageHeader) newsPageHeader.style.display = '';
-            window.scrollTo({ top: 0, behavior: 'instant' });
+            if (newsPageHeader) newsPageHeader.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             
             const newUrl = window.location.pathname;
             window.history.pushState({}, '', newUrl);
@@ -362,23 +352,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     if (newsDetailView) newsDetailView.style.display = 'none';
                     if (newsArchiveView) newsArchiveView.style.display = 'block';
-                    if (newsPageHeader) newsPageHeader.style.display = '';
+                    if (newsPageHeader) newsPageHeader.style.display = 'block';
                     document.title = 'News & Aggiornamenti | ASD Sport Lab';
                 }
             }
         });
 
-        // Pulsanti indietro nella vista dettaglio (breadcrumb + button)
+        // Pulsante indietro nella vista dettaglio
         const backBtn = document.getElementById('backToNewsBtn');
-        const backBtnAlt = document.getElementById('backToNewsBtnAlt');
-        [backBtn, backBtnAlt].forEach(btn => {
-            if (btn) {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    showArchiveView();
-                });
-            }
-        });
+        if (backBtn) {
+            backBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                showArchiveView();
+            });
+        }
 
         // Carica dati
         fetch('content/news.json')

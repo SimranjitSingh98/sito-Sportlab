@@ -3779,20 +3779,31 @@ p { margin-bottom: 1.2rem; }
 /* --- Page Hero (news.html & other subpages) --- */
 .news-page-hero {
     padding-top: 140px;
-    padding-bottom: 50px;
-    background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-white) 100%);
+    padding-bottom: 55px;
+    background: linear-gradient(170deg, var(--bg-light) 0%, #e8f4ff 60%, var(--bg-white) 100%);
     text-align: center;
-    border-bottom: 1px solid rgba(18, 59, 99, 0.05);
+    border-bottom: 1px solid rgba(18, 59, 99, 0.07);
     position: relative;
+    overflow: hidden;
 }
 .news-page-hero::before {
     content: '';
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 45%;
+    top: -20%;
+    right: -5%;
+    width: 50%;
+    height: 130%;
+    background: radial-gradient(ellipse at 75% 40%, rgba(77, 163, 255, 0.1) 0%, transparent 65%);
+    pointer-events: none;
+}
+.news-page-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: -5%;
+    width: 35%;
     height: 100%;
-    background: radial-gradient(circle at 80% 30%, rgba(77, 163, 255, 0.06) 0%, transparent 70%);
+    background: radial-gradient(ellipse at 25% 80%, rgba(18, 59, 99, 0.04) 0%, transparent 60%);
     pointer-events: none;
 }
 .news-page-hero h1 {
@@ -3806,12 +3817,30 @@ p { margin-bottom: 1.2rem; }
     font-size: 1.1rem;
 }
 
+/* News hero badge */
+.news-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: var(--bg-box);
+    color: var(--primary-blue);
+    border: 1px solid rgba(77, 163, 255, 0.2);
+    border-radius: 50px;
+    padding: 0.35rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
 /* Breadcrumb */
 .news-breadcrumb {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.6rem;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.6rem;
     margin-bottom: 1.5rem;
     font-size: 0.88rem;
     font-weight: 600;
@@ -3819,6 +3848,7 @@ p { margin-bottom: 1.2rem; }
 .news-breadcrumb a {
     color: var(--text-muted);
     transition: var(--transition);
+    white-space: nowrap;
 }
 .news-breadcrumb a:hover {
     color: var(--primary-blue);
@@ -3826,10 +3856,15 @@ p { margin-bottom: 1.2rem; }
 .breadcrumb-sep {
     color: rgba(18, 59, 99, 0.2);
     font-size: 0.65rem;
+    flex-shrink: 0;
 }
 .breadcrumb-current {
     color: var(--primary-blue);
     font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 240px;
 }
 
 /* --- News Main Section --- */
@@ -4222,6 +4257,15 @@ p { margin-bottom: 1.2rem; }
     }
     .news-breadcrumb {
         font-size: 0.82rem;
+        gap: 0.4rem 0.5rem;
+        margin-bottom: 1.2rem;
+    }
+    .breadcrumb-current {
+        max-width: 180px;
+    }
+    .news-hero-badge {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.85rem;
     }
     .news-main-section {
         padding-top: 2.5rem;
@@ -4240,6 +4284,15 @@ p { margin-bottom: 1.2rem; }
     .news-detail-topbar {
         top: 60px;
         padding: 0.6rem 0;
+    }
+    .news-detail-topbar .container {
+        gap: 0.5rem;
+    }
+    .news-detail-topbar .btn {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.85rem;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
     .news-detail-article {
         padding: 1.6rem;
@@ -4272,6 +4325,26 @@ p { margin-bottom: 1.2rem; }
     }
     .news-breadcrumb {
         margin-bottom: 1rem;
+        font-size: 0.78rem;
+        gap: 0.3rem 0.4rem;
+    }
+    .breadcrumb-current {
+        max-width: 130px;
+    }
+    /* Su schermi piccoli nascondi il titolo articolo nel breadcrumb della barra sticky */
+    .news-detail-topbar .breadcrumb-sep ~ .breadcrumb-sep,
+    .news-detail-topbar .breadcrumb-current {
+        display: none;
+    }
+    .news-detail-topbar .btn {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.7rem;
+        gap: 0.3rem;
+    }
+    .news-hero-badge {
+        font-size: 0.7rem;
+        padding: 0.28rem 0.75rem;
+        margin-bottom: 0.8rem;
     }
     .news-grid {
         gap: 1.2rem;
@@ -4281,9 +4354,6 @@ p { margin-bottom: 1.2rem; }
     }
     .news-detail-topbar {
         top: 55px;
-    }
-    .news-detail-topbar .news-breadcrumb {
-        font-size: 0.78rem;
     }
     .news-detail-container {
         padding-bottom: 2.5rem;

@@ -102,8 +102,8 @@
     <header id="header">
         <div class="container header-container">
             <a href="#" class="logo">
-                <img src="images/logo.png" alt="ASD Sport Lab - Scuola di Pattinaggio Pontecagnano Salerno"
-                    class="logo-img">
+                <img src="images/immaginiWebp/logo.webp" alt="ASD Sport Lab - Scuola di Pattinaggio Pontecagnano Salerno"
+                    class="logo-img" width="328" height="158" fetchpriority="high">
             </a>
             <nav class="main-nav">
                 <ul class="nav-links">
@@ -332,7 +332,7 @@
                             atleti</strong>.
                     </p>
                         <figure style="margin-top: 1.5rem;">
-                            <img src="images/eventi/sindacoMaggio2026.webp" alt="Sindaco visita ASD Sport Lab maggio 2026" style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.12);">
+                            <img src="images/eventi/sindacoMaggio2026.webp" alt="Sindaco visita ASD Sport Lab maggio 2026" style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.12);" width="900" height="600" loading="lazy">
                             <figcaption style="margin-top:0.5rem; font-size:0.95rem; color:var(--text-muted);">Visita del Sindaco - Maggio 2026</figcaption>
                         </figure>
                     <p style="margin-top: 1.5rem;">Siamo profondamente radicati in provincia di Salerno e attivi a
@@ -1147,13 +1147,13 @@
 
             <div class="sponsor-logos-list">
                 <div class="sponsor-logo-item">
-                    <img src="images/fisr.png" alt="FISR Campania">
+                    <img src="images/immaginiWebp/fisr.webp" alt="FISR Campania" width="160" height="200" loading="lazy">
                 </div>
                 <div class="sponsor-logo-item">
-                    <img src="images/coni.png" alt="CONI Salerno">
+                    <img src="images/immaginiWebp/coni.webp" alt="CONI Salerno" width="160" height="200" loading="lazy">
                 </div>
                 <div class="sponsor-logo-item">
-                    <img src="images/comune.png" alt="Comune di Pontecagnano">
+                    <img src="images/immaginiWebp/comune.webp" alt="Comune di Pontecagnano" width="160" height="200" loading="lazy">
                 </div>
             </div>
         </div>
@@ -1431,8 +1431,23 @@
 
     <!-- JavaScript -->
     <script src="js/main.js"></script>
-    <!-- Instagram Embed Script -->
-    <script async src="https://www.instagram.com/embed.js"></script>
+    <!-- Instagram Embed Script — caricato solo quando la sezione entra in viewport -->
+    <script>
+    (function() {
+        var section = document.getElementById('instagram-section');
+        if (!section) return;
+        var observer = new IntersectionObserver(function(entries) {
+            if (entries[0].isIntersecting) {
+                var s = document.createElement('script');
+                s.src = 'https://www.instagram.com/embed.js';
+                s.async = true;
+                document.body.appendChild(s);
+                observer.disconnect();
+            }
+        }, { rootMargin: '200px' });
+        observer.observe(section);
+    })();
+    </script>
 </body>
 
 </html>

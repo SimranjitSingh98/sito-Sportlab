@@ -10,20 +10,28 @@
     <meta name="keywords"
         content="pattinaggio salerno, pattinaggio pontecagnano, pattinaggio corsa, sport bambini salerno, hockey pattinaggio salerno, pattinaggio battipaglia, corsi pattinaggio bambini">
 
+    <link rel="canonical" href="https://asdsportlab.eu/">
+
     <!-- Open Graph / Social -->
     <meta property="og:title" content="ASD Sport Lab | Scuola di Pattinaggio a Pontecagnano e provincia di Salerno">
-    <meta property="og:description"
-        content="Inizia a pattinare con noi! Prove gratuite con attrezzatura inclusa a Pontecagnano, a pochi minuti da Salerno.">
-    <meta property="og:image" content="images/logo.png">
+    <meta property="og:description" content="Inizia a pattinare con noi! Prove gratuite con attrezzatura inclusa a Pontecagnano, a pochi minuti da Salerno.">
+    <meta property="og:image" content="https://asdsportlab.eu/images/loghi/logoQuadrato512x512.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://asdsportlab.eu/">
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:site_name" content="ASD Sport Lab">
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts — non-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- FontAwesome — non-blocking -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -39,12 +47,15 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": ["SportsOrganization", "LocalBusiness"],
       "name": "ASD Sport Lab",
-      "image": "https://sportlabpontecagnano.it/images/logo.png",
-      "@id": "https://sportlabpontecagnano.it",
-      "url": "https://sportlabpontecagnano.it",
+      "description": "Scuola di pattinaggio corsa per bambini e ragazzi a Pontecagnano Faiano (SA). Corsi dai 4 anni, settore agonistico FISR, percorsi inclusivi.",
+      "image": "https://asdsportlab.eu/images/loghi/logoQuadrato512x512.png",
+      "logo": "https://asdsportlab.eu/images/logo.png",
+      "@id": "https://asdsportlab.eu",
+      "url": "https://asdsportlab.eu",
       "telephone": "+393454294187",
+      "sport": "Pattinaggio corsa",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Via Lazio 8",
@@ -58,19 +69,25 @@
         "latitude": 40.6405,
         "longitude": 14.8812
       },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday"
-        ],
-        "opens": "15:00",
-        "closes": "20:00"
-      },
+      "areaServed": [
+        "Pontecagnano Faiano",
+        "Salerno",
+        "Battipaglia"
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "15:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "13:00"
+        }
+      ],
       "sameAs": [
         "https://www.facebook.com/sportLABPontecagnano",
         "https://www.instagram.com/sportlab_pontecagnano"
@@ -156,7 +173,8 @@
                 <div class="hero-image-box">
                     <div class="hero-main-img">
                         <img src="images/immaginiWebp/bambini_che_giocano_sui_pattini.webp"
-                            alt="Bambini che giocano felici sui pattini a Salerno - ASD Sport Lab">
+                            alt="Bambini che giocano felici sui pattini a Salerno - ASD Sport Lab"
+                            width="900" height="1200" fetchpriority="high">
                     </div>
                     <div class="hero-floating-card">
                         <div class="floating-icon"><i class="fas fa-heart"></i></div>
@@ -208,7 +226,8 @@
                     <div class="main-benefit-img">
                         <img src="images/immaginiWebp/allenamento_con_tanti_bambini.webp"
                             alt="Allenamento collettivo bambini sui pattini - ASD Sport Lab Salerno"
-                            class="rounded-img shadow-lg">
+                            class="rounded-img shadow-lg"
+                            width="900" height="1200" loading="lazy">
                     </div>
                     <div class="benefit-floating-card">
                         <span class="count">130+</span>
@@ -261,7 +280,8 @@
             <div class="about-grid align-items-center">
                 <div class="about-image" style="position: relative;">
                     <img src="images/immaginiWebp/bambini_seduti.webp" alt="Bambini amici sui pattini - ASD Sport Lab Pontecagnano"
-                        class="rounded-img shadow-lg" style="border: 8px solid white; width: 100%;">
+                        class="rounded-img shadow-lg" style="border: 8px solid white; width: 100%;"
+                        width="900" height="1200" loading="lazy">
                     <div class="floating-badge">
                         <i class="fas fa-users"></i> Amicizia e Rispetto
                     </div>
@@ -361,8 +381,9 @@
                 <!-- 1. Cuccioli -->
                 <article class="course-card-premium">
                     <div class="course-image-wrap">
-                        <img src="images/corso_cuccioli.png"
-                            alt="Corso Cuccioli Pattinaggio per bambini dai 4 anni - Pontecagnano Salerno">
+                        <img src="images/immaginiWebp/corso_cuccioli.webp"
+                            alt="Corso Cuccioli Pattinaggio per bambini dai 4 anni - Pontecagnano Salerno"
+                            width="600" height="574" loading="lazy">
                         <span class="age-badge">4–7 anni</span>
                     </div>
                     <div class="card-body">
@@ -381,8 +402,9 @@
                 <!-- 2. Amatori -->
                 <article class="course-card-premium">
                     <div class="course-image-wrap">
-                        <img src="images/corso_amatori.png"
-                            alt="Corso Amatori Pattinaggio Salerno per ragazzi e principianti">
+                        <img src="images/immaginiWebp/corso_amatori.webp"
+                            alt="Corso Amatori Pattinaggio Salerno per ragazzi e principianti"
+                            width="600" height="541" loading="lazy">
                         <span class="age-badge">8–12 anni</span>
                     </div>
                     <div class="card-body">
@@ -401,7 +423,8 @@
                 <!-- 3. G/E -->
                 <article class="course-card-premium">
                     <div class="course-image-wrap">
-                        <img src="images/G.png" alt="Corso G/E Pre-agonismo Pattinaggio Pontecagnano">
+                        <img src="images/immaginiWebp/G.webp" alt="Corso G/E Pre-agonismo Pattinaggio Pontecagnano"
+                            width="600" height="312" loading="lazy">
                         <span class="age-badge">8–10 anni</span>
                     </div>
                     <div class="card-body">
@@ -420,7 +443,8 @@
                 <!-- 4. Agonismo (Merged R/A/J/S) -->
                 <article class="course-card-premium">
                     <div class="course-image-wrap">
-                        <img src="images/R.png" alt="Squadra Agonistica Pattinaggio Corsa Salerno ASD Sport Lab">
+                        <img src="images/immaginiWebp/R.webp" alt="Squadra Agonistica Pattinaggio Corsa Salerno ASD Sport Lab"
+                            width="600" height="343" loading="lazy">
                         <span class="age-badge">11–18+ anni</span>
                     </div>
                     <div class="card-body">
@@ -470,9 +494,10 @@
                 </div>
                 <div class="growth-visual">
                     <div class="growth-img-container">
-                        <img src="images/atleta_in_pista_campionatiitaliani2026.jpg"
+                        <img src="images/immaginiWebp/atleta_campionati2026.webp"
                             alt="Atleta ASD Sport Lab in gara ai Campionati Italiani 2026"
-                            class="rounded-img shadow-lg">
+                            class="rounded-img shadow-lg"
+                            width="900" height="599" loading="lazy">
                         <div class="growth-overlay-badge">
                             <i class="fas fa-medal"></i> Eccellenza Sportiva
                         </div>
@@ -530,7 +555,8 @@
                     <div class="prova-img-wrap">
                         <img src="images/immaginiWebp/bambino_con_pattini.webp"
                             alt="Bambino pronto per la prova di pattinaggio a Salerno - ASD Sport Lab"
-                            class="rounded-img shadow-lg">
+                            class="rounded-img shadow-lg"
+                            width="751" height="1000" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -559,7 +585,7 @@
                 <!-- 1. Pierluigi -->
                 <div class="staff-card premium-card">
                     <div class="staff-photo">
-                        <img src="images/pierluigi.jpg" alt="Pierluigi Di Somma">
+                        <img src="images/immaginiWebp/pierluigi.webp" alt="Pierluigi Di Somma - Presidente e istruttore FISR ASD Sport Lab Pontecagnano" width="377" height="400" loading="lazy">
                     </div>
                     <div class="staff-info-content">
                         <span class="role-badge">Presidente ASD SportLab</span>
@@ -572,7 +598,7 @@
                 <!-- 2. Guido -->
                 <div class="staff-card premium-card">
                     <div class="staff-photo">
-                        <img src="images/guido.jpg" alt="Guido Camardella">
+                        <img src="images/immaginiWebp/guido.webp" alt="Guido Camardella - Allenatore pattinaggio corsa agonisti Salerno" width="335" height="400" loading="lazy">
                     </div>
                     <div class="staff-info-content">
                         <span class="role-badge">Allenatore settore agonisti</span>
@@ -584,7 +610,7 @@
                 <!-- 3. Aurora -->
                 <div class="staff-card premium-card">
                     <div class="staff-photo">
-                        <img src="images/aurora.jpg" alt="Aurora Storzillo">
+                        <img src="images/immaginiWebp/aurora.webp" alt="Aurora Storzillo - Allenatrice pattinaggio e tecnico inclusione ASD Sport Lab" width="310" height="400" loading="lazy">
                     </div>
                     <div class="staff-info-content">
                         <span class="role-badge">Allenatrice Amatori • Tecnico RBT</span>
@@ -598,7 +624,7 @@
                 <!-- 4. Bernardo -->
                 <div class="staff-card premium-card">
                     <div class="staff-photo">
-                        <img src="images/bernardo.jpg" alt="Bernardo Fortino">
+                        <img src="images/immaginiWebp/bernardo.webp" alt="Bernardo Fortino - Aiuto allenatore pattinaggio ASD Sport Lab" width="332" height="400" loading="lazy">
                     </div>
                     <div class="staff-info-content">
                         <span class="role-badge">Aiuto allenatore</span>
@@ -611,7 +637,7 @@
                 <!-- 5. Simranjit -->
                 <div class="staff-card premium-card">
                     <div class="staff-photo">
-                        <img src="images/sanny.png" alt="Simranjit Singh">
+                        <img src="images/immaginiWebp/sanny.webp" alt="Simranjit Singh - Social media manager ASD Sport Lab" width="310" height="400" loading="lazy">
                     </div>
                     <div class="staff-info-content">
                         <span class="role-badge">Social media manager</span>
@@ -624,7 +650,7 @@
                 <!-- 6. Azzurra -->
                 <div class="staff-card premium-card">
                     <div class="staff-photo">
-                        <img src="images/azzurra.jpg" alt="Azzurra Rega">
+                        <img src="images/immaginiWebp/azzurra.webp" alt="Azzurra Rega - Allenatrice pattinaggio gruppo Amatori Pontecagnano" width="317" height="400" loading="lazy">
                     </div>
                     <div class="staff-info-content">
                         <span class="role-badge">Aiuto allenatore</span>
@@ -636,7 +662,7 @@
                 <!-- 7. Benedetta -->
                 <div class="staff-card premium-card">
                     <div class="staff-photo">
-                        <img src="images/benedetta.jpg" alt="Benedetta">
+                        <img src="images/immaginiWebp/benedetta.webp" alt="Benedetta - Allenatrice pattinaggio Giovanissimi ed Esordienti ASD Sport Lab" width="349" height="400" loading="lazy">
                     </div>
                     <div class="staff-info-content">
                         <span class="role-badge">Allenatrice</span>
@@ -648,7 +674,7 @@
                 <!-- 8. Erika -->
                 <div class="staff-card premium-card">
                     <div class="staff-photo">
-                        <img src="images/erika.jpg" alt="Erika Longo">
+                        <img src="images/immaginiWebp/erika.webp" alt="Erika Longo - Segreteria ASD Sport Lab Pontecagnano" width="304" height="400" loading="lazy">
                     </div>
                     <div class="staff-info-content">
                         <span class="role-badge">Responsabile Segreteria</span>
@@ -1047,8 +1073,8 @@
                     <!-- Visual Side -->
                     <div class="island-visual">
                         <div class="poster-container">
-                            <img src="images/immaginiWebp/pattinaggioAdulti.webp" alt="Pattinaggio Adulti SportLab"
-                                class="poster-main-img">
+                            <img src="images/immaginiWebp/pattinaggioAdulti.webp" alt="Corso pattinaggio adulti ASD Sport Lab Pontecagnano"
+                                class="poster-main-img" width="1080" height="1080" loading="lazy">
                             <div class="noleggio-sticker">
                                 <span class="sticker-text">Noleggio<br>Incluso</span>
                             </div>
@@ -1238,6 +1264,7 @@
                 <!-- Map Column -->
                 <div class="contact-map-wrapper">
                     <iframe
+                        title="Mappa sede ASD Sport Lab - Via Lazio 8, Pontecagnano Faiano (SA)"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.7544211155986!2d14.8817206154035!3d40.64415847933934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133bc40e0ab77019%3A0x6b4f7a7f43399ed6!2sVia%20Lazio%2C%208%2C%2084098%20Pontecagnano%20Faiano%20SA!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit"
                         width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>

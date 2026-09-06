@@ -895,3 +895,130 @@ section.bg-light {
         border-radius: var(--border-radius);
     }
 }
+
+
+/* ==========================================================================
+   STAGIONE 2026/2027 — Discipline + Calendario prove gratuite
+   ========================================================================== */
+
+/* --- Le tre discipline (sezione Corsi) --- */
+.discipline-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.discipline-card {
+    background: var(--bg-white);
+    border: 1px solid rgba(77, 163, 255, 0.18);
+    border-radius: var(--border-radius);
+    padding: 2rem 1.75rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.discipline-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary-blue);
+}
+
+.discipline-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--bg-box);
+    color: var(--secondary-blue);
+    font-size: 1.4rem;
+}
+
+.discipline-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--secondary-blue);
+    margin-bottom: 0.75rem;
+}
+
+.discipline-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .discipline-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 2.5rem;
+    }
+
+    .discipline-card {
+        padding: 1.75rem 1.5rem;
+    }
+}
+
+/* --- Box calendario prove gratuite (sezione Prova Gratuita) --- */
+.prova-schedule {
+    margin-top: 2.5rem;
+    padding: 1.75rem;
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.prova-schedule-head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--accent-color);
+    margin-bottom: 1.15rem;
+}
+
+.prova-schedule-days {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.15rem;
+}
+
+.prova-day {
+    padding: 0.5rem 1.1rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #fff;
+}
+
+.prova-schedule-time {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.prova-schedule-time i {
+    color: var(--accent-color);
+    margin-right: 0.2rem;
+}
+
+@media (max-width: 600px) {
+    .prova-schedule {
+        padding: 1.4rem;
+    }
+
+    .prova-day {
+        flex: 1 1 auto;
+        text-align: center;
+    }
+}

@@ -16,6 +16,7 @@
       "dataFine": "2026-06-07",
       "descrizione": "A Elmas andrà in scena uno dei grandi appuntamenti nazionali dedicati alle categorie R e R12. Per Sportlab sarà una trasferta di grande valore tecnico, utile per misurarsi con il meglio del panorama italiano e vivere un'esperienza ad altissimo livello agonistico.",
       "nota": "Campionato italiano giovanile su pista.",
+      "risultati": "https://attivita.rollergames.it/corsa/rrunn/2026/630840/RW00010.1/index.htm",
       "cover": "images/trasferte/campionator12pista2026.webp"
     },
     {
@@ -204,16 +205,6 @@
       "cover": "images/atleti_agonisti_a_benevento.png",
       "anno": 2023,
       "periodo": "Aprile 2023",
-      "stato": "completato"
-    },
-    {
-      "titolo": "Campionato Nazionale",
-      "luogo": "Roma, Lazio",
-      "descrizione": "Gareggiare nella Capitale contro i migliori atleti d'Italia è stata una grandissima emozione per tutto il gruppo. Il Campionato Nazionale ha rappresentato un momento di forte crescita, arricchito da risultati importanti, podi conquistati e un'esperienza che resterà nel percorso di Sportlab.",
-      "nota": "Il consolidamento del nostro gruppo.",
-      "cover": "images/trasferte/podio_roma_2025.webp",
-      "anno": 2022,
-      "periodo": "Giugno 2022",
       "stato": "completato"
     },
     {

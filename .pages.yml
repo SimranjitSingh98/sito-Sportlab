@@ -1,0 +1,92 @@
+# Configurazione del pannello Pages CMS (https://app.pagescms.org)
+# Le foto caricate finiscono in images/trasferte/ e vengono convertite in .webp
+# automaticamente dalla GitHub Action "Ottimizza foto trasferte".
+
+media:
+  - name: trasferte
+    label: Foto trasferte
+    input: images/trasferte
+    output: images/trasferte
+    rename: safe
+    categories: [image]
+
+content:
+  - name: trasferte
+    label: Trasferte
+    type: file
+    path: content/trasferte.json
+    format: json
+    fields:
+      - name: trasferte
+        label: Trasferte
+        description: Per aggiungerne una clicca "Aggiungi" in fondo alla lista. L'ordine non conta, il sito le ordina da solo per data.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{dataInizio} · {titolo}"
+        fields:
+          - name: titolo
+            label: Nome della gara
+            type: string
+            required: true
+          - name: luogo
+            label: Luogo
+            description: "Es. Pescara oppure Manduria (TA)"
+            type: string
+            required: true
+          - name: dataInizio
+            label: Data (o primo giorno)
+            description: Obbligatoria. Da questa data il sito capisce da solo se la trasferta è "In Programma" o "Completata".
+            type: date
+            default: ""
+            options:
+              format: yyyy-MM-dd
+          - name: dataFine
+            label: Ultimo giorno
+            description: Solo se la gara dura più giorni, altrimenti lascia vuoto.
+            type: date
+            default: ""
+            options:
+              format: yyyy-MM-dd
+          - name: descrizione
+            label: Descrizione
+            type: text
+            required: true
+          - name: nota
+            label: Nota finale
+            description: Una frase breve che appare in fondo alla card.
+            type: string
+          - name: cover
+            label: Foto di copertina
+            description: Va bene anche la foto dal telefono, viene ridimensionata e convertita automaticamente.
+            type: image
+            options:
+              media: trasferte
+          - name: anno
+            label: Stagione (facoltativo)
+            description: Lascia vuoto, viene presa dall'anno della data. Compilalo solo se la gara conta per un'altra stagione (es. novembre 2025 → 2026).
+            type: number
+          # Solo per le vecchie trasferte senza date precise (es. "Estate 2024")
+          - name: periodo
+            type: string
+            hidden: true
+          - name: stato
+            type: string
+            hidden: true
+
+      - name: anni
+        label: Testo introduttivo di ogni anno
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{anno}"
+        fields:
+          - name: anno
+            label: Anno
+            type: number
+            required: true
+          - name: riepilogo
+            label: Riepilogo
+            type: text

@@ -105,6 +105,50 @@ document.addEventListener('DOMContentLoaded', () => {
         let allAnni = [];
         let currentAnno = null;
 
+        // Le date arrivano dal pannello come "AAAA-MM-GG"
+        const parseData = (s) => {
+            const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s || '');
+            return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
+        };
+        const formatData = (d) =>
+            `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}`;
+        const escapeHTML = (s) => String(s ?? '').replace(/[&<>"']/g, c => (
+            { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+        ));
+
+        // Ricava stato, periodo e anno dalle date; il testo libero "periodo" e lo
+        // "stato" manuale restano solo per le vecchie trasferte senza date precise
+        const normalizzaTrasferta = (t) => {
+            const inizio = parseData(t.dataInizio);
+            const fine = parseData(t.dataFine) || inizio;
+            const oggi = new Date();
+            oggi.setHours(0, 0, 0, 0);
+
+            return {
+                ...t,
+                inizio,
+                anno: Number(t.anno) || (inizio ? inizio.getFullYear() : null),
+                stato: inizio ? (fine < oggi ? 'completato' : 'programmato') : (t.stato || 'completato'),
+                periodo: inizio
+                    ? (fine > inizio ? `${formatData(inizio)} - ${formatData(fine)}` : formatData(inizio))
+                    : (t.periodo || '')
+            };
+        };
+
+        // Raggruppa per anno (decrescente), unendo il riepilogo di ciascun anno
+        const raggruppaPerAnno = (data) => {
+            const riepiloghi = new Map((data.anni || []).map(a => [Number(a.anno), a.riepilogo || '']));
+            const gruppi = new Map();
+            (data.trasferte || []).map(normalizzaTrasferta).forEach(t => {
+                if (!t.anno) return;
+                if (!gruppi.has(t.anno)) gruppi.set(t.anno, []);
+                gruppi.get(t.anno).push(t);
+            });
+            return [...gruppi.entries()]
+                .sort((a, b) => b[0] - a[0])
+                .map(([anno, eventi]) => ({ anno, riepilogo: riepiloghi.get(anno) || '', eventi }));
+        };
+
         const renderEvents = () => {
             eventsGrid.classList.remove('visible');
             yearStats.classList.remove('visible');
@@ -128,10 +172,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     const riepilogo = annoData.riepilogo || '';
                     yearStats.innerHTML = riepilogo;
 
-                    // Ordine: programmato prima, poi completato
+                    // Ordine: prima le prossime (la più vicina in alto), poi le completate
+                    // (la più recente in alto); quelle senza data in fondo
                     const ordinati = [...eventi].sort((a, b) => {
                         const ordine = { programmato: 0, completato: 1 };
-                        return (ordine[a.stato] ?? 9) - (ordine[b.stato] ?? 9);
+                        const diffStato = (ordine[a.stato] ?? 9) - (ordine[b.stato] ?? 9);
+                        if (diffStato !== 0) return diffStato;
+                        if (!a.inizio || !b.inizio) return (a.inizio ? 0 : 1) - (b.inizio ? 0 : 1);
+                        return a.stato === 'programmato' ? a.inizio - b.inizio : b.inizio - a.inizio;
                     });
 
                     ordinati.forEach(ev => {
@@ -141,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const coverHTML = ev.cover
                             ? `<div class="event-card-media">
                                    <span class="event-status ${cfg.cssClass}">${cfg.label}</span>
-                                   <img src="${ev.cover}" alt="${ev.titolo}" loading="lazy">
+                                   <img src="${escapeHTML(ev.cover)}" alt="${escapeHTML(ev.titolo)}" loading="lazy">
                                </div>`
                             : `<div class="event-card-media event-card-media--placeholder">
                                    <span class="event-status ${cfg.cssClass}">${cfg.label}</span>
@@ -149,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                </div>`;
 
                         const notaHTML = ev.nota
-                            ? `<div class="event-footer"><i class="${cfg.icon}"></i> ${ev.nota}</div>`
+                            ? `<div class="event-footer"><i class="${cfg.icon}"></i> ${escapeHTML(ev.nota)}</div>`
                             : '';
 
                         const card = document.createElement('div');
@@ -158,11 +206,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             ${coverHTML}
                             <div class="event-card-content">
                                 <div class="event-meta">
-                                    <span class="date-loc"><i class="fas fa-map-marker-alt"></i> ${ev.luogo}</span>
-                                    <span class="date-loc"><i class="fas fa-calendar-alt"></i> ${ev.periodo}</span>
+                                    <span class="date-loc"><i class="fas fa-map-marker-alt"></i> ${escapeHTML(ev.luogo)}</span>
+                                    <span class="date-loc"><i class="fas fa-calendar-alt"></i> ${escapeHTML(ev.periodo)}</span>
                                 </div>
-                                <h3>${ev.titolo}</h3>
-                                <p>${ev.descrizione}</p>
+                                <h3>${escapeHTML(ev.titolo)}</h3>
+                                <p>${escapeHTML(ev.descrizione)}</p>
                                 ${notaHTML}
                             </div>
                         `;
@@ -206,8 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return res.json();
             })
             .then(data => {
-                // Ordina per anno decrescente
-                allAnni = (data.anni || []).sort((a, b) => b.anno - a.anno);
+                allAnni = raggruppaPerAnno(data);
                 initTabs();
             })
             .catch(err => {

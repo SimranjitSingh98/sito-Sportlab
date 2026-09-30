@@ -1,0 +1,45 @@
+name: Ottimizza foto trasferte
+
+# Parte quando il pannello (o chiunque) carica foto in images/trasferte/
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'images/trasferte/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ottimizza-foto
+  cancel-in-progress: false
+
+jobs:
+  ottimizza:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Installa librerie immagini
+        run: pip install pillow pillow-heif
+
+      - name: Converti in webp
+        run: python .github/scripts/ottimizza_foto.py
+
+      - name: Salva le modifiche
+        run: |
+          if [ -z "$(git status --porcelain images/trasferte content)" ]; then
+            echo "Nessuna foto da convertire"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A images/trasferte content
+          git commit -m "Foto trasferte convertite in webp"
+          git pull --rebase
+          git push

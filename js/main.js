@@ -149,6 +149,70 @@ document.addEventListener('DOMContentLoaded', () => {
                 .map(([anno, eventi]) => ({ anno, riepilogo: riepiloghi.get(anno) || '', eventi }));
         };
 
+        // Foto: sotto c'è la stessa immagine sfocata che fa da sfondo, così una
+        // foto verticale si vede intera invece di essere tagliata
+        const mediaHTML = (ev, cfg, lazy = true) => ev.cover
+            ? `<div class="event-card-media">
+                   <span class="event-status ${cfg.cssClass}">${cfg.label}</span>
+                   <img class="event-media-bg" src="${escapeHTML(ev.cover)}" alt="" aria-hidden="true"${lazy ? ' loading="lazy"' : ''}>
+                   <img class="event-media-img" src="${escapeHTML(ev.cover)}" alt="${escapeHTML(ev.titolo)}"${lazy ? ' loading="lazy"' : ''}>
+               </div>`
+            : `<div class="event-card-media event-card-media--placeholder">
+                   <span class="event-status ${cfg.cssClass}">${cfg.label}</span>
+                   <span class="event-cover-placeholder"><i class="fas fa-route"></i></span>
+               </div>`;
+
+        // Se la foto è più "alta" dello spazio che la contiene (es. verticale in
+        // una card orizzontale) la mostra intera; altrimenti la lascia riempire
+        const adattaFoto = (contenitore) => {
+            const media = contenitore.querySelector('.event-card-media');
+            const img = contenitore.querySelector('.event-media-img');
+            if (!media || !img) return;
+            const verifica = () => {
+                if (!img.naturalWidth || !media.clientHeight) return;
+                const rapportoFoto = img.naturalWidth / img.naturalHeight;
+                const rapportoBox = media.clientWidth / media.clientHeight;
+                media.classList.toggle('is-contain', rapportoFoto < rapportoBox * 0.85);
+            };
+            if (img.complete) verifica();
+            img.addEventListener('load', verifica);
+        };
+
+        // Finestra di dettaglio: foto intera, descrizione completa e nota
+        const dettaglio = document.createElement('dialog');
+        dettaglio.className = 'event-dialog';
+        dettaglio.setAttribute('aria-label', 'Dettaglio trasferta');
+        document.body.appendChild(dettaglio);
+
+        dettaglio.addEventListener('click', (e) => {
+            // Click fuori dal riquadro (sullo sfondo scuro) o sulla X
+            if (e.target === dettaglio || e.target.closest('.event-dialog-close')) dettaglio.close();
+        });
+        dettaglio.addEventListener('close', () => { document.body.style.overflow = ''; });
+
+        const apriDettaglio = (ev, cfg) => {
+            const notaHTML = ev.nota
+                ? `<div class="event-footer"><i class="${cfg.icon}"></i> ${escapeHTML(ev.nota)}</div>`
+                : '';
+            dettaglio.innerHTML = `
+                <button type="button" class="event-dialog-close" aria-label="Chiudi"><i class="fas fa-times"></i></button>
+                ${mediaHTML(ev, cfg, false)}
+                <div class="event-dialog-content">
+                    <div class="event-meta">
+                        <span class="date-loc"><i class="fas fa-map-marker-alt"></i> ${escapeHTML(ev.luogo)}</span>
+                        <span class="date-loc"><i class="fas fa-calendar-alt"></i> ${escapeHTML(ev.periodo)}</span>
+                    </div>
+                    <h3>${escapeHTML(ev.titolo)}</h3>
+                    <p>${escapeHTML(ev.descrizione).replace(/\n/g, '<br>')}</p>
+                    ${notaHTML}
+                </div>
+            `;
+            dettaglio.querySelector('.event-card-media')?.classList.add('is-contain');
+            document.body.style.overflow = 'hidden';
+            dettaglio.showModal();
+            dettaglio.scrollTop = 0;
+        };
+
         const renderEvents = () => {
             eventsGrid.classList.remove('visible');
             yearStats.classList.remove('visible');
@@ -184,36 +248,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     ordinati.forEach(ev => {
                         const cfg = statoConfig[ev.stato] || { label: ev.stato, cssClass: 'status-completato', icon: 'fas fa-circle' };
-                        const isProgrammato = ev.stato === 'programmato';
-
-                        const coverHTML = ev.cover
-                            ? `<div class="event-card-media">
-                                   <span class="event-status ${cfg.cssClass}">${cfg.label}</span>
-                                   <img src="${escapeHTML(ev.cover)}" alt="${escapeHTML(ev.titolo)}" loading="lazy">
-                               </div>`
-                            : `<div class="event-card-media event-card-media--placeholder">
-                                   <span class="event-status ${cfg.cssClass}">${cfg.label}</span>
-                                   <span class="event-cover-placeholder"><i class="fas fa-route"></i></span>
-                               </div>`;
-
-                        const notaHTML = ev.nota
-                            ? `<div class="event-footer"><i class="${cfg.icon}"></i> ${escapeHTML(ev.nota)}</div>`
-                            : '';
 
                         const card = document.createElement('div');
                         card.className = 'event-card';
+                        card.setAttribute('role', 'button');
+                        card.setAttribute('tabindex', '0');
+                        card.setAttribute('aria-haspopup', 'dialog');
                         card.innerHTML = `
-                            ${coverHTML}
+                            ${mediaHTML(ev, cfg)}
                             <div class="event-card-content">
                                 <div class="event-meta">
                                     <span class="date-loc"><i class="fas fa-map-marker-alt"></i> ${escapeHTML(ev.luogo)}</span>
                                     <span class="date-loc"><i class="fas fa-calendar-alt"></i> ${escapeHTML(ev.periodo)}</span>
                                 </div>
                                 <h3>${escapeHTML(ev.titolo)}</h3>
-                                <p>${escapeHTML(ev.descrizione).replace(/\n/g, '<br>')}</p>
-                                ${notaHTML}
+                                <p class="event-desc">${escapeHTML(ev.descrizione)}</p>
+                                <span class="event-more">Leggi di più <i class="fas fa-arrow-right"></i></span>
                             </div>
                         `;
+                        adattaFoto(card);
+                        card.addEventListener('click', () => apriDettaglio(ev, cfg));
+                        card.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                apriDettaglio(ev, cfg);
+                            }
+                        });
                         eventsGrid.appendChild(card);
                     });
                 }

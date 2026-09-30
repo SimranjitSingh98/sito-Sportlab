@@ -162,6 +162,13 @@ document.addEventListener('DOMContentLoaded', () => {
                    <span class="event-cover-placeholder"><i class="fas fa-route"></i></span>
                </div>`;
 
+        // Pulsante verso i risultati ufficiali (solo link http/https)
+        const risultatiHTML = (ev, classe, testo = 'Risultati') => /^https?:\/\/\S+$/i.test(ev.risultati || '')
+            ? `<a class="${classe}" href="${escapeHTML(ev.risultati)}" target="_blank" rel="noopener">
+                   <i class="fas fa-list-ol"></i> ${testo} <i class="fas fa-external-link-alt"></i>
+               </a>`
+            : '';
+
         // Se la foto è più "alta" dello spazio che la contiene (es. verticale in
         // una card orizzontale) la mostra intera; altrimenti la lascia riempire
         const adattaFoto = (contenitore) => {
@@ -205,6 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3>${escapeHTML(ev.titolo)}</h3>
                     <p>${escapeHTML(ev.descrizione).replace(/\n/g, '<br>')}</p>
                     ${notaHTML}
+                    ${risultatiHTML(ev, 'btn btn-primary event-dialog-results', 'Vedi i risultati ufficiali')}
                 </div>
             `;
             dettaglio.querySelector('.event-card-media')?.classList.add('is-contain');
@@ -263,13 +271,19 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <h3>${escapeHTML(ev.titolo)}</h3>
                                 <p class="event-desc">${escapeHTML(ev.descrizione)}</p>
-                                <span class="event-more">Leggi di più <i class="fas fa-arrow-right"></i></span>
+                                <div class="event-actions">
+                                    <span class="event-more">Leggi di più <i class="fas fa-arrow-right"></i></span>
+                                    ${risultatiHTML(ev, 'event-results')}
+                                </div>
                             </div>
                         `;
                         adattaFoto(card);
-                        card.addEventListener('click', () => apriDettaglio(ev, cfg));
+                        // Il link ai risultati apre il sito della federazione, non il dettaglio
+                        card.addEventListener('click', (e) => {
+                            if (!e.target.closest('a')) apriDettaglio(ev, cfg);
+                        });
                         card.addEventListener('keydown', (e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
+                            if (e.target === card && (e.key === 'Enter' || e.key === ' ')) {
                                 e.preventDefault();
                                 apriDettaglio(ev, cfg);
                             }

@@ -371,7 +371,8 @@ p { margin-bottom: 1.2rem; }
 
 .hero-mini-trust {
     display: flex;
-    gap: 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
 }
 
 .trust-pill {
@@ -1380,12 +1381,56 @@ p { margin-bottom: 1.2rem; }
     overflow: hidden;
 }
 
+.event-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: 0.8rem;
+}
+
+/* Link ai risultati sul sito della federazione */
+.event-results {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 20px;
+    background: var(--bg-box);
+    color: var(--secondary-blue);
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.event-results i {
+    font-size: 0.68rem;
+    color: var(--primary-blue);
+}
+
+.event-results:hover {
+    background: var(--primary-blue);
+    color: #ffffff;
+}
+
+.event-results:hover i {
+    color: #ffffff;
+}
+
+.event-dialog-results {
+    margin-top: 1.4rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .event-more {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    margin-top: auto;
-    padding-top: 0.8rem;
     font-size: 0.82rem;
     font-weight: 700;
     color: var(--primary-blue);
@@ -2404,6 +2449,66 @@ p { margin-bottom: 1.2rem; }
     color: var(--text-muted);
     font-weight: 700;
     text-transform: uppercase;
+}
+
+/* Titoli vinti (sezione "Dalla pista al podio") */
+.growth-titles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 2.5rem;
+}
+
+.title-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    background: var(--bg-white);
+    border: 1px solid rgba(243, 227, 106, 0.6);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+}
+
+.title-card-icon {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #FFE566 0%, #F3C623 100%);
+    color: var(--secondary-blue);
+    font-size: 1.35rem;
+    box-shadow: 0 4px 14px rgba(243, 198, 35, 0.4);
+}
+
+.title-card-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.title-card-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.title-card-text strong {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--secondary-blue);
+    margin: 0.15rem 0;
+}
+
+.title-card-sub {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary-blue);
 }
 
 .growth-img-container {

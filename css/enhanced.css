@@ -114,6 +114,12 @@
     opacity: 1;
 }
 .trust-pill i { color: var(--primary-blue); }
+.trust-pill--gold {
+    background: linear-gradient(135deg, #FFF6C2 0%, #FFE98A 100%);
+    border-color: rgba(243, 198, 35, 0.55);
+    opacity: 1;
+}
+.trust-pill--gold i { color: #C99A06; }
 
 /* ── GLOBAL TRUST BAR ─────────────────────────────────────────── */
 .global-trust-bar {

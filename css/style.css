@@ -1058,6 +1058,65 @@ p { margin-bottom: 1.2rem; }
     }
 }
 
+/* Telefono: lista compatta tipo rubrica (foto a sinistra, testo a destra)
+   #staff + !important servono a battere le regole !important di enhanced.css */
+@media (max-width: 640px) {
+    #staff .staff-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        margin-top: 2rem;
+    }
+
+    #staff .staff-card {
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        text-align: left;
+        padding: 1rem 1.1rem !important;
+        border-radius: var(--border-radius);
+    }
+
+    #staff .staff-photo {
+        flex-shrink: 0;
+        width: 76px;
+        height: 76px;
+        margin: 0;
+        border-width: 2px !important;
+    }
+
+    #staff .staff-info-content {
+        min-width: 0;
+    }
+
+    #staff .role-badge {
+        font-size: 0.64rem;
+        line-height: 1.35;
+        padding: 0.22rem 0.6rem;
+        border-radius: 8px;
+        margin-bottom: 0.35rem;
+    }
+
+    #staff .staff-name {
+        font-size: 1.05rem;
+        margin-bottom: 0.2rem;
+    }
+
+    #staff .staff-bio {
+        font-size: 0.84rem;
+        line-height: 1.45;
+    }
+
+    /* Niente effetti "hover" pensati per il mouse */
+    #staff .staff-card:hover,
+    #staff .staff-card:hover .staff-photo {
+        transform: none !important;
+    }
+
+    #staff .staff-card:hover::before {
+        opacity: 0;
+    }
+}
+
 .staff-info h4 { margin-bottom: 0.2rem; }
 
 .role {

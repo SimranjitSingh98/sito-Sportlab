@@ -1547,29 +1547,195 @@ p { margin-bottom: 1.2rem; }
     margin: 0;
 }
 
-/* ── Responsive ────────────────────────────────────────────── */
-@media (max-width: 480px) {
-    .events-grid {
-        gap: 1.25rem;
+/* Carosello e riepilogo tagliato esistono solo su telefono */
+.events-nav,
+.year-stats-toggle {
+    display: none;
+}
+
+/* ── Telefono: carosello orizzontale e dettaglio dal basso ─── */
+@media (max-width: 640px) {
+    #eventi .section-header .lead {
+        font-size: 0.98rem;
+        line-height: 1.6;
     }
 
+    /* Anni: pulsanti compatti e centrati */
+    #eventi .year-selector-wrapper {
+        margin-bottom: 1.1rem;
+    }
+
+    #eventi .year-selector {
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0 4px;
+    }
+
+    #eventi .year-pill {
+        padding: 0.5rem 1.3rem;
+        font-size: 0.95rem;
+    }
+
+    /* Riepilogo dell'anno: 3 righe, il resto con "Leggi tutto" */
+    .year-stats {
+        font-size: 0.92rem;
+        line-height: 1.6;
+        margin-bottom: 0.4rem;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        overflow: hidden;
+    }
+
+    .year-stats.is-open {
+        display: block;
+        -webkit-line-clamp: unset;
+        line-clamp: unset;
+    }
+
+    .year-stats-toggle {
+        display: block;
+        margin: 0 auto 1.4rem;
+        padding: 0.3rem 0.8rem;
+        border: none;
+        background: none;
+        color: var(--primary-blue);
+        font: inherit;
+        font-size: 0.85rem;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .year-stats-toggle[hidden] {
+        display: none;
+    }
+
+    /* Card in fila da scorrere col dito, si intravede la successiva */
+    .events-grid {
+        display: flex;
+        gap: 14px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: 20px;
+        margin: 0 -20px;
+        padding: 6px 20px 14px;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .events-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .event-card {
+        flex: 0 0 84%;
+        scroll-snap-align: start;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .event-card:hover {
+        transform: none;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .event-card:active {
+        transform: scale(0.98);
+    }
+
+    .event-card-content {
+        padding: 0.95rem 1.05rem 1.05rem;
+    }
+
+    .event-meta {
+        gap: 0.35rem;
+        margin-bottom: 0.55rem;
+    }
+
+    .event-card-content h3 {
+        font-size: 1rem;
+    }
+
+    .event-desc {
+        font-size: 0.86rem;
+    }
+
+    /* Indicatore "3 / 17" con barra di avanzamento */
+    .events-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-top: 0.4rem;
+    }
+
+    .events-nav[hidden] {
+        display: none;
+    }
+
+    .events-nav-count {
+        font-size: 0.8rem;
+        font-weight: 800;
+        color: var(--secondary-blue);
+        font-variant-numeric: tabular-nums;
+        min-width: 3.2em;
+        text-align: right;
+    }
+
+    .events-nav-bar {
+        width: 120px;
+        height: 4px;
+        border-radius: 4px;
+        background: rgba(18, 59, 99, 0.1);
+        overflow: hidden;
+    }
+
+    .events-nav-bar span {
+        display: block;
+        height: 100%;
+        border-radius: 4px;
+        background: var(--primary-blue);
+        transition: width 0.25s ease;
+    }
+
+    /* Dettaglio: pannello che sale dal basso, come nelle app */
     .event-dialog {
-        width: calc(100% - 20px);
-        max-height: calc(100dvh - 20px);
-        border-radius: var(--border-radius);
+        width: 100%;
+        max-width: 100%;
+        max-height: 92dvh;
+        margin: auto 0 0;
+        border-radius: 22px 22px 0 0;
+    }
+
+    .event-dialog[open] {
+        animation: eventSheetIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     .event-dialog .event-card-media {
-        height: 52vh;
+        height: 44vh;
     }
 
     .event-dialog-content {
-        padding: 1.1rem 1.2rem 1.5rem;
+        padding: 1.1rem 1.25rem calc(1.6rem + env(safe-area-inset-bottom));
     }
 
     .event-dialog-content h3 {
         font-size: 1.2rem;
     }
+
+    .event-dialog-content p {
+        font-size: 0.95rem;
+    }
+
+    .event-dialog-results {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@keyframes eventSheetIn {
+    from { transform: translateY(100%); }
+    to   { transform: none; }
 }
 
 .events-empty {

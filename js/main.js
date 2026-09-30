@@ -110,8 +110,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s || '');
             return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
         };
-        const formatData = (d) =>
-            `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}`;
+        const MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno',
+            'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+
+        // "31 maggio 2026", "19–20 settembre 2026", "27 febbraio – 1 marzo 2026";
+        // con breve = true i mesi diventano "mag", "set", ...
+        const formatPeriodo = (inizio, fine, breve) => {
+            const mese = (d) => breve ? MESI[d.getMonth()].slice(0, 3) : MESI[d.getMonth()];
+            const giorno = (d) => d.getDate();
+            if (!fine || fine <= inizio) return `${giorno(inizio)} ${mese(inizio)} ${inizio.getFullYear()}`;
+            if (inizio.getFullYear() !== fine.getFullYear()) {
+                return `${giorno(inizio)} ${mese(inizio)} ${inizio.getFullYear()} – ${giorno(fine)} ${mese(fine)} ${fine.getFullYear()}`;
+            }
+            if (inizio.getMonth() !== fine.getMonth()) {
+                return `${giorno(inizio)} ${mese(inizio)} – ${giorno(fine)} ${mese(fine)} ${fine.getFullYear()}`;
+            }
+            return `${giorno(inizio)}–${giorno(fine)} ${mese(fine)} ${fine.getFullYear()}`;
+        };
         const escapeHTML = (s) => String(s ?? '').replace(/[&<>"']/g, c => (
             { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
         ));
@@ -129,9 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 inizio,
                 anno: Number(t.anno) || (inizio ? inizio.getFullYear() : null),
                 stato: inizio ? (fine < oggi ? 'completato' : 'programmato') : (t.stato || 'completato'),
-                periodo: inizio
-                    ? (fine > inizio ? `${formatData(inizio)} - ${formatData(fine)}` : formatData(inizio))
-                    : (t.periodo || '')
+                periodo: inizio ? formatPeriodo(inizio, fine, true) : (t.periodo || ''),
+                periodoEsteso: inizio ? formatPeriodo(inizio, fine, false) : (t.periodo || '')
             };
         };
 
@@ -207,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="event-dialog-content">
                     <div class="event-meta">
                         <span class="date-loc"><i class="fas fa-map-marker-alt"></i> ${escapeHTML(ev.luogo)}</span>
-                        <span class="date-loc"><i class="fas fa-calendar-alt"></i> ${escapeHTML(ev.periodo)}</span>
+                        <span class="date-loc"><i class="fas fa-calendar-alt"></i> ${escapeHTML(ev.periodoEsteso)}</span>
                     </div>
                     <h3>${escapeHTML(ev.titolo)}</h3>
                     <p>${escapeHTML(ev.descrizione).replace(/\n/g, '<br>')}</p>
@@ -221,6 +235,35 @@ document.addEventListener('DOMContentLoaded', () => {
             dettaglio.scrollTop = 0;
         };
 
+        // Su telefono le card scorrono in orizzontale: sotto c'è "3 / 17" con una barra
+        const eventsNav = document.createElement('div');
+        eventsNav.className = 'events-nav';
+        eventsNav.setAttribute('aria-hidden', 'true');
+        eventsNav.innerHTML = '<span class="events-nav-count"></span><span class="events-nav-bar"><span></span></span>';
+        eventsGrid.after(eventsNav);
+
+        const aggiornaNav = () => {
+            const cards = eventsGrid.children;
+            if (!cards.length) return;
+            const passo = cards[0].offsetWidth + (parseFloat(getComputedStyle(eventsGrid).columnGap) || 0);
+            const allaFine = eventsGrid.scrollLeft >= eventsGrid.scrollWidth - eventsGrid.clientWidth - 2;
+            const indice = allaFine ? cards.length - 1 : Math.min(cards.length - 1, Math.round(eventsGrid.scrollLeft / passo));
+            eventsNav.querySelector('.events-nav-count').textContent = `${indice + 1} / ${cards.length}`;
+            eventsNav.querySelector('.events-nav-bar span').style.width = `${((indice + 1) / cards.length) * 100}%`;
+        };
+        eventsGrid.addEventListener('scroll', aggiornaNav, { passive: true });
+
+        // Su telefono il riepilogo dell'anno è tagliato a poche righe
+        const riepilogoToggle = document.createElement('button');
+        riepilogoToggle.type = 'button';
+        riepilogoToggle.className = 'year-stats-toggle';
+        riepilogoToggle.hidden = true;
+        yearStats.after(riepilogoToggle);
+        riepilogoToggle.addEventListener('click', () => {
+            const aperto = yearStats.classList.toggle('is-open');
+            riepilogoToggle.textContent = aperto ? 'Mostra meno' : 'Leggi tutto';
+        });
+
         const renderEvents = () => {
             eventsGrid.classList.remove('visible');
             yearStats.classList.remove('visible');
@@ -230,15 +273,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 const eventi = annoData ? annoData.eventi : [];
 
                 eventsGrid.innerHTML = '';
+                eventsGrid.scrollLeft = 0;
+                yearStats.classList.remove('is-open');
+                riepilogoToggle.textContent = 'Leggi tutto';
 
                 if (eventi.length === 0) {
                     eventsGrid.style.display = 'none';
                     yearStats.style.display = 'none';
                     eventsEmpty.style.display = 'block';
+                    eventsNav.hidden = true;
+                    riepilogoToggle.hidden = true;
                 } else {
-                    eventsGrid.style.display = 'grid';
+                    eventsGrid.style.display = '';
+                    eventsNav.hidden = false;
                     eventsEmpty.style.display = 'none';
-                    yearStats.style.display = 'block';
+                    yearStats.style.display = '';
 
                     // Riepilogo anno
                     const riepilogo = annoData.riepilogo || '';
@@ -295,6 +344,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     eventsGrid.classList.add('visible');
                     yearStats.classList.add('visible');
+                    aggiornaNav();
+                    riepilogoToggle.hidden = yearStats.scrollHeight <= yearStats.clientHeight + 2;
                 }, 50);
             }, 300);
         };

@@ -62,8 +62,8 @@ content:
             description: Incolla il link alla pagina dei risultati sul sito della federazione. Sul sito comparirà il pulsante "Risultati".
             type: string
             pattern:
-              regex: '^https?://\S+$'
-              message: Deve essere un link completo, che inizia con https://
+              regex: '^(https?://\S+)?$'
+              message: Lascia vuoto oppure incolla un link completo, che inizia con https://
           - name: cover
             label: Foto di copertina
             description: Va bene anche la foto dal telefono, viene ridimensionata e convertita automaticamente.

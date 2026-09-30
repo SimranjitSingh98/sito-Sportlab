@@ -88,6 +88,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- CAROSELLI SU TELEFONO (corsi, Instagram) ---
+    // Su schermi piccoli il CSS rende scorrevoli gli elenchi con data-carousel;
+    // qui si aggiungono i pallini che seguono lo scorrimento
+    document.querySelectorAll('[data-carousel]').forEach(track => {
+        const items = [...track.children];
+        if (items.length < 2) return;
+
+        const dots = document.createElement('div');
+        dots.className = 'carousel-dots';
+        dots.setAttribute('aria-hidden', 'true');
+        dots.innerHTML = items.map(() => '<span></span>').join('');
+        track.after(dots);
+
+        const aggiorna = () => {
+            const passo = items[0].offsetWidth + (parseFloat(getComputedStyle(track).columnGap) || 0);
+            const allaFine = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+            const attivo = allaFine ? items.length - 1 : Math.round(track.scrollLeft / passo);
+            [...dots.children].forEach((d, i) => d.classList.toggle('active', i === attivo));
+        };
+        track.addEventListener('scroll', aggiorna, { passive: true });
+        aggiorna();
+    });
+
     // --- SEZIONE EVENTI E TRASFERTE (Caricamento da JSON) ---
     const yearSelector = document.getElementById('yearSelector');
     const eventsGrid = document.getElementById('eventsGrid');

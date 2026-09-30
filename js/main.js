@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <span class="date-loc"><i class="fas fa-calendar-alt"></i> ${escapeHTML(ev.periodo)}</span>
                                 </div>
                                 <h3>${escapeHTML(ev.titolo)}</h3>
-                                <p>${escapeHTML(ev.descrizione)}</p>
+                                <p>${escapeHTML(ev.descrizione).replace(/\n/g, '<br>')}</p>
                                 ${notaHTML}
                             </div>
                         `;
@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // Fetch JSON (compatibile GitHub Pages, nessun backend)
-        fetch('content/trasferte.json')
+        fetch('content/trasferte.json', { cache: 'no-cache' })
             .then(res => {
                 if (!res.ok) throw new Error('Impossibile caricare trasferte.json');
                 return res.json();
@@ -428,7 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Carica dati
-        fetch('content/news.json')
+        fetch('content/news.json', { cache: 'no-cache' })
             .then(res => {
                 if (!res.ok) throw new Error('Impossibile caricare news.json');
                 return res.json();

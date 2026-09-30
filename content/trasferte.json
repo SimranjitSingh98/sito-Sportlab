@@ -1,28 +1,9 @@
 {
-  "anni": [
-    {
-      "anno": 2026,
-      "riepilogo": "Il 2026 rappresenta un anno di grande crescita per Sportlab, con trasferte in tutta Italia, risultati di prestigio e una presenza costante nelle principali competizioni nazionali e regionali. Tra appuntamenti già disputati e gare ancora da affrontare, la stagione racconta un percorso ricco di esperienze, confronto e ambizione sportiva."
-    },
-    {
-      "anno": 2024,
-      "riepilogo": "Nel 2024 la squadra ha vissuto una stagione intensa tra gare regionali, circuiti e la grande sfida dei Campionati Italiani."
-    },
-    {
-      "anno": 2023,
-      "riepilogo": "Il 2023 è stato un anno di crescita: trasferte in Abruzzo, conferme sul ranking e tantissimi momenti da ricordare fuori dalla pista."
-    },
-    {
-      "anno": 2022,
-      "riepilogo": "Il 2022 ha segnato un punto di svolta: la squadra si è consolidata e ha conquistato podi importanti nel panorama nazionale."
-    }
-  ],
   "trasferte": [
     {
       "titolo": "Manduria Roller Trophy",
       "luogo": "Manduria (TA)",
       "dataInizio": "2026-05-31",
-      "dataFine": "",
       "descrizione": "Il Manduria Roller Trophy rappresenta il prossimo appuntamento della stagione per Sportlab. Una gara di categoria B su pista che offrirà ai nostri atleti una nuova occasione per confrontarsi in un contesto competitivo nazionale, accumulare esperienza e dare continuità al lavoro svolto in allenamento.",
       "nota": "Prossima tappa stagionale in Puglia.",
       "cover": "images/immaginiWebp/fisr.webp"
@@ -94,7 +75,6 @@
       "titolo": "Campionato Regionale Strada Campania",
       "luogo": "Napoli",
       "dataInizio": "2026-05-02",
-      "dataFine": "",
       "descrizione": "Un risultato di grande valore per la nostra società: ai Campionati Regionali Strada di Napoli, organizzati da ASD SEBS Fiera dello Sport, Sportlab ha conquistato il primo posto in Campania. Un fine settimana intenso, vissuto con impegno, entusiasmo e spirito di squadra, che ha confermato la qualità del lavoro svolto quotidianamente in pista.",
       "nota": "Primo posto in Campania, con lo sguardo già rivolto ai Campionati Italiani.",
       "cover": "images/trasferte2026/campionato_regionale_strada_napoli_2026.webp"
@@ -103,7 +83,6 @@
       "titolo": "1° Maggio Ferrara Inline - Trofeo Internazionale del Lavoro",
       "luogo": "Piazza Ariostea, Ferrara",
       "dataInizio": "2026-05-01",
-      "dataFine": "",
       "descrizione": "Nella prestigiosa cornice di Piazza Ariostea, Sportlab ha preso parte al 1° Maggio Ferrara Inline - Trofeo Internazionale del Lavoro, una manifestazione di grande tradizione e richiamo. Per i nostri atleti, in particolare per la categoria junior e senior, è stata un'occasione preziosa per confrontarsi in un contesto internazionale e vivere una nuova esperienza di alto livello.",
       "nota": "Una trasferta prestigiosa che arricchisce il percorso sportivo.",
       "cover": "images/trasferte2026/ferrara_inline_trofeo_lavoro_2026.webp"
@@ -121,7 +100,6 @@
       "titolo": "XI Memorial Gilda Leoperdi - 1° Trofeo Città di Pollenza",
       "luogo": "Pollenza (MC)",
       "dataInizio": "2026-04-26",
-      "dataFine": "",
       "descrizione": "Il weekend tra Terni e Pollenza ha rappresentato una tappa di grande valore sportivo per Sportlab. Al Memorial Gilda Leoperdi e al Trofeo Città di Pollenza, organizzati da A.P.D. Juvenilia, i nostri atleti hanno affrontato una competizione di alto livello, confrontandosi con società e pattinatori provenienti da tutta Italia.",
       "nota": "Un weekend nazionale che conferma la crescita della squadra.",
       "cover": "images/trasferte2026/memorial_gilda_leoperdi_pollenza_2026.webp"
@@ -130,7 +108,6 @@
       "titolo": "1° Trofeo degli Appennini - XIV Memorial D. Pioli",
       "luogo": "Terni",
       "dataInizio": "2026-04-25",
-      "dataFine": "",
       "descrizione": "Al 1° Trofeo degli Appennini - XIV Memorial D. Pioli, organizzato da Euro Sport Club a Terni, Sportlab ha vissuto una splendida esperienza di sport e confronto. La partecipazione a una manifestazione con atleti provenienti da tutta Italia ha permesso ai nostri ragazzi di mettersi in gioco in un contesto altamente competitivo.",
       "nota": "Sportlab in crescita, gara dopo gara.",
       "cover": "images/trasferte2026/trofeo_appennini_terni_2026.webp"
@@ -139,7 +116,6 @@
       "titolo": "Trofeo Indoor CUS Unical",
       "luogo": "Rende (CS)",
       "dataInizio": "2026-03-22",
-      "dataFine": "",
       "descrizione": "La trasferta di Rende ha rappresentato un momento importante di confronto e crescita per i nostri giovani atleti. Al Trofeo Indoor CUS Unical, organizzato dal CUS Unical, Sportlab ha partecipato con entusiasmo a una competizione che ha permesso ai ragazzi di misurarsi con nuove realtà sportive e con avversari provenienti da contesti diversi dal nostro.",
       "nota": "Una trasferta che unisce esperienza, crescita e divertimento.",
       "cover": "images/trasferte2026/trofeo_indoor_cus_unical_rende_2026.webp"
@@ -166,7 +142,6 @@
       "titolo": "3° Trofeo della Befana",
       "luogo": "Pescara",
       "dataInizio": "2026-01-06",
-      "dataFine": "",
       "descrizione": "Il 3° Trofeo della Befana ha aperto l'anno agonistico con una trasferta utile e significativa a Pescara, organizzata dal Centro Sportivo Pattinaggio Pescara. La squadra ha affrontato la competizione con spirito positivo, ottenendo una classifica di società che testimonia la presenza costante di Sportlab nel panorama delle gare nazionali.",
       "nota": "Una partenza di stagione utile per ritrovare ritmo e competitività.",
       "cover": "images/trasferte2026/trofeo_befana_pescara_2026.webp"
@@ -176,70 +151,97 @@
       "luogo": "Pescara",
       "dataInizio": "2025-11-29",
       "dataFine": "2025-11-30",
-      "anno": 2026,
       "descrizione": "Il 3° Trofeo Città di Pescara ha rappresentato il primo importante impegno della nuova stagione. Organizzato da A.S.D. Centro Sportivo Pattinaggio Pescara, l'evento ha visto la partecipazione di numerose società da tutta Italia, offrendo un confronto tecnico di alto livello.",
       "nota": "Ottimo avvio di stagione con un risultato importante su scala nazionale.",
-      "cover": "images/trasferte2026/trofeo_citta_pescara_2025.webp"
+      "cover": "images/trasferte2026/trofeo_citta_pescara_2025.webp",
+      "anno": 2026
     },
     {
       "titolo": "Campionato Italiano Pista",
       "luogo": "Cassano d'Adda (MI)",
-      "periodo": "Estate 2024",
-      "stato": "programmato",
-      "anno": 2024,
       "descrizione": "Il prossimo grande traguardo! I nostri atleti si stanno allenando intensamente per l'appuntamento più importante dell'anno. Non vediamo l'ora di scendere in pista.",
       "nota": "Seguici su Instagram per gli aggiornamenti.",
-      "cover": "images/atleta_in_pista_campionatiitaliani2026.jpg"
+      "cover": "images/atleta_in_pista_campionatiitaliani2026.jpg",
+      "anno": 2024,
+      "periodo": "Estate 2024",
+      "stato": "programmato"
     },
     {
       "titolo": "Circuito Nord-Ovest",
       "luogo": "San Benedetto del Tronto (AP)",
-      "periodo": "Estate 2024",
-      "stato": "programmato",
-      "anno": 2024,
       "descrizione": "Tappa fondamentale del circuito. Una trasferta che ci vedrà confrontarci con le migliori squadre del centro-nord in una bellissima location sul mare.",
       "nota": "Gara fondamentale per il ranking.",
-      "cover": "images/trasferte/atleta_sportlab_in_trasferta.webp"
+      "cover": "images/trasferte/atleta_sportlab_in_trasferta.webp",
+      "anno": 2024,
+      "periodo": "Estate 2024",
+      "stato": "programmato"
     },
     {
       "titolo": "Campionato Regionale Sprint",
       "luogo": "Napoli, Campania",
-      "periodo": "Marzo 2024",
-      "stato": "completato",
-      "anno": 2024,
       "descrizione": "Sulla storica pista di Napoli, i nostri velocisti hanno dimostrato carattere e continuità. Per i ragazzi delle categorie G/E, alla loro prima vera esperienza regionale, è stata una giornata ricca di emozioni, concentrazione e orgoglio.",
       "nota": "Tante emozioni per i più piccoli.",
-      "cover": "images/trasferte/foto_napoli_regionali_2026.webp"
+      "cover": "images/trasferte/foto_napoli_regionali_2026.webp",
+      "anno": 2024,
+      "periodo": "Marzo 2024",
+      "stato": "completato"
     },
     {
       "titolo": "Trofeo del Mare",
       "luogo": "Pescara, Abruzzo",
-      "periodo": "Maggio 2023",
-      "stato": "completato",
-      "anno": 2023,
       "descrizione": "La trasferta di Pescara ha regalato alla squadra un fine settimana intenso e ricco di esperienza. Il Trofeo del Mare ha rappresentato un'occasione preziosa per confrontarsi in gara, vivere il clima della competizione e condividere anche momenti di gruppo al di fuori della pista.",
       "nota": "Oltre la gara, un weekend di squadra.",
-      "cover": "images/trasferte/podio_trofeo_pollenza.webp"
+      "cover": "images/trasferte/podio_trofeo_pollenza.webp",
+      "anno": 2023,
+      "periodo": "Maggio 2023",
+      "stato": "completato"
     },
     {
       "titolo": "Internazionali d'Italia",
       "luogo": "L'Aquila, Abruzzo",
-      "periodo": "Aprile 2023",
-      "stato": "completato",
-      "anno": 2023,
       "descrizione": "A L'Aquila, in occasione degli Internazionali d'Italia, Sportlab ha preso parte a una competizione di altissimo livello su una delle piste più prestigiose del panorama nazionale.",
       "nota": "Test importante per il gruppo agonisti.",
-      "cover": "images/atleti_agonisti_a_benevento.png"
+      "cover": "images/atleti_agonisti_a_benevento.png",
+      "anno": 2023,
+      "periodo": "Aprile 2023",
+      "stato": "completato"
     },
     {
       "titolo": "Campionato Nazionale",
       "luogo": "Roma, Lazio",
-      "periodo": "Giugno 2022",
-      "stato": "completato",
-      "anno": 2022,
       "descrizione": "Gareggiare nella Capitale contro i migliori atleti d'Italia è stata una grandissima emozione per tutto il gruppo. Il Campionato Nazionale ha rappresentato un momento di forte crescita, arricchito da risultati importanti, podi conquistati e un'esperienza che resterà nel percorso di Sportlab.",
       "nota": "Il consolidamento del nostro gruppo.",
-      "cover": "images/trasferte/podio_roma_2025.webp"
+      "cover": "images/trasferte/podio_roma_2025.webp",
+      "anno": 2022,
+      "periodo": "Giugno 2022",
+      "stato": "completato"
+    },
+    {
+      "titolo": "16 GRAN PRIX CASSANO D'ADDA",
+      "luogo": "CASSANO D'ADDA(MI)",
+      "dataInizio": "2026-09-19",
+      "dataFine": "2026-09-20",
+      "descrizione": "Domenica Aldo ha preso parte al 6° Gran Prix Cassano d’Adda, un trofeo di grande importanza nel panorama nazionale, tappa ufficiale del Circuito Nord Ovest (C.N.O.)\n\nL’unico a rappresentare i colori di Sport Lab, circondato da atleti provenienti da tutta Italia.\n\nI risultati di Aldo (Categoria Ragazzi 12 M):\n✨ 200 m Sprint 4° posizione in una gara velocissima (21.365)\n✨ 2000 m Punti 7° posizione dopo una gara tattica e combattuta\n\nMa i numeri dicono solo metà della storia. Quello che conta di più è quello che Aldo ha imparato con questa trasferta: il confronto leale con avversari che ormai conosce bene e che sono diventati suoi amici, la capacità di mettersi in gioco, la crescita ogni gara porta con sé. ",
+      "nota": "Ora testa concentrata e si torna a casa, pronti per la prossima stagione!",
+      "cover": "images/trasferte/0114235b_842b_43a0_87fb_b2d1ab2502dc.webp"
+    }
+  ],
+  "anni": [
+    {
+      "anno": 2026,
+      "riepilogo": "Il 2026 rappresenta un anno di grande crescita per Sportlab, con trasferte in tutta Italia, risultati di prestigio e una presenza costante nelle principali competizioni nazionali e regionali. Tra appuntamenti già disputati e gare ancora da affrontare, la stagione racconta un percorso ricco di esperienze, confronto e ambizione sportiva."
+    },
+    {
+      "anno": 2024,
+      "riepilogo": "Nel 2024 la squadra ha vissuto una stagione intensa tra gare regionali, circuiti e la grande sfida dei Campionati Italiani."
+    },
+    {
+      "anno": 2023,
+      "riepilogo": "Il 2023 è stato un anno di crescita: trasferte in Abruzzo, conferme sul ranking e tantissimi momenti da ricordare fuori dalla pista."
+    },
+    {
+      "anno": 2022,
+      "riepilogo": "Il 2022 ha segnato un punto di svolta: la squadra si è consolidata e ha conquistato podi importanti nel panorama nazionale."
     }
   ]
 }

@@ -64,6 +64,20 @@ def aggiorna_riferimenti(vecchio, nuovo):
             json_file.write_text(aggiornato, encoding='utf-8')
 
 
+def ripara_riferimenti():
+    """Il pannello salva la foto subito, ma la trasferta solo dopo: quando la
+    trasferta arriva la foto è già stata convertita e l'originale non c'è più.
+    Qui si punta il riferimento orfano alla versione .webp."""
+    percorso = re.compile(r'"/?(' + re.escape(CARTELLA.as_posix()) + r'/[^"/]+)"')
+    for json_file in CONTENUTI.glob('*.json'):
+        for valore in set(percorso.findall(json_file.read_text(encoding='utf-8'))):
+            vecchio = Path(valore)
+            webp = vecchio.with_name(slug(vecchio.stem) + '.webp')
+            if not vecchio.exists() and webp.exists() and webp != vecchio:
+                aggiorna_riferimenti(vecchio, webp)
+                print(f'Riferimento aggiornato: {vecchio} -> {webp}')
+
+
 def main():
     for file in sorted(CARTELLA.iterdir()):
         if not file.is_file() or file.suffix.lower() not in ESTENSIONI:
@@ -76,6 +90,7 @@ def main():
         if nuovo:
             aggiorna_riferimenti(file, nuovo)
             print(f'{file} -> {nuovo}')
+    ripara_riferimenti()
 
 
 if __name__ == '__main__':

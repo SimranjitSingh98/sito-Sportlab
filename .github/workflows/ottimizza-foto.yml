@@ -1,11 +1,13 @@
 name: Ottimizza foto trasferte
 
-# Parte quando il pannello (o chiunque) carica foto in images/trasferte/
+# Parte quando il pannello (o chiunque) carica foto in images/trasferte/ o salva
+# le trasferte (per ripuntare le foto già convertite nel frattempo)
 on:
   push:
     branches: [main]
     paths:
       - 'images/trasferte/**'
+      - 'content/*.json'
   workflow_dispatch:
 
 permissions:

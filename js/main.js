@@ -302,6 +302,27 @@ document.addEventListener('DOMContentLoaded', () => {
         riepilogoToggle.className = 'year-stats-toggle';
         riepilogoToggle.hidden = true;
         yearStats.after(riepilogoToggle);
+
+        // Su desktop e tablet si vedono le prime trasferte, le altre con "Mostra tutte"
+        // (su telefono il carosello le mostra già tutte: il CSS nasconde il pulsante)
+        const VISIBILI_DESKTOP = 6;
+        const mostraTutte = document.createElement('button');
+        mostraTutte.type = 'button';
+        mostraTutte.className = 'btn btn-outline events-show-all';
+        mostraTutte.hidden = true;
+        eventsNav.after(mostraTutte);
+        mostraTutte.addEventListener('click', () => {
+            const chiuso = eventsGrid.classList.toggle('is-collapsed');
+            aggiornaMostraTutte();
+            if (chiuso) eventsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        const aggiornaMostraTutte = () => {
+            const totale = eventsGrid.children.length;
+            mostraTutte.hidden = totale <= VISIBILI_DESKTOP;
+            mostraTutte.innerHTML = eventsGrid.classList.contains('is-collapsed')
+                ? `Mostra tutte le ${totale} trasferte <i class="fas fa-chevron-down"></i>`
+                : 'Mostra meno <i class="fas fa-chevron-up"></i>';
+        };
         riepilogoToggle.addEventListener('click', () => {
             const aperto = yearStats.classList.toggle('is-open');
             riepilogoToggle.textContent = aperto ? 'Mostra meno' : 'Leggi tutto';
@@ -326,6 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     eventsEmpty.style.display = 'block';
                     eventsNav.hidden = true;
                     riepilogoToggle.hidden = true;
+                    mostraTutte.hidden = true;
                 } else {
                     eventsGrid.style.display = '';
                     eventsNav.hidden = false;
@@ -389,6 +411,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     yearStats.classList.add('visible');
                     aggiornaNav();
                     riepilogoToggle.hidden = yearStats.scrollHeight <= yearStats.clientHeight + 2;
+                    eventsGrid.classList.add('is-collapsed');
+                    aggiornaMostraTutte();
                 }, 50);
             }, 300);
         };

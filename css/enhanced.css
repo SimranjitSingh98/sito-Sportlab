@@ -2222,3 +2222,176 @@ section.bg-light {
         transform: none !important;
     }
 }
+
+
+/* ════════════════════════════════════════════════════════════════
+   DESKTOP E TABLET (sopra i 640px)
+   ════════════════════════════════════════════════════════════════ */
+
+/* Indirizzo nei contatti su righe ordinate, senza la riga vuota dei <br> */
+.address-card .info-text br {
+    display: none;
+}
+
+.address-card .info-text strong,
+.address-card .info-text span,
+.address-card .info-text a {
+    display: block;
+}
+
+.address-card .info-text a {
+    margin-top: 0.4rem;
+}
+
+/* Passi della prova gratuita: colonna dei numeri a larghezza fissa */
+.step-v-num {
+    flex: 0 0 3.2rem;
+}
+
+/* Pulsante "Mostra tutte le trasferte": esiste solo sopra i 640px */
+.events-show-all {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 2.25rem auto 0;
+}
+
+.events-show-all[hidden] {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .events-show-all {
+        display: none;
+    }
+}
+
+@media (min-width: 641px) {
+
+    /* ── PRIMA SCHERMATA: pulsanti affiancati ── */
+    .hero-premium .hero-cta-group {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2.25rem;
+    }
+
+    /* ── CORSI: spazio tra le card e il pulsante ── */
+    #corsi .section-cta-wrap {
+        margin-top: 3rem;
+    }
+
+    /* ── STAFF: 2 righe piene invece di 3 colonne con un buco ── */
+    .staff-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    /* ── TRASFERTE: le prime 6, le altre con "Mostra tutte" ── */
+    .events-grid.is-collapsed > .event-card:nth-child(n+7) {
+        display: none;
+    }
+
+    /* ── NEWS (home e pagina News): card centrate ── */
+    .news-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 360px));
+        justify-content: center;
+    }
+
+    /* ── PARLANO DI NOI: foto a sinistra, testo a destra, niente sovrapposizioni ── */
+    .media-hero-frame {
+        aspect-ratio: auto;
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+    }
+
+    .media-hero-frame img {
+        position: static;
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+    }
+
+    .media-hero-overlay {
+        display: none;
+    }
+
+    /* In alto a destra della foto, dove l'immagine non ha scritte */
+    .media-hero-badge {
+        left: auto;
+        right: calc(40% + 16px);
+    }
+
+    /* Centro della colonna foto (60% della larghezza) */
+    .media-hero-play {
+        left: 30%;
+    }
+
+    .media-hero-content {
+        position: static;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem 2.25rem;
+        background: var(--secondary-blue);
+    }
+
+    .media-hero-content h3 {
+        font-size: clamp(1.35rem, 2vw, 1.8rem);
+    }
+
+    /* ── LOGHI PARTNER: nitidi e a colori, in riquadri bianchi ── */
+    .sponsor-logos-list {
+        gap: 1.25rem;
+    }
+
+    .sponsor-logo-item {
+        width: 190px;
+        max-width: 190px;
+        height: 96px;
+        padding: 0.9rem 1.2rem;
+        background: var(--bg-white);
+        border: 1px solid rgba(18, 59, 99, 0.07);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-sm);
+        filter: none;
+        opacity: 1;
+    }
+
+    .sponsor-logos-list img {
+        filter: none;
+    }
+
+    /* ── CONTATTI: 5 canali con le card centrate ── */
+    .contact-channels-refined {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .contact-item-v2 {
+        flex: 0 1 calc((100% - 1.5rem) / 2);
+    }
+}
+
+@media (min-width: 900px) {
+    .staff-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .staff-card {
+        padding: 2rem 1.25rem !important;
+    }
+
+    .staff-photo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .contact-item-v2 {
+        flex-basis: calc((100% - 3rem) / 3);
+    }
+}

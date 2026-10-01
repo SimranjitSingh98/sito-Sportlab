@@ -4527,7 +4527,7 @@ p { margin-bottom: 1.2rem; }
     border-bottom: 1px solid rgba(18, 59, 99, 0.06);
     padding: 0.8rem 0;
     position: sticky;
-    top: 85px;
+    top: 86px; /* altezza dell'header fisso (85px + 1px di bordo), uguale a tutte le larghezze */
     z-index: 50;
     margin-bottom: 2rem;
 }
@@ -4747,7 +4747,6 @@ p { margin-bottom: 1.2rem; }
         font-size: 1.1rem;
     }
     .news-detail-topbar {
-        top: 60px;
         padding: 0.6rem 0;
     }
     .news-detail-topbar .container {
@@ -4816,9 +4815,6 @@ p { margin-bottom: 1.2rem; }
     }
     .news-card-media {
         padding-top: 52%;
-    }
-    .news-detail-topbar {
-        top: 55px;
     }
     .news-detail-container {
         padding-bottom: 2.5rem;

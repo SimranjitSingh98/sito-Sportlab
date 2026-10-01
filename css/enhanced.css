@@ -385,6 +385,23 @@
     transform: translateY(-8px);
 }
 
+/* News scritte nell'HTML da genera_news.py.
+   .news-card ha display:flex, che annullerebbe l'attributo hidden: solo
+   nell'archivio della pagina News le card degli altri anni si nascondono */
+#newsGrid > .news-card[hidden] {
+    display: none;
+}
+
+/* Il titolo della card è il link principale all'articolo */
+.news-card-content h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.news-card-content h3 a:hover {
+    color: var(--primary-blue);
+}
+
 /* ── BOTTONI ──────────────────────────────────────────────────── */
 .btn-cta {
     background: var(--grad-yellow);

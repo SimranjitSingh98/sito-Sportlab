@@ -467,6 +467,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const newsDetailView = document.getElementById('newsDetailView');
     const newsPageHeader = document.getElementById('newsPageHeader');
 
+    // Elenco news scritto nell'HTML: i pulsanti anno mostrano solo le card di quell'anno
+    if (yearSelectorNews && yearSelectorNews.hasAttribute('data-statico')) {
+        yearSelectorNews.addEventListener('click', (e) => {
+            const pill = e.target.closest('.year-pill');
+            if (!pill) return;
+            yearSelectorNews.querySelectorAll('.year-pill').forEach(p => p.classList.toggle('active', p === pill));
+            document.querySelectorAll('#newsGrid > [data-anno], #yearStatsNews > [data-anno]').forEach(el => {
+                el.hidden = el.dataset.anno !== pill.dataset.year;
+            });
+        });
+    }
+
     if (latestNewsGrid || newsGrid) {
         let rawDataNews = null;
 
@@ -630,7 +642,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const allNewsList = getAllNews(data);
 
                 // 1. Logica per homepage preview
-                if (latestNewsGrid) {
+                // Se l'elenco è già scritto nell'HTML (genera_news.py) non si ricostruisce
+                if (latestNewsGrid && !latestNewsGrid.hasAttribute('data-statico')) {
                     const previewNews = allNewsList.slice(0, 3);
                     latestNewsGrid.innerHTML = '';
                     previewNews.forEach(item => {
@@ -641,7 +654,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // 2. Logica per pagina news completa (archivio + dettaglio)
-                if (newsGrid && yearSelectorNews) {
+                if (newsGrid && yearSelectorNews && !newsGrid.hasAttribute('data-statico')) {
                     let allAnniNews = (data.anni || []).sort((a, b) => b.anno - a.anno);
                     let currentAnnoNews = allAnniNews.length > 0 ? allAnniNews[0].anno : null;
 

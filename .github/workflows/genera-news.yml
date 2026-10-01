@@ -1,0 +1,52 @@
+name: Genera pagine news
+
+# Parte quando cambiano le news (o il modello/lo script che le genera)
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/news.json'
+      - 'news.html'
+      - '.github/scripts/genera_news.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Una generazione alla volta; quelle in coda non si annullano
+concurrency:
+  group: genera-news
+  cancel-in-progress: false
+
+jobs:
+  genera:
+    runs-on: ubuntu-latest
+    steps:
+      # Usa il GITHUB_TOKEN automatico (nessun token personale): i push fatti con
+      # questo token non fanno ripartire le Action, quindi niente cicli
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0   # cronologia completa: serve per le date della sitemap
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Installa librerie immagini
+        run: pip install pillow
+
+      - name: Genera pagine, elenchi e sitemap
+        run: python .github/scripts/genera_news.py
+
+      - name: Salva le modifiche
+        run: |
+          if [ -z "$(git status --porcelain news images/news news.html index.html sitemap.xml)" ]; then
+            echo "Niente da aggiornare"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A news images/news news.html index.html sitemap.xml
+          git commit -m "Pagine news rigenerate"
+          git pull --rebase
+          git push

@@ -3,6 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- NEWS-REDIRECT:INIZIO (generato da .github/scripts/genera_news.py) -->
+    <script>
+        // Vecchi link news.html?slug=... → pagina statica dell'articolo
+        (function () {
+            var note = ["sindaco-incontra-sportlab-2026", "campionato-regionale-strada-campania-2026"];
+            var slug = new URLSearchParams(location.search).get('slug');
+            if (slug && note.indexOf(slug) !== -1) location.replace('/news/' + slug + '.html');
+        })();
+    </script>
+    <!-- NEWS-REDIRECT:FINE -->
     <title>News Pattinaggio a Rotelle Pontecagnano e Salerno | ASD Sport Lab</title>
     <meta name="description" content="Notizie, gare e risultati di pattinaggio corsa, pattinaggio artistico e hockey inline di ASD Sport Lab, la scuola di pattinaggio a rotelle di Pontecagnano vicino a Salerno e Battipaglia.">
     
@@ -105,19 +115,50 @@
                     
                     <!-- Filters / Year Selector -->
                     <div class="year-selector-wrapper">
-                        <div class="year-selector" id="yearSelectorNews">
-                            <!-- Generati via JS -->
+                        <div class="year-selector" id="yearSelectorNews" data-statico>
+                            <!-- NEWS-ANNI:INIZIO (generato da .github/scripts/genera_news.py) -->
+                            <button class="year-pill active" data-year="2026">2026</button>
+                            <!-- NEWS-ANNI:FINE -->
                         </div>
                     </div>
 
                     <!-- Year Stats / Riepilogo -->
-                    <div class="news-year-riepilogo text-center" id="yearStatsNews">
-                        <!-- Generato via JS -->
+                    <div class="news-year-riepilogo text-center visible" id="yearStatsNews" data-statico>
+                        <!-- NEWS-RIEPILOGO:INIZIO (generato da .github/scripts/genera_news.py) -->
+                        <p data-anno="2026">Le ultime notizie e i traguardi più recenti di ASD Sport Lab per la stagione sportiva in corso.</p>
+                        <!-- NEWS-RIEPILOGO:FINE -->
                     </div>
 
                     <!-- Grid News -->
-                    <div class="news-grid" id="newsGrid">
-                        <!-- Cards generate via JS -->
+                    <div class="news-grid visible" id="newsGrid" data-statico>
+                        <!-- NEWS-ELENCO:INIZIO (generato da .github/scripts/genera_news.py) -->
+                    <article class="news-card" data-anno="2026">
+                        <div class="news-card-media">
+                            <img src="images/eventi/sindacoMaggio2026.webp" alt="Il Sindaco e l&#x27;amministrazione comunale con atleti, tecnici e famiglie di ASD Sport Lab al pattinodromo di Via Lazio" loading="lazy" width="900" height="600">
+                        </div>
+                        <div class="news-card-content">
+                            <div class="news-card-meta">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> <time datetime="2026-05-18">18/05/2026</time></span>
+                            </div>
+                            <h3><a href="/news/sindaco-incontra-sportlab-2026.html">L&#x27;Amministrazione Comunale incontra SportLab: nasce una partnership istituzionale per il futuro del pattinaggio a Pontecagnano</a></h3>
+                            <p>Il Sindaco, gli assessori e un tecnico federale sono venuti direttamente in pista: un riconoscimento ufficiale del valore di SportLab sul territorio e l&#x27;inizio di una collaborazione concreta per l&#x27;omologazione del pattinodromo.</p>
+                            <a href="/news/sindaco-incontra-sportlab-2026.html" class="news-card-link" aria-hidden="true" tabindex="-1">Leggi notizia <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                    <article class="news-card" data-anno="2026">
+                        <div class="news-card-media">
+                            <img src="images/trasferte2026/campionato_regionale_strada_napoli_2026.webp" alt="Gli atleti di ASD Sport Lab in divisa con i pattini dopo la vittoria ai Campionati Regionali su Strada di Napoli" loading="lazy" width="1435" height="999">
+                        </div>
+                        <div class="news-card-content">
+                            <div class="news-card-meta">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> <time datetime="2026-05-02">02/05/2026</time></span>
+                            </div>
+                            <h3><a href="/news/campionato-regionale-strada-campania-2026.html">Trionfo ai Campionati Regionali Strada: ASD Sport Lab è Campione di Campania!</a></h3>
+                            <p>Un traguardo storico per la nostra associazione: conquistato il gradino più alto del podio a Napoli.</p>
+                            <a href="/news/campionato-regionale-strada-campania-2026.html" class="news-card-link" aria-hidden="true" tabindex="-1">Leggi notizia <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                        <!-- NEWS-ELENCO:FINE -->
                     </div>
 
                     <!-- Empty State -->
@@ -154,7 +195,7 @@
                             <div class="news-detail-meta">
                                 <span class="news-detail-date"><i class="far fa-calendar-alt"></i> <span id="newsDetailDate"></span></span>
                             </div>
-                            <h1 id="newsDetailTitle" class="news-detail-title"></h1>
+                            <h2 id="newsDetailTitle" class="news-detail-title"></h2>
                         </header>
 
                         <div class="news-detail-cover-wrapper">

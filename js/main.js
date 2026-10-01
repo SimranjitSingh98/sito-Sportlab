@@ -88,7 +88,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- CAROSELLI SU TELEFONO (corsi, Instagram) ---
+    // --- GALLERY: foto intera al click/tocco ---
+    const fotoGallery = document.querySelectorAll('.full-gallery-item');
+    if (fotoGallery.length) {
+        const lightbox = document.createElement('dialog');
+        lightbox.className = 'gallery-lightbox';
+        lightbox.innerHTML = '<button type="button" class="gallery-lightbox-close" aria-label="Chiudi"><i class="fas fa-times"></i></button><img alt="">';
+        document.body.appendChild(lightbox);
+        const fotoGrande = lightbox.querySelector('img');
+
+        fotoGallery.forEach(foto => foto.addEventListener('click', () => {
+            fotoGrande.src = foto.currentSrc || foto.src;
+            fotoGrande.alt = foto.alt;
+            lightbox.showModal();
+        }));
+        // Si chiude toccando ovunque tranne la foto
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== fotoGrande) lightbox.close();
+        });
+    }
+
+    // --- CAROSELLI SU TELEFONO (corsi, Instagram, testimonianze) ---
     // Su schermi piccoli il CSS rende scorrevoli gli elenchi con data-carousel;
     // qui si aggiungono i pallini che seguono lo scorrimento
     document.querySelectorAll('[data-carousel]').forEach(track => {

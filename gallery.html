@@ -124,20 +124,20 @@
     <section class="section">
         <div class="container">
             <div class="text-center" style="margin-bottom: 2rem;">
-                <p style="color: var(--text-muted); font-size: 0.95rem;">Clicca sulle immagini per vederle intere (è possibile integrare in seguito un plugin per lo zoom).</p>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Clicca o tocca una foto per vederla intera.</p>
             </div>
             
             <div class="full-gallery-grid">
                 <!-- Esempi di foto, sostituiscile con le tue immagini locali (es: src="images/foto1.jpg") -->
-                <img src="images/allenamento_con_tanti_bambini.png" alt="Allenamento di pattinaggio a rotelle con tanti bambini a Pontecagnano" class="full-gallery-item">
-                <img src="images/bambini_che_giocano_sui_pattini.png" alt="Bambini che giocano sui pattini a rotelle - ASD Sport Lab" class="full-gallery-item">
-                <img src="images/bambine_con_medaglia.JPG" alt="Bambine con medaglia dopo una gara di pattinaggio corsa" class="full-gallery-item">
-                <img src="images/allenatore_con_atlete.JPG" alt="Allenatore con atlete" class="full-gallery-item">
-                <img src="images/bambine_con_pattini_pregara.JPG" alt="Bambine nel pre gara" class="full-gallery-item">
-                <img src="images/stage_Siena_col_campione_del_mondo.JPG" alt="Stage di pattinaggio corsa a Siena con il Campione del Mondo" class="full-gallery-item">
+                <img src="images/immaginiWebp/allenamento_con_tanti_bambini.webp" alt="Allenamento di pattinaggio a rotelle con tanti bambini a Pontecagnano" class="full-gallery-item" loading="lazy">
+                <img src="images/immaginiWebp/bambini_che_giocano_sui_pattini.webp" alt="Bambini che giocano sui pattini a rotelle - ASD Sport Lab" class="full-gallery-item" loading="lazy">
+                <img src="images/immaginiWebp/bambine_con_medaglia.webp" alt="Bambine con medaglia dopo una gara di pattinaggio corsa" class="full-gallery-item" loading="lazy">
+                <img src="images/immaginiWebp/allenatore_con_atlete.webp" alt="Allenatore con atlete" class="full-gallery-item" loading="lazy">
+                <img src="images/immaginiWebp/bambine_con_pattini_pregara.webp" alt="Bambine nel pre gara" class="full-gallery-item" loading="lazy">
+                <img src="images/immaginiWebp/stage_Siena_col_campione_del_mondo.webp" alt="Stage di pattinaggio corsa a Siena con il Campione del Mondo" class="full-gallery-item" loading="lazy">
                 
                 <!-- AGGIUNGI QUI LE TUE FOTO: -->
-                <!-- <img src="PERCORSO_DELLA_TUA_FOTO" alt="Descrizione" class="full-gallery-item"> -->
+                <!-- <img src="PERCORSO_DELLA_TUA_FOTO" alt="Descrizione" class="full-gallery-item" loading="lazy"> -->
             </div>
             
             <div class="text-center" style="margin-top: 5rem;">
@@ -148,18 +148,30 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container footer-container">
+        <div class="container footer-grid">
             <div class="footer-info">
-                <h3>ASD Sport Lab</h3>
-                <p>La scuola di pattinaggio a rotelle per bambini e ragazzi a Pontecagnano, vicino a Salerno, Battipaglia, Bellizzi, Giffoni e Montecorvino. Pattinaggio corsa, pattinaggio artistico e hockey inline: dai primi passi fino all'attività agonistica nazionale, in un ambiente sano, educativo e inclusivo.</p>
+                <h3 class="footer-title">ASD Sport Lab</h3>
+                <p class="footer-description">La scuola di pattinaggio a rotelle per bambini e ragazzi a Pontecagnano,
+                    vicino a Salerno, Battipaglia, Bellizzi, Giffoni e Montecorvino. Pattinaggio corsa, pattinaggio
+                    artistico e hockey inline: dai primi passi fino all'attività agonistica nazionale, in un ambiente
+                    sano, educativo e inclusivo.</p>
             </div>
-            <div class="footer-social">
-                <a href="https://www.facebook.com/sportLABPontecagnano/" target="_blank" rel="noopener" aria-label="Seguici su Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/sportlab_pontecagnano" target="_blank" rel="noopener" aria-label="Seguici su Instagram"><i class="fab fa-instagram"></i></a>
+            <div class="footer-social-box">
+                <p class="footer-social-label">Seguici sui social</p>
+                <div class="footer-social-icons">
+                    <a href="https://www.facebook.com/sportLABPontecagnano/" aria-label="Seguici su Facebook"
+                        class="social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://instagram.com/sportlab_pontecagnano" target="_blank"
+                        aria-label="Seguici su Instagram" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom text-center">
-            <p>&copy; 2026 ASD Sport Lab. Tutti i diritti riservati. Pattinodromo Via Lazio 8, Pontecagnano (SA).</p>
+            <p>&copy; 2026 ASD Sport Lab. Tutti i diritti riservati. Pattinodromo Via Lazio 8, 84098 Pontecagnano (SA).</p>
         </div>
     </footer>
 

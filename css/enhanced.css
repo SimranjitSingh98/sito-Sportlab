@@ -1608,3 +1608,615 @@ section.bg-light {
         margin-top: 1.5rem !important;
     }
 }
+
+
+/* Galleria: foto intera al click (tutti gli schermi) */
+.gallery-lightbox {
+    max-width: 100vw;
+    max-height: 100dvh;
+    width: 100vw;
+    height: 100dvh;
+    margin: 0;
+    padding: 16px;
+    border: none;
+    background: transparent;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-lightbox[open] {
+    display: flex;
+}
+
+.gallery-lightbox::backdrop {
+    background: rgba(5, 15, 30, 0.9);
+}
+
+.gallery-lightbox img {
+    max-width: 100%;
+    max-height: calc(100dvh - 32px);
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+.gallery-lightbox-close {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--secondary-blue);
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   TELEFONO — resto della home, pagina News e Gallery
+   ════════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+
+    /* ── Regole comuni: titoli, introduzioni e spazi uniformi ── */
+    .section,
+    .adults-island-section {
+        padding: 3.25rem 0 !important;
+    }
+
+    h2.section-title {
+        font-size: 1.75rem;
+    }
+
+    .section-intro,
+    .section-header .lead {
+        font-size: 1rem;
+        line-height: 1.65;
+    }
+
+    .section-intro {
+        margin-bottom: 1.75rem;
+    }
+
+    /* ── CAMPIONI DI DOMANI ── */
+    .growth-content .lead {
+        font-size: 1rem;
+        line-height: 1.65;
+    }
+
+    .growth-content p {
+        font-size: 0.92rem;
+    }
+
+    .growth-titles {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+        margin-top: 1.5rem;
+    }
+
+    .title-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.6rem;
+        padding: 1rem 0.6rem;
+    }
+
+    .title-card-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 1.05rem;
+    }
+
+    .title-card-label {
+        font-size: 0.58rem;
+    }
+
+    .title-card-text strong {
+        font-size: 1.35rem;
+    }
+
+    .title-card-sub {
+        font-size: 0.78rem;
+    }
+
+    .growth-img-container img {
+        height: 220px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .growth-overlay-badge {
+        right: 12px;
+        bottom: 12px;
+        padding: 0.55rem 0.9rem;
+        font-size: 0.85rem;
+        border-radius: 10px;
+    }
+
+    /* ── PROVA GRATUITA ── */
+    #prova .prova-grid-premium {
+        gap: 1.75rem;
+    }
+
+    #prova .lead {
+        font-size: 1rem;
+        line-height: 1.65;
+        margin-bottom: 1.75rem !important;
+    }
+
+    #prova .steps-vertical {
+        gap: 1.1rem;
+    }
+
+    #prova .step-v-item {
+        gap: 0.9rem;
+    }
+
+    /* Colonna dei numeri a larghezza fissa: 01, 02 e 03 allineati */
+    #prova .step-v-num {
+        flex: 0 0 2.4rem;
+        font-size: 1.6rem;
+    }
+
+    #prova .step-v-info h4 {
+        font-size: 1.02rem;
+        margin-bottom: 0.25rem;
+    }
+
+    #prova .step-v-info p {
+        font-size: 0.88rem;
+        line-height: 1.55;
+    }
+
+    #prova .prova-schedule {
+        margin-top: 1.5rem;
+        padding: 1.1rem;
+    }
+
+    #prova .prova-schedule-days {
+        flex-wrap: nowrap;
+        gap: 0.4rem;
+    }
+
+    #prova .prova-day {
+        flex: 1;
+        padding: 0.45rem 0.3rem;
+        font-size: 0.82rem;
+        text-align: center;
+    }
+
+    #prova .prova-schedule-time {
+        font-size: 0.84rem;
+    }
+
+    #prova .prova-text > .btn {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 1.5rem !important;
+        padding: 1rem 1.25rem;
+        font-size: 0.98rem;
+        white-space: nowrap;
+    }
+
+    #prova .prova-visual,
+    #prova .prova-img-wrap {
+        width: 100%;
+        max-width: none;
+    }
+
+    #prova .prova-img-wrap {
+        transform: none;
+    }
+
+    #prova .prova-img-wrap img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        object-position: center 40%;
+    }
+
+    /* ── INCLUSIONE ── */
+    .si-section {
+        padding: 3.25rem 0;
+    }
+
+    .si-title {
+        font-size: 1.6rem;
+    }
+
+    .si-lead {
+        font-size: 1rem;
+        line-height: 1.65;
+    }
+
+    .si-benefits {
+        gap: 0.7rem;
+    }
+
+    .si-card {
+        display: grid;
+        grid-template-columns: 42px 1fr;
+        column-gap: 0.9rem;
+        padding: 1rem 1.05rem;
+    }
+
+    .si-card:hover {
+        transform: none;
+    }
+
+    .si-card-icon {
+        grid-row: span 2;
+        width: 42px;
+        height: 42px;
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    .si-card-title {
+        font-size: 1rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .si-card-body {
+        font-size: 0.86rem;
+        line-height: 1.5;
+    }
+
+    .si-action-block {
+        padding: 1.4rem 1.25rem;
+    }
+
+    .si-action-title {
+        font-size: 1.1rem;
+    }
+
+    .si-action-desc {
+        font-size: 0.88rem;
+    }
+
+    .si-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* ── TESTIMONIANZE (carosello) ── */
+    #testimonianze .test-card {
+        padding: 1.4rem 1.3rem;
+    }
+
+    #testimonianze .test-text {
+        font-size: 0.92rem;
+        line-height: 1.6;
+    }
+
+    /* ── NEWS (home e pagina News): righe compatte, foto a sinistra ── */
+    .news-grid {
+        gap: 0.75rem;
+    }
+
+    .news-card {
+        flex-direction: row;
+        border-radius: 16px;
+    }
+
+    .news-card:hover {
+        transform: none;
+    }
+
+    .news-card-media {
+        flex: 0 0 112px;
+        padding-top: 0;
+        min-height: 128px;
+    }
+
+    .news-card-content {
+        padding: 0.85rem 1rem;
+    }
+
+    .news-card-meta {
+        margin-bottom: 0.35rem;
+    }
+
+    .news-card-content h3 {
+        font-size: 0.95rem;
+        line-height: 1.3;
+        margin-bottom: 0.4rem;
+    }
+
+    .news-card-content p {
+        display: none;
+    }
+
+    .news-card-link {
+        font-size: 0.8rem;
+    }
+
+    /* ── PARLANO DI NOI: titolo del servizio TV sotto la foto ── */
+    .media-hero-card {
+        margin-top: 1.5rem;
+    }
+
+    .media-hero-frame {
+        aspect-ratio: auto;
+        display: flex;
+        flex-direction: column;
+        border-radius: 20px;
+    }
+
+    .media-hero-frame img {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        height: auto;
+    }
+
+    .media-hero-overlay {
+        inset: 0 0 auto 0;
+        aspect-ratio: 16 / 9;
+        height: auto;
+    }
+
+    .media-hero-badge {
+        top: 10px;
+        left: 10px;
+        padding: 0.4rem 0.7rem;
+        font-size: 0.72rem;
+    }
+
+    /* Centro della foto 16:9 (larga quanto il contenitore) */
+    .media-hero-play {
+        top: calc((100vw - 40px) * 0.28125);
+        width: 58px;
+        height: 58px;
+        font-size: 1rem;
+    }
+
+    .media-hero-content {
+        position: static;
+        padding: 1rem 1.15rem 1.2rem;
+        background: var(--secondary-blue);
+    }
+
+    .media-hero-content .media-source {
+        margin-bottom: 0.4rem;
+    }
+
+    .media-hero-content h3 {
+        font-size: 1.15rem;
+        margin-bottom: 0.35rem;
+    }
+
+    .media-hero-content p {
+        font-size: 0.86rem;
+        margin: 0;
+    }
+
+    .press-grid {
+        margin-top: 1rem;
+        gap: 0.75rem;
+    }
+
+    .press-card {
+        padding: 1.2rem 1.25rem !important;
+    }
+
+    .press-title {
+        font-size: 1rem;
+    }
+
+    .press-excerpt {
+        font-size: 0.86rem;
+    }
+
+    /* ── PATTINAGGIO ADULTI ── */
+    .adults-island-card {
+        border-radius: 24px;
+    }
+
+    .island-visual {
+        padding: 1.75rem 1.5rem;
+        min-height: 0;
+    }
+
+    .poster-container {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+
+    .island-content {
+        padding: 1.5rem 1.25rem 1.6rem;
+    }
+
+    .title-modern {
+        font-size: 1.7rem;
+    }
+
+    /* L'a capo forzato lasciava "per" da solo su una riga */
+    .title-modern br {
+        display: none;
+    }
+
+    .intro-p {
+        font-size: 0.98rem;
+    }
+
+    .features-minimal {
+        gap: 0.9rem;
+    }
+
+    .island-footer .btn {
+        width: 100%;
+        justify-content: center;
+        white-space: nowrap;
+    }
+
+    /* ── SPONSOR ── */
+    .sponsor-banner {
+        padding: 2rem 1.25rem;
+        border-radius: 20px;
+    }
+
+    .sponsor-title {
+        font-size: 1.45rem;
+        margin-bottom: 0.9rem;
+    }
+
+    .sponsor-text {
+        font-size: 0.95rem;
+        line-height: 1.65;
+        margin-bottom: 1.5rem;
+    }
+
+    .sponsor-banner .btn {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        font-size: 0.95rem;
+        padding: 1rem 1.1rem;
+    }
+
+    /* Loghi in fila, nitidi e leggibili */
+    .sponsor-logos-list {
+        margin-top: 1.5rem;
+        gap: 0.6rem;
+        flex-wrap: nowrap;
+    }
+
+    .sponsor-logo-item {
+        flex: 1;
+        max-width: none;
+        height: 76px;
+        padding: 0.6rem;
+        background: var(--bg-white);
+        border: 1px solid rgba(18, 59, 99, 0.07);
+        border-radius: 14px;
+        filter: none;
+        opacity: 1;
+    }
+
+    .sponsor-logos-list img {
+        filter: none;
+    }
+
+    /* ── CONTATTI: canali come righe compatte ── */
+    .contact-channels-refined {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-item-v2 {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.9rem;
+        text-align: left;
+        padding: 0.9rem 1rem;
+        border-radius: 16px;
+    }
+
+    .contact-item-v2:hover {
+        transform: none;
+    }
+
+    .contact-item-v2 .item-icon {
+        flex-shrink: 0;
+        width: 46px;
+        height: 46px;
+        margin: 0;
+        border-radius: 14px;
+        font-size: 1.2rem;
+    }
+
+    .contact-item-v2 .item-label {
+        font-size: 0.62rem;
+        margin-bottom: 0.1rem;
+    }
+
+    .contact-item-v2 .item-value {
+        font-size: 1rem;
+        margin-bottom: 0.1rem;
+    }
+
+    .contact-item-v2 .item-cta {
+        font-size: 0.78rem;
+    }
+
+    .contact-map-grid {
+        margin-top: 0 !important;
+        gap: 0.75rem;
+    }
+
+    .info-card {
+        padding: 1.1rem 1.15rem;
+    }
+
+    .contact-location-info {
+        gap: 0.75rem;
+    }
+
+    .contact-location-info .address-card {
+        margin-bottom: 0 !important;
+    }
+
+    /* Indirizzo su righe ordinate, senza la riga vuota dei <br> */
+    .address-card .info-text br {
+        display: none;
+    }
+
+    .address-card .info-text strong,
+    .address-card .info-text span,
+    .address-card .info-text a {
+        display: block;
+    }
+
+    .address-card .info-text a {
+        margin-top: 0.4rem;
+    }
+
+    .contact-map-wrapper {
+        min-height: 260px;
+    }
+
+    /* ── FAQ ── */
+    .faq-question {
+        gap: 0.75rem;
+        font-size: 0.95rem;
+    }
+
+    /* ── WHATSAPP FISSO E FOOTER ── */
+    .floating-wa {
+        width: 54px;
+        height: 54px;
+        right: 16px;
+        bottom: 18px;
+        font-size: 27px;
+    }
+
+    /* Spazio in fondo così il pulsante WhatsApp non copre i testi */
+    .footer-bottom {
+        padding-bottom: 5.5rem;
+    }
+
+    /* ── GALLERY: due foto per riga ── */
+    .page-header {
+        padding-top: 120px !important;
+        padding-bottom: 2rem !important;
+    }
+
+    .full-gallery-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.6rem !important;
+        margin-top: 1rem !important;
+    }
+
+    .full-gallery-item {
+        height: 170px !important;
+        border-radius: 14px !important;
+    }
+
+    .full-gallery-item:hover {
+        transform: none !important;
+    }
+}

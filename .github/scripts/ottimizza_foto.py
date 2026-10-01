@@ -1,6 +1,6 @@
 """Converte in .webp le foto caricate dal pannello in images/trasferte/.
 
-Ridimensiona a massimo 1600px, corregge l'orientamento delle foto da telefono,
+Ridimensiona a massimo 2000px, corregge l'orientamento delle foto da telefono,
 cancella l'originale e aggiorna il percorso nei file JSON di content/.
 """
 import re
@@ -19,8 +19,8 @@ except ImportError:
 CARTELLA = Path('images/trasferte')
 CONTENUTI = Path('content')
 ESTENSIONI = {'.jpg', '.jpeg', '.png', '.heic', '.heif', '.webp'}
-LATO_MAX = 1600
-QUALITA = 80
+LATO_MAX = 2000
+QUALITA = 90
 
 
 def slug(nome):

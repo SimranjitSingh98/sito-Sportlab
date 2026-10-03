@@ -479,6 +479,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Pagina articolo: "Copia link" e "Altro" (menu di condivisione del telefono, da cui c'è anche Instagram)
+    document.querySelectorAll('[data-copia-link]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const testo = btn.querySelector('span');
+            navigator.clipboard.writeText(btn.dataset.copiaLink).then(() => {
+                testo.textContent = 'Link copiato!';
+                setTimeout(() => { testo.textContent = 'Copia link'; }, 2000);
+            }).catch(() => window.prompt('Copia il link:', btn.dataset.copiaLink));
+        });
+    });
+    if (navigator.share) {
+        document.querySelectorAll('[data-condividi]').forEach(btn => {
+            btn.hidden = false;
+            btn.addEventListener('click', () => {
+                navigator.share({ title: btn.dataset.condividi, url: location.href.split(/[?#]/)[0] }).catch(() => {});
+            });
+        });
+    }
+
     if (latestNewsGrid || newsGrid) {
         let rawDataNews = null;
 

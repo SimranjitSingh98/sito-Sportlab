@@ -1,7 +1,8 @@
 """Genera le pagine statiche delle news a partire da content/news.json.
 
 - news/<slug>.html          una pagina per articolo: title, description, canonical,
-                            Open Graph, JSON-LD Article + BreadcrumbList, testo completo
+                            Open Graph, JSON-LD Article + BreadcrumbList, testo completo,
+                            pulsanti di condivisione
 - images/news/<slug>-og.jpg anteprima social 1200x630 ritagliata (mai deformata)
 - news.html e index.html    elenco news scritto nell'HTML, tra i marcatori NEWS-...
 - news.html                 redirect dei vecchi link news.html?slug=... alle pagine nuove
@@ -13,6 +14,7 @@ import html
 import json
 import re
 import subprocess
+from urllib.parse import quote
 from datetime import date, datetime
 from pathlib import Path
 
@@ -177,6 +179,20 @@ def pagina_articolo(news, header, menu, footer, wa):
     # Copertine verticali o quasi quadrate (locandine, foto in posa): mostrate intere,
     # perché il ritaglio a 450px di altezza taglierebbe scritte e teste
     intera = ' news-detail-cover-wrapper--intera' if dim and dim[1] > dim[0] * 0.75 else ''
+    # Link di condivisione: funzionano anche senza JavaScript. Instagram non ha un link
+    # di condivisione per il web: ci si arriva dal pulsante "Altro" (menu del telefono)
+    u, t = quote(url, safe=''), quote(titolo, safe='')
+    condividi = f'''
+                    <div class="news-share">
+                        <span class="news-share-label"><i class="fas fa-share-alt"></i> Condividi</span>
+                        <div class="news-share-buttons">
+                            <a href="https://wa.me/?text={t}%20{u}" class="news-share-btn news-share-btn--wa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={u}" class="news-share-btn news-share-btn--fb" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+                            <a href="https://t.me/share/url?url={u}&amp;text={t}" class="news-share-btn news-share-btn--tg" target="_blank" rel="noopener"><i class="fab fa-telegram-plane"></i> Telegram</a>
+                            <button type="button" class="news-share-btn" data-copia-link="{url}"><i class="fas fa-link"></i> <span>Copia link</span></button>
+                            <button type="button" class="news-share-btn" data-condividi="{esc(titolo)}" hidden><i class="fas fa-ellipsis-h"></i> Altro</button>
+                        </div>
+                    </div>'''
     copertina = (f'''
                         <div class="news-detail-cover-wrapper{intera}">
                             <img src="{esc(cover)}" alt="{esc(alt_copertina(news))}" class="news-detail-cover"{dim_attr}>
@@ -264,6 +280,7 @@ def pagina_articolo(news, header, menu, footer, wa):
 {corpo}
                     </div>
 {nota}
+{condividi}
                 </article>
 
                 <div class="news-detail-cta-block">

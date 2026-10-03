@@ -4903,6 +4903,17 @@ p { margin-bottom: 1.2rem; }
     line-height: 1.35;
     margin: 2.5rem 0 1rem;
 }
+.news-detail-body a {
+    color: var(--secondary-blue);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--primary-blue);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+}
+.news-detail-body a:hover {
+    color: var(--primary-blue);
+}
 
 /* Article footer note */
 .news-detail-footer {

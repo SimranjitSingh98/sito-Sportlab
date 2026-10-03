@@ -1,7 +1,8 @@
 """Genera le pagine statiche delle news a partire da content/news.json.
 
 - news/<slug>.html          una pagina per articolo: title, description, canonical,
-                            Open Graph, JSON-LD Article + BreadcrumbList, testo completo,
+                            Open Graph, JSON-LD Article + BreadcrumbList, testo completo
+                            (righe "## " = sottotitoli, [testo](url) = link),
                             galleria foto ("galleria" in news.json), pulsanti di condivisione
 - images/news/anteprime/<slug>-og.jpg    anteprima social 1200x630 ritagliata (mai deformata)
 - images/news/anteprime/<slug>-card.webp miniatura leggera della copertina per le card degli elenchi
@@ -42,6 +43,26 @@ def esc(testo):
     return html.escape(testo or '', quote=True)
 
 
+# Link nel testo degli articoli: [testo](url)
+LINK = re.compile(r'\[([^\]]+)\]\(([^)\s]+)\)')
+
+
+def senza_link(testo):
+    return LINK.sub(r'\1', testo or '')
+
+
+def con_link(testo):
+    """Testo escapato in cui [testo](url) diventa un <a>; i link esterni si aprono in un'altra scheda."""
+    pezzi, inizio = [], 0
+    for m in LINK.finditer(testo):
+        url = m.group(2)
+        esterno = ' target="_blank" rel="noopener"' if url.startswith('http') else ''
+        pezzi.append(esc(testo[inizio:m.start()]))
+        pezzi.append(f'<a href="{esc(url)}"{esterno}>{esc(m.group(1))}</a>')
+        inizio = m.end()
+    return ''.join(pezzi) + esc(testo[inizio:])
+
+
 def data_iso(gg_mm_aaaa):
     return datetime.strptime(gg_mm_aaaa.strip(), '%d/%m/%Y').date()
 
@@ -54,7 +75,7 @@ def riassunto(news, massimo=155):
     """Occhiello (descrizioneBreve), oppure l'inizio del testo, tagliato su una parola."""
     testo = news.get('descrizioneBreve') or '\n'.join(
         p for p in paragrafi(news.get('descrizioneCompleta')) if not p.startswith('## '))
-    testo = re.sub(r'\s+', ' ', testo).strip()
+    testo = re.sub(r'\s+', ' ', senza_link(testo)).strip()
     if len(testo) <= massimo:
         return testo
     return testo[:massimo - 1].rsplit(' ', 1)[0].rstrip(' ,.;:') + '…'
@@ -86,7 +107,7 @@ def stile_copertina(news):
 
 
 def minuti_lettura(news):
-    parole = len(re.findall(r'\w+', news.get('descrizioneCompleta') or ''))
+    parole = len(re.findall(r'\w+', senza_link(news.get('descrizioneCompleta'))))
     return max(1, round(parole / PAROLE_AL_MINUTO))
 
 
@@ -211,7 +232,7 @@ def pagina_articolo(news, elenco, header, menu, footer, wa):
     # Una riga che inizia con "## " diventa un sottotitolo <h2>, le altre sono paragrafi
     corpo = '\n'.join(
         f'                            <h2>{esc(p[3:])}</h2>' if p.startswith('## ')
-        else f'                            <p>{esc(p)}</p>'
+        else f'                            <p>{con_link(p)}</p>'
         for p in paragrafi(news.get('descrizioneCompleta')))
     nota = (f'''
                         <footer class="news-detail-footer">

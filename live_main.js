@@ -310,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const trimmed = pText.trim();
                 if (trimmed) {
                     const p = document.createElement('p');
-                    p.textContent = trimmed;
+                    p.textContent = trimmed.replace(/\[([^\]]+)\]\([^)\s]+\)/g, '$1'); // [testo](url) → testo
                     bodyContainer.appendChild(p);
                 }
             });

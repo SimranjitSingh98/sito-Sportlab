@@ -819,3 +819,103 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 });
+
+// --- COOKIE ---
+// Banner piccolo in basso a sinistra. Google Maps e Instagram (che usano cookie
+// di terze parti) si caricano solo dopo "Accetta" o con il pulsante sul riquadro.
+(() => {
+    const CHIAVE = 'sportlab-cookie';
+    const leggi = () => { try { return localStorage.getItem(CHIAVE); } catch (e) { return null; } };
+    const salva = (v) => { try { localStorage.setItem(CHIAVE, v); } catch (e) { } };
+
+    const mappe = [...document.querySelectorAll('iframe[data-src]')];
+    const instagram = document.getElementById('instagram-section');
+    const segnaposti = [];
+
+    const caricaMappe = () => mappe.forEach(f => {
+        if (!f.src) f.src = f.dataset.src;
+        const p = f.parentElement.querySelector('.cookie-segnaposto');
+        if (p) p.remove();
+    });
+
+    // Lo script di Instagram arriva solo quando la sezione è vicina allo schermo
+    let instagramPronto = false;
+    const caricaInstagram = () => {
+        if (!instagram || instagramPronto) return;
+        instagramPronto = true;
+        instagram.classList.remove('cookie-bloccato');
+        const p = instagram.querySelector('.cookie-segnaposto');
+        if (p) p.remove();
+        const osservatore = new IntersectionObserver(entries => {
+            if (!entries[0].isIntersecting) return;
+            const s = document.createElement('script');
+            s.src = 'https://www.instagram.com/embed.js';
+            s.async = true;
+            document.body.appendChild(s);
+            osservatore.disconnect();
+        }, { rootMargin: '200px' });
+        osservatore.observe(instagram);
+    };
+
+    const segnaposto = (testo, etichetta, carica) => {
+        const box = document.createElement('div');
+        box.className = 'cookie-segnaposto';
+        box.innerHTML = `<p>${testo}</p><button type="button">${etichetta}</button>`;
+        box.querySelector('button').addEventListener('click', carica);
+        segnaposti.push(box);
+        return box;
+    };
+
+    const bloccaEsterni = () => {
+        mappe.forEach(f => {
+            if (!f.src && !f.parentElement.querySelector('.cookie-segnaposto')) {
+                f.parentElement.appendChild(segnaposto(
+                    'La mappa è fornita da Google Maps, che usa i propri cookie.',
+                    'Mostra la mappa', caricaMappe));
+            }
+        });
+        if (instagram && !instagramPronto && !instagram.querySelector('.cookie-segnaposto')) {
+            instagram.classList.add('cookie-bloccato');
+            instagram.querySelector('.instagram-grid').before(segnaposto(
+                'I post sono forniti da Instagram, che usa i propri cookie.',
+                'Mostra i post', caricaInstagram));
+        }
+    };
+
+    const applica = (scelta) => {
+        if (scelta === 'accettati') { caricaMappe(); caricaInstagram(); }
+        else bloccaEsterni();
+    };
+
+    const banner = document.createElement('div');
+    banner.className = 'cookie-banner';
+    banner.setAttribute('role', 'region');
+    banner.setAttribute('aria-label', 'Cookie');
+    banner.innerHTML = `
+        <p>Usiamo solo cookie tecnici. Google Maps e Instagram si caricano se accetti.</p>
+        <div class="cookie-azioni">
+            <button type="button" data-scelta="rifiutati">Rifiuta</button>
+            <button type="button" data-scelta="accettati" class="cookie-ok">Accetta</button>
+        </div>`;
+    banner.querySelectorAll('[data-scelta]').forEach(btn => btn.addEventListener('click', () => {
+        salva(btn.dataset.scelta);
+        applica(btn.dataset.scelta);
+        banner.classList.remove('visibile');
+    }));
+    document.body.appendChild(banner);
+
+    // Link nel footer per cambiare idea
+    const footer = document.querySelector('.footer-bottom');
+    if (footer) {
+        const riapri = document.createElement('button');
+        riapri.type = 'button';
+        riapri.className = 'cookie-riapri';
+        riapri.textContent = 'Preferenze cookie';
+        riapri.addEventListener('click', () => banner.classList.add('visibile'));
+        footer.appendChild(riapri);
+    }
+
+    const scelta = leggi();
+    applica(scelta);
+    if (!scelta) banner.classList.add('visibile');
+})();

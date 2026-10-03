@@ -1671,6 +1671,47 @@ section.bg-light {
     cursor: pointer;
 }
 
+.gallery-lightbox-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--secondary-blue);
+    font-size: 1.1rem;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.gallery-lightbox-prev {
+    left: 16px;
+}
+
+.gallery-lightbox-next {
+    right: 16px;
+}
+
+.gallery-lightbox-counter {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgba(5, 15, 30, 0.6);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.gallery-lightbox--singola .gallery-lightbox-nav,
+.gallery-lightbox--singola .gallery-lightbox-counter {
+    display: none;
+}
+
 
 /* ════════════════════════════════════════════════════════════════
    TELEFONO — resto della home, pagina News e Gallery

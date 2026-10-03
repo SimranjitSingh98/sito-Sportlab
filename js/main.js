@@ -89,22 +89,55 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- GALLERY: foto intera al click/tocco ---
-    const fotoGallery = document.querySelectorAll('.full-gallery-item, .news-gallery-item');
+    // Nella pagina Gallery sono <img>, nelle news sono link alla foto intera
+    // (senza JavaScript il link apre comunque la foto)
+    const fotoGallery = [...document.querySelectorAll('.full-gallery-item, .news-gallery-link')];
     if (fotoGallery.length) {
         const lightbox = document.createElement('dialog');
         lightbox.className = 'gallery-lightbox';
-        lightbox.innerHTML = '<button type="button" class="gallery-lightbox-close" aria-label="Chiudi"><i class="fas fa-times"></i></button><img alt="">';
+        lightbox.innerHTML = '<button type="button" class="gallery-lightbox-close" aria-label="Chiudi"><i class="fas fa-times"></i></button>'
+            + '<button type="button" class="gallery-lightbox-nav gallery-lightbox-prev" aria-label="Foto precedente"><i class="fas fa-chevron-left"></i></button>'
+            + '<img alt="">'
+            + '<button type="button" class="gallery-lightbox-nav gallery-lightbox-next" aria-label="Foto successiva"><i class="fas fa-chevron-right"></i></button>'
+            + '<span class="gallery-lightbox-counter" aria-live="polite"></span>';
         document.body.appendChild(lightbox);
         const fotoGrande = lightbox.querySelector('img');
+        const contatore = lightbox.querySelector('.gallery-lightbox-counter');
+        let attuale = 0;
 
-        fotoGallery.forEach(foto => foto.addEventListener('click', () => {
-            fotoGrande.src = foto.currentSrc || foto.src;
-            fotoGrande.alt = foto.alt;
+        const mostra = (i) => {
+            attuale = (i + fotoGallery.length) % fotoGallery.length;
+            const foto = fotoGallery[attuale];
+            const img = foto.tagName === 'IMG' ? foto : foto.querySelector('img');
+            fotoGrande.src = foto.tagName === 'A' ? foto.href : (img.currentSrc || img.src);
+            fotoGrande.alt = img ? img.alt : '';
+            contatore.textContent = `${attuale + 1} / ${fotoGallery.length}`;
+        };
+        if (fotoGallery.length === 1) lightbox.classList.add('gallery-lightbox--singola');
+
+        fotoGallery.forEach((foto, i) => foto.addEventListener('click', (e) => {
+            e.preventDefault();
+            mostra(i);
             lightbox.showModal();
         }));
-        // Si chiude toccando ovunque tranne la foto
+        lightbox.querySelector('.gallery-lightbox-prev').addEventListener('click', () => mostra(attuale - 1));
+        lightbox.querySelector('.gallery-lightbox-next').addEventListener('click', () => mostra(attuale + 1));
+        // Si chiude toccando ovunque tranne la foto e le frecce
         lightbox.addEventListener('click', (e) => {
-            if (e.target !== fotoGrande) lightbox.close();
+            if (e.target !== fotoGrande && !e.target.closest('.gallery-lightbox-nav')) lightbox.close();
+        });
+        lightbox.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') mostra(attuale - 1);
+            if (e.key === 'ArrowRight') mostra(attuale + 1);
+        });
+        // Sul telefono si scorre tra le foto con il dito
+        let inizioX = null;
+        lightbox.addEventListener('touchstart', (e) => { inizioX = e.touches[0].clientX; }, { passive: true });
+        lightbox.addEventListener('touchend', (e) => {
+            if (inizioX === null) return;
+            const dx = e.changedTouches[0].clientX - inizioX;
+            inizioX = null;
+            if (Math.abs(dx) > 50) mostra(attuale + (dx < 0 ? 1 : -1));
         });
     }
 

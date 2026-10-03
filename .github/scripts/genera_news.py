@@ -196,7 +196,9 @@ def pagina_articolo(news, header, menu, footer, wa):
     for f in news.get('galleria') or []:
         d = misure(f['src'])
         d_attr = f' width="{d[0]}" height="{d[1]}"' if d else ''
-        foto.append(f'                            <img src="/{esc(f["src"])}" alt="{esc(f.get("alt") or titolo)}" class="news-gallery-item" loading="lazy"{d_attr}>')
+        foto.append(f'''                            <a href="/{esc(f["src"])}" class="news-gallery-link">
+                                <img src="/{esc(f["src"])}" alt="{esc(f.get("alt") or titolo)}" class="news-gallery-item" loading="lazy"{d_attr}>
+                            </a>''')
     galleria = (f'''
                     <section class="news-gallery" aria-label="Foto">
                         <h2 class="news-gallery-title">Le foto della giornata</h2>

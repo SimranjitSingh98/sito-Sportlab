@@ -4790,26 +4790,96 @@ p { margin-bottom: 1.2rem; }
 }
 .news-gallery-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px;
+}
+.news-gallery-link {
+    position: relative;
+    display: block;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: zoom-in;
+    box-shadow: 0 2px 8px rgba(18, 59, 99, 0.12);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 .news-gallery-item {
     width: 100%;
     height: auto;
     aspect-ratio: 1;
     object-fit: cover;
-    border-radius: 10px;
     display: block;
-    cursor: zoom-in;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.4s ease;
 }
-.news-gallery-item:hover {
-    transform: scale(1.02);
+/* Velo scuro e lente al passaggio del mouse: si capisce che la foto si apre */
+.news-gallery-link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 15, 30, 0.35);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    z-index: 1;
+}
+.news-gallery-link::after {
+    content: '\f00e';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 48px;
+    height: 48px;
+    margin: -24px 0 0 -24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--secondary-blue);
+    font-size: 1.15rem;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 2;
+}
+.news-gallery-link:hover,
+.news-gallery-link:focus-visible {
     box-shadow: var(--shadow);
+    transform: translateY(-2px);
+}
+.news-gallery-link:hover .news-gallery-item,
+.news-gallery-link:focus-visible .news-gallery-item {
+    transform: scale(1.06);
+}
+.news-gallery-link:hover::before,
+.news-gallery-link:focus-visible::before,
+.news-gallery-link:hover::after,
+.news-gallery-link:focus-visible::after {
+    opacity: 1;
+    transform: none;
+}
+.news-gallery-link:focus-visible {
+    outline: 3px solid var(--secondary-blue);
+    outline-offset: 2px;
+}
+/* Su telefono non c'è il passaggio del mouse: lente piccola sempre visibile */
+@media (hover: none) {
+    .news-gallery-link::after {
+        top: auto;
+        left: auto;
+        right: 8px;
+        bottom: 8px;
+        width: 30px;
+        height: 30px;
+        margin: 0;
+        font-size: 0.8rem;
+        opacity: 1;
+        transform: none;
+    }
 }
 @media (max-width: 600px) {
     .news-gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 8px;
     }
 }

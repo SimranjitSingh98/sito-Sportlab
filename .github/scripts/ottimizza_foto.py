@@ -2,6 +2,8 @@
 
 Ridimensiona a massimo 2000px, corregge l'orientamento delle foto da telefono,
 cancella l'originale e aggiorna il percorso nei file JSON di content/.
+I nomi diventano minuscoli con i trattini, come il resto di images/
+(es. "Foto Gara.HEIC" -> "foto-gara.webp").
 """
 import re
 import unicodedata
@@ -25,7 +27,7 @@ QUALITA = 90
 
 def slug(nome):
     nome = unicodedata.normalize('NFKD', nome).encode('ascii', 'ignore').decode()
-    return re.sub(r'[^a-z0-9]+', '_', nome.lower()).strip('_') or 'foto'
+    return re.sub(r'[^a-z0-9]+', '-', nome.lower()).strip('-') or 'foto'
 
 
 def destinazione(originale):
@@ -33,7 +35,7 @@ def destinazione(originale):
     dest = originale.with_name(base + '.webp')
     n = 2
     while dest.exists() and dest != originale:
-        dest = originale.with_name(f'{base}_{n}.webp')
+        dest = originale.with_name(f'{base}-{n}.webp')
         n += 1
     return dest
 

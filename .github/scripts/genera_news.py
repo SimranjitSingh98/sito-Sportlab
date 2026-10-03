@@ -3,8 +3,9 @@
 - news/<slug>.html          una pagina per articolo: title, description, canonical,
                             Open Graph, JSON-LD Article + BreadcrumbList, testo completo,
                             galleria foto ("galleria" in news.json), pulsanti di condivisione
-- images/news/<slug>-og.jpg anteprima social 1200x630 ritagliata (mai deformata)
-- images/news/<slug>-card.webp miniatura leggera della copertina per le card degli elenchi
+- images/news/anteprime/<slug>-og.jpg    anteprima social 1200x630 ritagliata (mai deformata)
+- images/news/anteprime/<slug>-card.webp miniatura leggera della copertina per le card degli elenchi
+  (le foto da cui partono, copertine e gallerie, stanno in images/news/foto/)
 - news.html e index.html    elenco news scritto nell'HTML, tra i marcatori NEWS-...
 - news.html                 redirect dei vecchi link news.html?slug=... alle pagine nuove
 - sitemap.xml               tutte le pagine, con lastmod
@@ -23,10 +24,10 @@ from PIL import Image, ImageOps
 
 SITO = 'https://asdsportlab.eu'
 ORG_ID = f'{SITO}/#organization'
-LOGO = f'{SITO}/images/loghi/logoQuadrato512x512.png'
+LOGO = f'{SITO}/images/loghi/sportlab-512.png'
 NEWS_JSON = Path('content/news.json')
 CARTELLA_PAGINE = Path('news')
-CARTELLA_OG = Path('images/news')
+CARTELLA_OG = Path('images/news/anteprime')
 OG_W, OG_H = 1200, 630
 # Larghezza delle miniature: la card più grande (prima news su telefono) è ~360px, x2 per gli schermi retina
 CARD_W = 720
@@ -304,8 +305,8 @@ def pagina_articolo(news, elenco, header, menu, footer, wa):
     <link rel="stylesheet" href="/css/enhanced.css">
 
     <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="48x48" href="/images/loghi/logoQuadrato48x48.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/loghi/logoQuadrato180x180.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/images/loghi/sportlab-48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/loghi/sportlab-180.png">
     <meta name="theme-color" content="#123B63">
 
     <script type="application/ld+json">

@@ -3776,6 +3776,146 @@ p { margin-bottom: 1.2rem; }
     }
 }
 
+/* ── Evento in evidenza (Coppa Italia Skate4All) ───────────────── */
+.si-evento {
+    display: grid;
+    grid-template-columns: minmax(220px, 320px) 1fr;
+    gap: 3rem;
+    align-items: center;
+    background: var(--bg-white);
+    border-radius: 28px;
+    border: 1px solid rgba(18, 59, 99, 0.07);
+    box-shadow: 0 20px 60px rgba(18, 59, 99, 0.07);
+    padding: 2.5rem;
+    margin-bottom: 4rem;
+}
+
+.si-evento-poster {
+    display: block;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.si-evento-poster:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.si-evento-poster img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.si-evento-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.si-evento-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--primary-blue);
+    background: rgba(77, 163, 255, 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    margin-bottom: 1.2rem;
+}
+
+.si-evento-title {
+    font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+    font-weight: 800;
+    color: var(--secondary-blue);
+    line-height: 1.25;
+    margin-bottom: 1rem;
+}
+
+.si-evento-text {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text-muted);
+    margin-bottom: 1.4rem;
+}
+
+.si-evento-meta {
+    list-style: none;
+    display: grid;
+    gap: 0.6rem;
+    margin-bottom: 1.4rem;
+}
+
+.si-evento-meta li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--secondary-blue);
+}
+
+.si-evento-meta i {
+    width: 1.1rem;
+    text-align: center;
+    color: var(--primary-blue);
+    flex-shrink: 0;
+}
+
+.si-evento-grazie {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+    border-left: 3px solid var(--primary-blue);
+    padding-left: 1rem;
+    margin-bottom: 1.8rem;
+}
+
+@media (max-width: 992px) {
+    .si-evento {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .si-evento-poster {
+        max-width: 320px;
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 640px) {
+    .si-evento {
+        padding: 1.5rem 1.25rem;
+        border-radius: 22px;
+        margin-bottom: 2.5rem;
+        gap: 1.5rem;
+    }
+
+    .si-evento-poster {
+        max-width: 260px;
+    }
+
+    .si-evento-poster:hover {
+        transform: none;
+    }
+
+    .si-evento-meta li {
+        font-size: 0.9rem;
+    }
+
+    .si-evento .si-btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 /* --- HERO MODERN REDESIGN --- */
 .hero-modern {
     padding: 12rem 0 8rem;
@@ -4623,6 +4763,18 @@ p { margin-bottom: 1.2rem; }
     max-height: 450px;
     object-fit: cover;
     display: block;
+}
+/* Copertina verticale (locandina): intera, centrata, mai ritagliata */
+.news-detail-cover-wrapper--verticale {
+    width: fit-content;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.news-detail-cover-wrapper--verticale .news-detail-cover {
+    width: auto;
+    max-width: 100%;
+    max-height: min(85vh, 900px);
 }
 
 /* Article body text */

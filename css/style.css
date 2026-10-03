@@ -2346,6 +2346,27 @@ p { margin-bottom: 1.2rem; }
     color: rgba(255, 255, 255, 0.7);
 }
 
+/* Telefono: un dato per riga invece di un paragrafo unico */
+@media (max-width: 640px) {
+    .footer-bottom .footer-legal {
+        margin-top: 1.25rem;
+        padding: 0 1.25rem;
+        line-height: 1.5;
+    }
+
+    .footer-legal span {
+        display: block;
+    }
+
+    .footer-legal span + span {
+        margin-top: 0.4rem;
+    }
+
+    .footer-legal .footer-legal-sep {
+        display: none;
+    }
+}
+
 @media (max-width: 992px) {
     .footer-grid {
         grid-template-columns: 1fr;

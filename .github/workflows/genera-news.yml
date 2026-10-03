@@ -40,13 +40,13 @@ jobs:
 
       - name: Salva le modifiche
         run: |
-          if [ -z "$(git status --porcelain news images/news news.html index.html sitemap.xml)" ]; then
+          if [ -z "$(git status --porcelain news images/news news.html index.html 404.html sitemap.xml)" ]; then
             echo "Niente da aggiornare"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A news images/news news.html index.html sitemap.xml
+          git add -A news images/news news.html index.html 404.html sitemap.xml
           git commit -m "Pagine news rigenerate"
           git pull --rebase
           git push

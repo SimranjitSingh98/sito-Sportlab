@@ -109,7 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
             attuale = (i + fotoGallery.length) % fotoGallery.length;
             const foto = fotoGallery[attuale];
             const img = foto.tagName === 'IMG' ? foto : foto.querySelector('img');
-            fotoGrande.src = foto.tagName === 'A' ? foto.href : (img.currentSrc || img.src);
+            // Nella pagina Gallery la miniatura indica la foto intera in data-full
+            fotoGrande.src = foto.tagName === 'A' ? foto.href : (img.dataset.full || img.currentSrc || img.src);
             fotoGrande.alt = img ? img.alt : '';
             contatore.textContent = `${attuale + 1} / ${fotoGallery.length}`;
         };

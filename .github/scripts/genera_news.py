@@ -6,9 +6,12 @@
                             galleria foto ("galleria" in news.json), pulsanti di condivisione
 - images/news/anteprime/<slug>-og.jpg    anteprima social 1200x630 ritagliata (mai deformata)
 - images/news/anteprime/<slug>-card.webp miniatura leggera della copertina per le card degli elenchi
+- images/news/anteprime/<slug>-cover.webp copertina dell'articolo ridotta (la foto originale resta nello srcset)
+- images/news/miniature/<nome>.webp      miniature delle foto in galleria (al click si apre l'originale)
   (le foto da cui partono, copertine e gallerie, stanno in images/news/foto/)
 - news.html e index.html    elenco news scritto nell'HTML, tra i marcatori NEWS-...
 - news.html                 redirect dei vecchi link news.html?slug=... alle pagine nuove
+- 404.html                  pagina per gli indirizzi inesistenti (menu, pulsanti utili, ultime news)
 - sitemap.xml               tutte le pagine, con lastmod
 
 Si lancia dalla radice del sito: python3 .github/scripts/genera_news.py
@@ -32,6 +35,11 @@ CARTELLA_OG = Path('images/news/anteprime')
 OG_W, OG_H = 1200, 630
 # Larghezza delle miniature: la card più grande (prima news su telefono) è ~360px, x2 per gli schermi retina
 CARD_W = 720
+# Copertina dell'articolo: la colonna è 780px, 1200 basta anche per i telefoni retina
+COVER_W = 1200
+# Miniature della galleria: 3 colonne in 780px (o 2 sul telefono), ~600px coprono anche i retina
+CARTELLA_MINIATURE = Path('images/news/miniature')
+MINI_W = 600
 PAROLE_AL_MINUTO = 200
 NEWS_CORRELATE = 3
 NEWS_IN_HOME = 3
@@ -166,19 +174,37 @@ def crea_og(news):
     return dst
 
 
+def riduci(src, dst, larghezza, qualita=78):
+    """WebP largo al massimo "larghezza" (mai ingrandito). Restituisce (percorso, larghezza, altezza)."""
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    with Image.open(src) as im:
+        im = ImageOps.exif_transpose(im).convert('RGB')
+        if im.width > larghezza:
+            im = im.resize((larghezza, round(im.height * larghezza / im.width)), Image.LANCZOS)
+        im.save(dst, 'WEBP', quality=qualita, method=6)
+        return dst.as_posix(), im.width, im.height
+
+
 def crea_miniatura(news):
     """WebP largo CARD_W per le card: la copertina originale (anche 2400px) pesa troppo
-    per una miniatura, soprattutto sul telefono. Restituisce (percorso, larghezza, altezza)."""
+    per una miniatura, soprattutto sul telefono."""
     if not news.get('cover') or not Path(news['cover']).exists():
         return None
-    CARTELLA_OG.mkdir(parents=True, exist_ok=True)
-    dst = CARTELLA_OG / f"{news['slug']}-card.webp"
-    with Image.open(news['cover']) as im:
-        im = ImageOps.exif_transpose(im).convert('RGB')
-        if im.width > CARD_W:
-            im = im.resize((CARD_W, round(im.height * CARD_W / im.width)), Image.LANCZOS)
-        im.save(dst, 'WEBP', quality=78, method=6)
-        return dst.as_posix(), im.width, im.height
+    return riduci(news['cover'], CARTELLA_OG / f"{news['slug']}-card.webp", CARD_W)
+
+
+def crea_copertina(news):
+    """WebP largo COVER_W per la copertina dell'articolo (è l'immagine più grande della pagina)."""
+    if not news.get('cover') or not Path(news['cover']).exists():
+        return None
+    return riduci(news['cover'], CARTELLA_OG / f"{news['slug']}-cover.webp", COVER_W, qualita=80)
+
+
+def miniatura_galleria(src):
+    """Miniatura di una foto della galleria; i nomi in images/news/foto/ sono già unici."""
+    if not Path(src).exists():
+        return None
+    return riduci(src, CARTELLA_MINIATURE / f'{Path(src).stem}.webp', MINI_W)
 
 
 # ── Pagina articolo ───────────────────────────────────────────────────────
@@ -238,13 +264,18 @@ def pagina_articolo(news, elenco, header, menu, footer, wa):
                         <footer class="news-detail-footer">
                             <i class="fas fa-info-circle"></i> <span>{esc(news['nota'])}</span>
                         </footer>''' if news.get('nota') else '')
-    # Galleria: elenco di {"src", "alt"}; la foto si apre intera al click (js/main.js)
+    # Galleria: elenco di {"src", "alt"}; nella griglia la miniatura, al click la foto
+    # intera (js/main.js apre il link)
     foto = []
     for f in news.get('galleria') or []:
-        d = misure(f['src'])
+        mini = miniatura_galleria(f['src'])
+        if mini:
+            src, d = mini[0], mini[1:]
+        else:
+            src, d = f['src'], misure(f['src'])
         d_attr = f' width="{d[0]}" height="{d[1]}"' if d else ''
         foto.append(f'''                            <a href="/{esc(f["src"])}" class="news-gallery-link">
-                                <img src="/{esc(f["src"])}" alt="{esc(f.get("alt") or titolo)}" class="news-gallery-item" loading="lazy"{d_attr}>
+                                <img src="/{esc(src)}" alt="{esc(f.get("alt") or titolo)}" class="news-gallery-item" loading="lazy"{d_attr}>
                             </a>''')
     galleria = (f'''
                     <section class="news-gallery" aria-label="Foto">
@@ -283,9 +314,18 @@ def pagina_articolo(news, elenco, header, menu, footer, wa):
 {chr(10).join(card(n, radice='/') for n in altre)}
                 </div>
             </section>''' if altre else '')
+    # Copertina: il browser sceglie la versione giusta per lo schermo (card, ridotta o originale)
+    cover_src, srcset = cover, ''
+    ridotta = crea_copertina(news) if dim and dim[0] > COVER_W else None
+    if ridotta:
+        mini = news.get('miniatura')
+        varianti = ([f'/{mini[0]} {mini[1]}w'] if mini and mini[1] < ridotta[1] else []) + [
+            f'/{ridotta[0]} {ridotta[1]}w', f'{cover} {dim[0]}w']
+        cover_src = f'/{ridotta[0]}'
+        srcset = f' srcset="{esc(", ".join(varianti))}" sizes="(max-width: 820px) 100vw, 780px"'
     copertina = (f'''
                         <div class="news-detail-cover-wrapper{intera}">
-                            <img src="{esc(cover)}" alt="{esc(alt_copertina(news))}" class="news-detail-cover" fetchpriority="high"{dim_attr}{stile_copertina(news)}>
+                            <img src="{esc(cover_src)}"{srcset} alt="{esc(alt_copertina(news))}" class="news-detail-cover" fetchpriority="high"{dim_attr}{stile_copertina(news)}>
                         </div>''' if cover else '')
 
     return f'''<!DOCTYPE html>
@@ -385,6 +425,75 @@ def pagina_articolo(news, elenco, header, menu, footer, wa):
             </div>{correlate}
         </div>
     </section>
+
+{footer}
+
+{wa}
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
+'''
+
+
+# ── Pagina 404 ────────────────────────────────────────────────────────────
+def pagina_404(elenco, header, menu, footer, wa):
+    """GitHub Pages la mostra per ogni indirizzo inesistente, a qualsiasi profondità:
+    per questo tutti i percorsi sono assoluti. Chi arriva da un link rotto trova
+    menu, pulsanti utili e le ultime notizie invece della pagina generica di GitHub."""
+    header = header.replace(' class="nav-link-active"', '')
+    ultime = '\n'.join(card(n, radice='/') for n in elenco[:NEWS_IN_HOME])
+    notizie = (f'''
+
+    <section class="section news-main-section">
+        <div class="container">
+            <div class="news-grid visible">
+{ultime}
+            </div>
+        </div>
+    </section>''' if ultime else '')
+    return f'''<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina non trovata | ASD Sport Lab</title>
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Font e icone non bloccanti (stesso schema di index.html) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/enhanced.css">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="48x48" href="/images/loghi/sportlab-48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/loghi/sportlab-180.png">
+    <meta name="theme-color" content="#123B63">
+</head>
+<body>
+    <!-- Pagina generata da .github/scripts/genera_news.py: non modificarla a mano -->
+
+{header}
+
+{menu}
+    <section class="news-page-hero">
+        <div class="container">
+            <div class="news-hero-badge"><i class="fas fa-compass"></i> Errore 404</div>
+            <h1>Pagina <span class="text-accent">non trovata</span></h1>
+            <p class="lead">La pagina che cerchi non esiste o è stata spostata. Da qui puoi tornare in pista:</p>
+            <div class="pagina-404-azioni">
+                <a href="/" class="btn btn-primary"><i class="fas fa-home"></i> Vai alla Home</a>
+                <a href="/#prova" class="btn btn-outline"><i class="fas fa-skating"></i> Prova gratuita</a>
+                <a href="/news.html" class="btn btn-outline"><i class="fas fa-newspaper"></i> Tutte le News</a>
+            </div>
+        </div>
+    </section>{notizie}
 
 {footer}
 
@@ -521,12 +630,19 @@ def main():
             vecchia.unlink()
             print(f'Rimossa {vecchia}')
     slug_validi = {n['slug'] for n in elenco}
-    for suffisso in ('-og.jpg', '-card.webp'):
+    for suffisso in ('-og.jpg', '-card.webp', '-cover.webp'):
         for img in CARTELLA_OG.glob(f'*{suffisso}'):
             if img.name[:-len(suffisso)] not in slug_validi:
                 img.unlink()
                 print(f'Rimossa {img}')
+    # Miniature di foto tolte dalle gallerie
+    in_galleria = {Path(f['src']).stem for n in elenco for f in n.get('galleria') or []}
+    for img in CARTELLA_MINIATURE.glob('*.webp'):
+        if img.stem not in in_galleria:
+            img.unlink()
+            print(f'Rimossa {img}')
     aggiorna_elenchi(elenco, riepiloghi)
+    Path('404.html').write_text(pagina_404(elenco, header, menu, footer, wa), encoding='utf-8')
     scrivi_sitemap(elenco)
 
 

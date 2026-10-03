@@ -2328,6 +2328,25 @@ p { margin-bottom: 1.2rem; }
     margin: 0;
 }
 
+/* Link utili (aiutano anche Google a trovare tutte le pagine) */
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.footer-nav a {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.footer-nav a:hover {
+    color: #fff;
+}
+
 /* Riga istituzionale (CONI / FISR) */
 .footer-bottom .footer-legal {
     font-size: 0.8rem;
@@ -4529,6 +4548,16 @@ p { margin-bottom: 1.2rem; }
     height: 100%;
     background: radial-gradient(ellipse at 25% 80%, rgba(18, 59, 99, 0.04) 0%, transparent 60%);
     pointer-events: none;
+}
+/* Pagina 404: pulsanti sotto il titolo */
+.pagina-404-azioni {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
 }
 .news-page-hero h1 {
     font-size: clamp(2rem, 4.5vw, 3rem);

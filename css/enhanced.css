@@ -1009,42 +1009,17 @@ section.bg-light {
         grid-template-columns: 1fr;
         gap: 1rem;
         margin-top: 2.5rem;
+        max-width: 520px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    /* Card orizzontale: foto a sinistra, testo a destra */
     .discipline-card {
-        display: grid;
-        grid-template-columns: 38% 1fr;
-        grid-template-areas:
-            "media name"
-            "media desc";
-        align-content: center;
-        column-gap: 1.5rem;
-        padding: 0;
-        text-align: left;
+        padding: 0 1.5rem 1.75rem;
     }
 
     .discipline-media {
-        grid-area: media;
-        margin: 0;
-        aspect-ratio: auto;
-        min-height: 190px;
-    }
-
-    .discipline-icon {
-        display: none;
-    }
-
-    .discipline-name {
-        grid-area: name;
-        align-self: end;
-        padding-right: 1.5rem;
-    }
-
-    .discipline-desc {
-        grid-area: desc;
-        align-self: start;
-        padding-right: 1.5rem;
+        margin: 0 -1.5rem;
     }
 }
 
@@ -1597,50 +1572,21 @@ section.bg-light {
     }
 
     /* Le tre discipline: carosello di card con foto a tutta altezza */
-    /* Più spazio sotto le card: l'ombra non viene tagliata dallo scorrimento */
-    .discipline-grid,
-    .courses-grid-premium {
-        padding-bottom: 34px;
-        margin-bottom: -20px;
-    }
-
+    /* Le tre discipline: card una sotto l'altra, foto intera e testo sotto */
     .discipline-grid {
         margin-top: 0;
-        gap: 12px;
-    }
-
-    .discipline-grid > .discipline-card {
-        flex-basis: 80%;
+        gap: 1rem;
     }
 
     .discipline-card,
     .discipline-card:hover {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        padding: 0;
-        border: 0;
-        border-radius: 22px;
-        background: #0f2f50;
-        box-shadow: 0 14px 32px rgba(18, 59, 99, 0.2);
+        padding: 0 1.25rem 1.4rem;
+        border-radius: 20px;
         transform: none;
     }
 
-    /* Foto in alto che sfuma nel pannello blu del testo */
     .discipline-media {
-        position: relative;
-        aspect-ratio: 6 / 5;
-        min-height: 0;
-        background: #0f2f50;
-    }
-
-    .discipline-media::after {
-        content: "";
-        position: absolute;
-        inset: auto 0 0;
-        height: 38%;
-        background: linear-gradient(180deg, rgba(15, 47, 80, 0), #0f2f50);
-        pointer-events: none;
+        margin: 0 -1.25rem;
     }
 
     .discipline-card:hover .discipline-media img {
@@ -1648,52 +1594,31 @@ section.bg-light {
     }
 
     .discipline-icon {
-        display: flex;
-        position: absolute;
-        top: 14px;
-        left: 14px;
-        width: 42px;
-        height: 42px;
-        margin: 0;
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        background: rgba(15, 47, 80, 0.35);
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
-        box-shadow: none;
-        color: #fff;
-        font-size: 1rem;
+        width: 48px;
+        height: 48px;
+        margin: -24px auto 0.75rem;
+        font-size: 1.1rem;
     }
 
     .discipline-name {
-        position: relative;
-        margin: -1.1rem 0 0.4rem;
-        padding: 0 1.2rem;
-        align-self: stretch;
-        font-size: 1.3rem;
-        font-weight: 800;
-        letter-spacing: -0.01em;
-        color: #fff;
+        font-size: 1.15rem;
+        margin-bottom: 0.4rem;
     }
 
     .discipline-desc {
-        padding: 0 1.2rem 1.35rem;
-        align-self: stretch;
-        font-size: 0.84rem;
-        line-height: 1.5;
-        color: rgba(255, 255, 255, 0.82);
+        font-size: 0.9rem;
+        line-height: 1.6;
     }
 
     /* I quattro corsi: carosello con le tappe del percorso */
-    .courses-grid-premium + .carousel-dots,
-    .discipline-grid + .carousel-dots {
-        margin-bottom: 0.25rem;
-    }
-
-    .discipline-grid + .carousel-dots + .courses-subhead {
+    .discipline-grid + .courses-subhead {
         margin-top: 2.25rem;
     }
 
+    /* Più spazio sotto le card: l'ombra non viene tagliata dallo scorrimento */
     .courses-grid-premium {
+        padding-bottom: 34px;
+        margin-bottom: -20px;
         margin-top: 0;
         counter-reset: tappa;
     }

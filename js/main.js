@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- GALLERY: foto intera al click/tocco ---
-    const fotoGallery = document.querySelectorAll('.full-gallery-item');
+    const fotoGallery = document.querySelectorAll('.full-gallery-item, .news-gallery-item');
     if (fotoGallery.length) {
         const lightbox = document.createElement('dialog');
         lightbox.className = 'gallery-lightbox';

@@ -2,7 +2,7 @@
 
 - news/<slug>.html          una pagina per articolo: title, description, canonical,
                             Open Graph, JSON-LD Article + BreadcrumbList, testo completo,
-                            pulsanti di condivisione
+                            galleria foto ("galleria" in news.json), pulsanti di condivisione
 - images/news/<slug>-og.jpg anteprima social 1200x630 ritagliata (mai deformata)
 - news.html e index.html    elenco news scritto nell'HTML, tra i marcatori NEWS-...
 - news.html                 redirect dei vecchi link news.html?slug=... alle pagine nuove
@@ -71,6 +71,14 @@ def alt_copertina(news):
     return (news.get('cover_alt') or news['titolo']).strip()
 
 
+def stile_copertina(news):
+    """"cover_y" (0 = in alto, 1 = in basso) sposta il ritaglio della copertina
+    nelle card e nell'articolo, per le foto con i volti vicino al bordo."""
+    if news.get('cover_y') is None:
+        return ''
+    return f' style="object-position: 50% {float(news["cover_y"]) * 100:g}%"'
+
+
 def paragrafi(testo):
     return [p.strip() for p in (testo or '').split('\n') if p.strip()]
 
@@ -113,14 +121,15 @@ def assoluti(blocco):
 
 # ── Anteprima social ──────────────────────────────────────────────────────
 def crea_og(news):
-    """JPG 1200x630 ritagliato al centro (un po' più in alto, dove di solito ci sono i volti)."""
+    """JPG 1200x630 ritagliato al centro (un po' più in alto, dove di solito ci sono i volti,
+    oppure all'altezza indicata da "cover_y")."""
     if not news.get('cover') or not Path(news['cover']).exists():
         return None
     CARTELLA_OG.mkdir(parents=True, exist_ok=True)
     dst = CARTELLA_OG / f"{news['slug']}-og.jpg"
     with Image.open(news['cover']) as im:
         im = ImageOps.exif_transpose(im).convert('RGB')
-        og = ImageOps.fit(im, (OG_W, OG_H), Image.LANCZOS, centering=(0.5, 0.4))
+        og = ImageOps.fit(im, (OG_W, OG_H), Image.LANCZOS, centering=(0.5, float(news.get('cover_y', 0.4))))
         og.save(dst, 'JPEG', quality=85, optimize=True, progressive=True)
     return dst
 
@@ -182,6 +191,19 @@ def pagina_articolo(news, header, menu, footer, wa):
                         <footer class="news-detail-footer">
                             <i class="fas fa-info-circle"></i> <span>{esc(news['nota'])}</span>
                         </footer>''' if news.get('nota') else '')
+    # Galleria: elenco di {"src", "alt"}; la foto si apre intera al click (js/main.js)
+    foto = []
+    for f in news.get('galleria') or []:
+        d = misure(f['src'])
+        d_attr = f' width="{d[0]}" height="{d[1]}"' if d else ''
+        foto.append(f'                            <img src="/{esc(f["src"])}" alt="{esc(f.get("alt") or titolo)}" class="news-gallery-item" loading="lazy"{d_attr}>')
+    galleria = (f'''
+                    <section class="news-gallery" aria-label="Foto">
+                        <h2 class="news-gallery-title">Le foto della giornata</h2>
+                        <div class="news-gallery-grid">
+{chr(10).join(foto)}
+                        </div>
+                    </section>''' if foto else '')
     # Copertine verticali o quasi quadrate (locandine, foto in posa): mostrate intere,
     # perché il ritaglio a 450px di altezza taglierebbe scritte e teste
     intera = ' news-detail-cover-wrapper--intera' if dim and dim[1] > dim[0] * 0.75 else ''
@@ -201,7 +223,7 @@ def pagina_articolo(news, header, menu, footer, wa):
                     </div>'''
     copertina = (f'''
                         <div class="news-detail-cover-wrapper{intera}">
-                            <img src="{esc(cover)}" alt="{esc(alt_copertina(news))}" class="news-detail-cover"{dim_attr}>
+                            <img src="{esc(cover)}" alt="{esc(alt_copertina(news))}" class="news-detail-cover"{dim_attr}{stile_copertina(news)}>
                         </div>''' if cover else '')
 
     return f'''<!DOCTYPE html>
@@ -284,7 +306,7 @@ def pagina_articolo(news, header, menu, footer, wa):
 
                     <div class="news-detail-body">
 {corpo}
-                    </div>
+                    </div>{galleria}
 {nota}
 {condividi}
                 </article>
@@ -317,7 +339,7 @@ def card(news, nascosta=False):
     dim = misure(news['cover']) if news.get('cover') else None
     dim_attr = f' width="{dim[0]}" height="{dim[1]}"' if dim else ''
     media = (f'''<div class="news-card-media">
-                            <img src="{esc(news['cover'])}" alt="{esc(alt_copertina(news))}" loading="lazy"{dim_attr}>
+                            <img src="{esc(news['cover'])}" alt="{esc(alt_copertina(news))}" loading="lazy"{dim_attr}{stile_copertina(news)}>
                         </div>''' if news.get('cover') else '''<div class="news-card-media news-card-media--placeholder">
                             <span class="news-cover-placeholder"><i class="fas fa-newspaper"></i></span>
                         </div>''')

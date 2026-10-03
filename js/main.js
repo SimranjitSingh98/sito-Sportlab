@@ -512,11 +512,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Pagina articolo: "Copia link" e "Altro" (menu di condivisione del telefono, da cui c'è anche Instagram)
+    // Pagina articolo: "Copia link" e "Altre app" (menu di condivisione del telefono, da cui c'è anche Instagram)
     document.querySelectorAll('[data-copia-link]').forEach(btn => {
         btn.addEventListener('click', () => {
             const testo = btn.querySelector('span');
-            navigator.clipboard.writeText(btn.dataset.copiaLink).then(() => {
+            const copia = navigator.clipboard ? navigator.clipboard.writeText(btn.dataset.copiaLink) : Promise.reject();
+            copia.then(() => {
                 testo.textContent = 'Link copiato!';
                 setTimeout(() => { testo.textContent = 'Copia link'; }, 2000);
             }).catch(() => window.prompt('Copia il link:', btn.dataset.copiaLink));
@@ -531,7 +532,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (latestNewsGrid || newsGrid) {
+    // Pagina articolo: barretta in alto che mostra quanto manca alla fine del testo
+    const articolo = document.querySelector('.news-article-page .news-detail-article');
+    if (articolo) {
+        const barra = document.createElement('div');
+        barra.className = 'news-progress';
+        barra.setAttribute('aria-hidden', 'true');
+        barra.innerHTML = '<span></span>';
+        document.body.appendChild(barra);
+        const riempimento = barra.firstChild;
+        // Il pulsante WhatsApp fisso copre la fine delle righe: sparisce mentre si
+        // scorre in giù a leggere e torna appena si risale (regola CSS solo sul telefono)
+        const pulsanteWa = document.querySelector('.floating-wa');
+        let ultimaY = window.scrollY;
+        let inAttesa = false;
+        const aggiornaBarra = () => {
+            inAttesa = false;
+            const r = articolo.getBoundingClientRect();
+            const percorso = r.height - window.innerHeight;
+            const fatto = percorso > 0 ? Math.min(1, Math.max(0, -r.top / percorso)) : 1;
+            riempimento.style.transform = `scaleX(${fatto})`;
+            const y = window.scrollY;
+            if (pulsanteWa && Math.abs(y - ultimaY) > 8) {
+                pulsanteWa.classList.toggle('floating-wa--via', y > ultimaY && y > 300);
+                ultimaY = y;
+            }
+        };
+        window.addEventListener('scroll', () => {
+            if (!inAttesa) { inAttesa = true; requestAnimationFrame(aggiornaBarra); }
+        }, { passive: true });
+        window.addEventListener('resize', aggiornaBarra);
+        aggiornaBarra();
+    }
+
+    // news.json serve solo se un elenco non è già scritto nell'HTML da genera_news.py
+    const daCaricare = (griglia) => griglia && !griglia.hasAttribute('data-statico');
+    if (daCaricare(latestNewsGrid) || daCaricare(newsGrid)) {
         let rawDataNews = null;
 
         const getAllNews = (data) => {

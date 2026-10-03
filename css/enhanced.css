@@ -2453,3 +2453,530 @@ section.bg-light {
         flex-basis: calc((100% - 3rem) / 3);
     }
 }
+
+
+/* ════════════════════════════════════════════════════════════════
+   NEWS — elenco e articoli (tutti gli schermi)
+   ════════════════════════════════════════════════════════════════ */
+
+/* Tutta la card porta all'articolo, non solo il titolo: il link del titolo
+   si allarga a coprire la card (foto compresa) */
+.news-card {
+    position: relative;
+}
+
+.news-card-content h3 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.news-card:has(h3 a:focus-visible) {
+    outline: 3px solid var(--primary-blue);
+    outline-offset: 3px;
+}
+
+/* Un solo anno: i pulsanti degli anni non servono */
+#newsArchiveView .year-selector-wrapper:has(.year-pill:only-child) {
+    display: none;
+}
+
+/* L'articolo parte sotto l'header fisso (86px, 106px dopo uno scorrimento) */
+.section.news-article-page {
+    padding-top: 112px;
+}
+
+.news-detail-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+}
+
+.news-detail-reading {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.news-detail-title {
+    text-wrap: balance;
+}
+
+.news-detail-body p {
+    text-wrap: pretty;
+}
+
+/* Barretta di lettura in cima allo schermo (creata da js/main.js) */
+.news-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 1001;
+    pointer-events: none;
+}
+
+.news-progress span {
+    display: block;
+    height: 100%;
+    background: var(--grad-blue);
+    transform: scaleX(0);
+    transform-origin: left center;
+}
+
+/* Altre notizie in fondo all'articolo */
+.news-related {
+    padding-top: 3rem;
+    border-top: 1px solid rgba(18, 59, 99, 0.08);
+}
+
+.news-related-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.news-related-head h2 {
+    margin: 0;
+    font-size: clamp(1.35rem, 3vw, 1.8rem);
+    color: var(--secondary-blue);
+}
+
+.news-related-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 0;
+    color: var(--primary-blue);
+    font-weight: 700;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.news-related-all i {
+    font-size: 0.8rem;
+}
+
+.news-related-all:hover {
+    color: var(--secondary-blue);
+}
+
+/* Con la foto intera aperta la pagina sotto resta ferma */
+body:has(.gallery-lightbox[open]) {
+    overflow: hidden;
+}
+
+/* Sul telefono il tocco si vede subito */
+@media (hover: none) {
+    .news-card {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .news-card:active {
+        transform: scale(0.98);
+        transition-duration: 0.1s;
+    }
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   NEWS SU TELEFONO
+   ════════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+
+    /* ── PAGINA NEWS: intestazione compatta, la prima notizia subito visibile ── */
+    .news-page-hero {
+        padding-top: 104px;
+        padding-bottom: 1.5rem;
+    }
+
+    .news-page-hero .news-breadcrumb {
+        margin-bottom: 0.75rem;
+    }
+
+    .news-hero-badge {
+        display: none;
+    }
+
+    .news-page-hero h1 {
+        font-size: 1.75rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .news-page-hero .lead {
+        font-size: 0.95rem;
+        line-height: 1.55;
+    }
+
+    .section.news-main-section {
+        padding-top: 1.5rem !important;
+    }
+
+    #yearSelectorNews {
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0 4px;
+    }
+
+    #yearSelectorNews .year-pill {
+        min-height: 44px;
+        padding: 0.5rem 1.3rem;
+        font-size: 0.95rem;
+    }
+
+    #newsArchiveView .year-selector-wrapper {
+        margin-bottom: 1rem;
+    }
+
+    .news-year-riepilogo {
+        font-size: 0.95rem;
+        font-weight: 500;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    /* ── CARD (home, pagina News, "Altre notizie"): righe con foto a sinistra ── */
+    .news-card-media {
+        flex-basis: 108px;
+        min-height: 116px;
+    }
+
+    .news-card-content {
+        justify-content: center;
+        padding: 0.8rem 0.95rem;
+    }
+
+    /* Data in chiaro, senza pillola: lascia spazio al titolo */
+    .news-card-meta .news-date {
+        padding: 0;
+        background: none;
+        border: none;
+        font-size: 0.76rem;
+    }
+
+    /* Titolo intero fino a 3 righe (prima era tagliato a 2) */
+    .news-card-content h3 {
+        font-size: 0.98rem;
+        line-height: 1.32;
+        -webkit-line-clamp: 3;
+        margin-bottom: 0;
+    }
+
+    /* La card è già tutta cliccabile */
+    .news-card-link {
+        display: none;
+    }
+
+    /* ── PAGINA NEWS: la notizia più recente in grande ──
+       (la prima card visibile, cioè non preceduta da altre card visibili) */
+    #newsGrid > .news-card:not([hidden]):not(.news-card:not([hidden]) ~ .news-card) {
+        flex-direction: column;
+        margin-bottom: 0.5rem;
+    }
+
+    #newsGrid > .news-card:not([hidden]):not(.news-card:not([hidden]) ~ .news-card) .news-card-media {
+        flex: none;
+        min-height: 0;
+        aspect-ratio: 16 / 9;
+    }
+
+    #newsGrid > .news-card:not([hidden]):not(.news-card:not([hidden]) ~ .news-card) .news-card-content {
+        padding: 1rem 1.1rem 1.15rem;
+    }
+
+    #newsGrid > .news-card:not([hidden]):not(.news-card:not([hidden]) ~ .news-card) .news-card-meta {
+        margin-bottom: 0.5rem;
+    }
+
+    #newsGrid > .news-card:not([hidden]):not(.news-card:not([hidden]) ~ .news-card) h3 {
+        font-size: 1.2rem;
+        line-height: 1.3;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    #newsGrid > .news-card:not([hidden]):not(.news-card:not([hidden]) ~ .news-card) p {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        font-size: 0.92rem;
+        line-height: 1.55;
+        margin-bottom: 0.75rem;
+    }
+
+    #newsGrid > .news-card:not([hidden]):not(.news-card:not([hidden]) ~ .news-card) .news-card-link {
+        display: inline-flex;
+        padding: 0;
+    }
+
+    /* ── ARTICOLO: testo a tutta larghezza, senza riquadro ── */
+    .section.news-article-page {
+        padding: 100px 0 2.5rem !important;
+    }
+
+    /* Barra "Tutte le News": non resta fissa, così lo schermo resta al testo */
+    .news-article-page .news-detail-topbar {
+        position: static;
+        margin: 0 0 0.75rem;
+        padding: 0;
+        background: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+    }
+
+    .news-article-page .news-detail-topbar .container {
+        padding: 0;
+    }
+
+    .news-article-page .news-detail-topbar .news-breadcrumb {
+        display: none;
+    }
+
+    .news-article-page .news-detail-topbar .btn {
+        min-height: 44px;
+        padding: 0.5rem 0;
+        gap: 0.5rem;
+        background: none;
+        border: none;
+        box-shadow: none;
+        color: var(--primary-blue);
+        font-size: 0.92rem;
+        transform: none;
+    }
+
+    .news-article-page .news-detail-container {
+        padding-bottom: 2.5rem;
+    }
+
+    .news-article-page .news-detail-article {
+        padding: 0;
+        margin-bottom: 2.5rem;
+        background: none;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .news-article-page .news-detail-header {
+        margin-bottom: 1.25rem;
+    }
+
+    .news-article-page .news-detail-meta {
+        margin-bottom: 0.75rem;
+    }
+
+    .news-article-page .news-detail-meta .news-detail-date {
+        padding: 0.35rem 0.8rem;
+        font-size: 0.82rem;
+    }
+
+    .news-detail-reading {
+        font-size: 0.82rem;
+    }
+
+    .news-article-page .news-detail-title {
+        font-size: 1.65rem;
+        line-height: 1.22;
+        letter-spacing: -0.4px;
+    }
+
+    /* Copertina da bordo a bordo; quelle verticali restano intere e arrotondate */
+    .news-article-page .news-detail-cover-wrapper {
+        margin-bottom: 1.75rem;
+    }
+
+    .news-article-page .news-detail-cover-wrapper:not(.news-detail-cover-wrapper--intera) {
+        width: auto;
+        margin-left: -20px;
+        margin-right: -20px;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .news-article-page .news-detail-cover-wrapper:not(.news-detail-cover-wrapper--intera) .news-detail-cover {
+        max-height: 62vh;
+    }
+
+    .news-article-page .news-detail-cover-wrapper--intera {
+        border-radius: 14px;
+    }
+
+    .news-article-page .news-detail-cover-wrapper--intera .news-detail-cover {
+        max-height: 75vh;
+    }
+
+    /* Testo: 17px, righe ariose, a capo con sillabazione (meno buchi a destra) */
+    .news-article-page .news-detail-body {
+        font-size: 1.0625rem;
+        line-height: 1.75;
+    }
+
+    .news-article-page .news-detail-body p {
+        margin-bottom: 1.25rem;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        overflow-wrap: break-word;
+    }
+
+    .news-article-page .news-detail-body p:last-child {
+        margin-bottom: 0;
+    }
+
+    .news-article-page .news-detail-body h2 {
+        font-size: 1.3rem;
+        line-height: 1.3;
+        margin: 2.25rem 0 0.75rem;
+        text-wrap: balance;
+    }
+
+    /* Galleria */
+    .news-article-page .news-gallery {
+        margin-top: 2.25rem;
+    }
+
+    .news-article-page .news-gallery-title {
+        font-size: 1.3rem;
+        margin-bottom: 0.85rem;
+    }
+
+    .news-article-page .news-gallery-grid {
+        gap: 6px;
+    }
+
+    .news-article-page .news-gallery-link {
+        border-radius: 10px;
+        box-shadow: none;
+    }
+
+    /* Nota finale */
+    .news-article-page .news-detail-footer {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    /* Condivisione: pulsanti grandi e in ordine, due per riga */
+    .news-article-page .news-share {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.85rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+    }
+
+    .news-article-page .news-share-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+    }
+
+    .news-article-page .news-share-btn {
+        justify-content: center;
+        min-height: 48px;
+        padding: 0.65rem 0.75rem;
+        font-size: 0.95rem;
+    }
+
+    .news-article-page .news-share-btn:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .news-article-page .news-share-btn--altro {
+        grid-column: 1 / -1;
+    }
+
+    .news-article-page .news-share-btn--altro[hidden] {
+        display: none;
+    }
+
+    /* Invito finale */
+    .news-article-page .news-detail-cta-block {
+        padding: 2rem 1.25rem;
+        border-radius: 20px;
+    }
+
+    .news-article-page .news-detail-cta-block h3 {
+        font-size: 1.3rem;
+        line-height: 1.3;
+    }
+
+    .news-article-page .news-detail-cta-block p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .news-article-page .news-detail-cta-block .btn {
+        width: 100%;
+        padding: 1rem 1.25rem;
+        font-size: 1rem;
+    }
+
+    .floating-wa {
+        transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .floating-wa.floating-wa--via {
+        transform: translateY(140%);
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* Foto intera: frecce più piccole e trasparenti, la foto resta visibile
+       (si scorre anche con il dito) */
+    .gallery-lightbox {
+        padding: 8px;
+    }
+
+    .gallery-lightbox img {
+        max-height: calc(100dvh - 16px);
+    }
+
+    .gallery-lightbox-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 0.95rem;
+        background: rgba(255, 255, 255, 0.7);
+    }
+
+    .gallery-lightbox-prev {
+        left: 8px;
+    }
+
+    .gallery-lightbox-next {
+        right: 8px;
+    }
+
+    /* Altre notizie */
+    .news-related {
+        padding-top: 2rem;
+    }
+
+    .news-related-head {
+        margin-bottom: 1rem;
+    }
+
+    .news-related-head h2 {
+        font-size: 1.35rem;
+    }
+}
+
+/* Telefoni piccoli (iPhone SE e simili): titoli un po' più contenuti */
+@media (max-width: 360px) {
+    .news-article-page .news-detail-title {
+        font-size: 1.45rem;
+    }
+
+    .news-page-hero h1 {
+        font-size: 1.55rem;
+    }
+}

@@ -4,6 +4,7 @@
                             Open Graph, JSON-LD Article + BreadcrumbList, testo completo,
                             galleria foto ("galleria" in news.json), pulsanti di condivisione
 - images/news/<slug>-og.jpg anteprima social 1200x630 ritagliata (mai deformata)
+- images/news/<slug>-card.webp miniatura leggera della copertina per le card degli elenchi
 - news.html e index.html    elenco news scritto nell'HTML, tra i marcatori NEWS-...
 - news.html                 redirect dei vecchi link news.html?slug=... alle pagine nuove
 - sitemap.xml               tutte le pagine, con lastmod
@@ -27,6 +28,10 @@ NEWS_JSON = Path('content/news.json')
 CARTELLA_PAGINE = Path('news')
 CARTELLA_OG = Path('images/news')
 OG_W, OG_H = 1200, 630
+# Larghezza delle miniature: la card più grande (prima news su telefono) è ~360px, x2 per gli schermi retina
+CARD_W = 720
+PAROLE_AL_MINUTO = 200
+NEWS_CORRELATE = 3
 NEWS_IN_HOME = 3
 MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno',
         'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre']
@@ -77,6 +82,11 @@ def stile_copertina(news):
     if news.get('cover_y') is None:
         return ''
     return f' style="object-position: 50% {float(news["cover_y"]) * 100:g}%"'
+
+
+def minuti_lettura(news):
+    parole = len(re.findall(r'\w+', news.get('descrizioneCompleta') or ''))
+    return max(1, round(parole / PAROLE_AL_MINUTO))
 
 
 def paragrafi(testo):
@@ -134,8 +144,23 @@ def crea_og(news):
     return dst
 
 
+def crea_miniatura(news):
+    """WebP largo CARD_W per le card: la copertina originale (anche 2400px) pesa troppo
+    per una miniatura, soprattutto sul telefono. Restituisce (percorso, larghezza, altezza)."""
+    if not news.get('cover') or not Path(news['cover']).exists():
+        return None
+    CARTELLA_OG.mkdir(parents=True, exist_ok=True)
+    dst = CARTELLA_OG / f"{news['slug']}-card.webp"
+    with Image.open(news['cover']) as im:
+        im = ImageOps.exif_transpose(im).convert('RGB')
+        if im.width > CARD_W:
+            im = im.resize((CARD_W, round(im.height * CARD_W / im.width)), Image.LANCZOS)
+        im.save(dst, 'WEBP', quality=78, method=6)
+        return dst.as_posix(), im.width, im.height
+
+
 # ── Pagina articolo ───────────────────────────────────────────────────────
-def pagina_articolo(news, header, menu, footer, wa):
+def pagina_articolo(news, elenco, header, menu, footer, wa):
     url = f"{SITO}/news/{news['slug']}.html"
     titolo = news['titolo']
     descr = riassunto(news)
@@ -220,12 +245,25 @@ def pagina_articolo(news, header, menu, footer, wa):
                             <a href="https://www.facebook.com/sharer/sharer.php?u={u}" class="news-share-btn news-share-btn--fb" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
                             <a href="https://t.me/share/url?url={u}&amp;text={t}" class="news-share-btn news-share-btn--tg" target="_blank" rel="noopener"><i class="fab fa-telegram-plane"></i> Telegram</a>
                             <button type="button" class="news-share-btn" data-copia-link="{url}"><i class="fas fa-link"></i> <span>Copia link</span></button>
-                            <button type="button" class="news-share-btn" data-condividi="{esc(titolo)}" hidden><i class="fas fa-ellipsis-h"></i> Altro</button>
+                            <button type="button" class="news-share-btn news-share-btn--altro" data-condividi="{esc(titolo)}" hidden><i class="fas fa-ellipsis-h"></i> Altre app</button>
                         </div>
                     </div>'''
+    # Altre notizie (le più recenti) da leggere dopo l'articolo
+    altre = [n for n in elenco if n['slug'] != news['slug']][:NEWS_CORRELATE]
+    correlate = (f'''
+
+            <section class="news-related" aria-labelledby="altre-notizie">
+                <div class="news-related-head">
+                    <h2 id="altre-notizie">Altre notizie</h2>
+                    <a href="/news.html" class="news-related-all">Vedi tutte <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="news-grid visible">
+{chr(10).join(card(n, radice='/') for n in altre)}
+                </div>
+            </section>''' if altre else '')
     copertina = (f'''
                         <div class="news-detail-cover-wrapper{intera}">
-                            <img src="{esc(cover)}" alt="{esc(alt_copertina(news))}" class="news-detail-cover"{dim_attr}{stile_copertina(news)}>
+                            <img src="{esc(cover)}" alt="{esc(alt_copertina(news))}" class="news-detail-cover" fetchpriority="high"{dim_attr}{stile_copertina(news)}>
                         </div>''' if cover else '')
 
     return f'''<!DOCTYPE html>
@@ -301,6 +339,7 @@ def pagina_articolo(news, header, menu, footer, wa):
                     <header class="news-detail-header">
                         <div class="news-detail-meta">
                             <span class="news-detail-date"><i class="far fa-calendar-alt"></i> <time datetime="{giorno}">{data_leggibile(news['quando'])}</time></span>
+                            <span class="news-detail-reading"><i class="far fa-clock"></i> {minuti_lettura(news)} min di lettura</span>
                         </div>
                         <h1 class="news-detail-title">{esc(titolo)}</h1>
                     </header>
@@ -321,7 +360,7 @@ def pagina_articolo(news, header, menu, footer, wa):
                         <i class="fab fa-whatsapp"></i> Scrivici su WhatsApp
                     </a>
                 </div>
-            </div>
+            </div>{correlate}
         </div>
     </section>
 
@@ -336,12 +375,20 @@ def pagina_articolo(news, header, menu, footer, wa):
 
 
 # ── Elenchi news in news.html e index.html ────────────────────────────────
-def card(news, nascosta=False):
+def card(news, nascosta=False, radice='', subito=False):
+    """Card di un elenco. "radice" = '/' per le pagine dentro /news/;
+    "subito" per la prima card visibile appena si apre la pagina (niente lazy loading)."""
     url = f"/news/{news['slug']}.html"
-    dim = misure(news['cover']) if news.get('cover') else None
+    mini = news.get('miniatura')
+    if mini:
+        src, dim = mini[0], mini[1:]
+    else:
+        src = news.get('cover')
+        dim = misure(src) if src else None
     dim_attr = f' width="{dim[0]}" height="{dim[1]}"' if dim else ''
+    caricamento = ' fetchpriority="high"' if subito else ' loading="lazy"'
     media = (f'''<div class="news-card-media">
-                            <img src="{esc(news['cover'])}" alt="{esc(alt_copertina(news))}" loading="lazy"{dim_attr}{stile_copertina(news)}>
+                            <img src="{radice}{esc(src)}" alt="{esc(alt_copertina(news))}"{caricamento}{dim_attr}{stile_copertina(news)}>
                         </div>''' if news.get('cover') else '''<div class="news-card-media news-card-media--placeholder">
                             <span class="news-cover-placeholder"><i class="fas fa-newspaper"></i></span>
                         </div>''')
@@ -349,7 +396,7 @@ def card(news, nascosta=False):
                         {media}
                         <div class="news-card-content">
                             <div class="news-card-meta">
-                                <span class="news-date"><i class="far fa-calendar-alt"></i> <time datetime="{news['quando'].isoformat()}">{news['data']}</time></span>
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> <time datetime="{news['quando'].isoformat()}">{data_leggibile(news['quando'])}</time></span>
                             </div>
                             <h3><a href="{url}">{esc(news['titolo'])}</a></h3>
                             <p>{esc(news.get('descrizioneBreve'))}</p>
@@ -377,7 +424,7 @@ def aggiorna_elenchi(elenco, riepiloghi):
     riep = '\n'.join(
         f'                        <p data-anno="{a}"{"" if a == attivo else " hidden"}>{esc(riepiloghi.get(a, ""))}</p>'
         for a in anni)
-    cards = '\n'.join(card(n, nascosta=(n['anno'] != attivo)) for n in elenco)
+    cards = '\n'.join(card(n, nascosta=(n['anno'] != attivo), subito=(i == 0)) for i, n in enumerate(elenco))
     slug = json.dumps([n['slug'] for n in elenco])
     redirect = f'''    <script>
         // Vecchi link news.html?slug=... → pagina statica dell'articolo
@@ -440,20 +487,23 @@ def main():
     CARTELLA_PAGINE.mkdir(exist_ok=True)
     validi = set()
     for n in elenco:
+        n['miniatura'] = crea_miniatura(n)
+    for n in elenco:
         pagina = CARTELLA_PAGINE / f"{n['slug']}.html"
-        pagina.write_text(pagina_articolo(n, header, menu, footer, wa), encoding='utf-8')
+        pagina.write_text(pagina_articolo(n, elenco, header, menu, footer, wa), encoding='utf-8')
         validi.add(pagina.name)
         print(f'Generata {pagina}')
-    # Articoli tolti da news.json: si tolgono anche pagina e anteprima social
+    # Articoli tolti da news.json: si tolgono anche pagina, anteprima social e miniatura
     for vecchia in CARTELLA_PAGINE.glob('*.html'):
         if vecchia.name not in validi:
             vecchia.unlink()
             print(f'Rimossa {vecchia}')
     slug_validi = {n['slug'] for n in elenco}
-    for og in CARTELLA_OG.glob('*-og.jpg'):
-        if og.name[:-len('-og.jpg')] not in slug_validi:
-            og.unlink()
-            print(f'Rimossa {og}')
+    for suffisso in ('-og.jpg', '-card.webp'):
+        for img in CARTELLA_OG.glob(f'*{suffisso}'):
+            if img.name[:-len(suffisso)] not in slug_validi:
+                img.unlink()
+                print(f'Rimossa {img}')
     aggiorna_elenchi(elenco, riepiloghi)
     scrivi_sitemap(elenco)
 

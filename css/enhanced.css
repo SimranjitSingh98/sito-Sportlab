@@ -925,6 +925,11 @@ section.bg-light {
    ========================================================================== */
 
 /* --- Le tre discipline (sezione Corsi) --- */
+/* Sottotitoli con invito a scorrere: servono solo ai caroselli su telefono */
+.courses-subhead {
+    display: none;
+}
+
 .discipline-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -950,6 +955,7 @@ section.bg-light {
 }
 
 .discipline-media {
+    display: block;
     margin: 0 -1.75rem;
     aspect-ratio: 4 / 3;
     overflow: hidden;
@@ -1409,6 +1415,11 @@ section.bg-light {
    TELEFONO — Storia, Corsi, Instagram
    ════════════════════════════════════════════════════════════════ */
 
+@keyframes courses-hint-nudge {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+}
+
 /* Pallini dei caroselli: esistono solo su telefono */
 .carousel-dots {
     display: none;
@@ -1551,54 +1562,166 @@ section.bg-light {
         margin-bottom: 1.5rem;
     }
 
-    /* Le tre discipline: righe compatte con foto a sinistra */
+    #corsi .section-intro {
+        margin-bottom: 1.75rem;
+    }
+
+    .courses-subhead {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 0.35rem;
+    }
+
+    .courses-subhead-title {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--secondary-blue);
+        letter-spacing: -0.01em;
+    }
+
+    .courses-subhead-hint {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--primary-blue);
+    }
+
+    .courses-subhead-hint i {
+        font-size: 0.65rem;
+        animation: courses-hint-nudge 1.6s ease-in-out infinite;
+    }
+
+    /* Le tre discipline: carosello di card con foto a tutta altezza */
+    /* Più spazio sotto le card: l'ombra non viene tagliata dallo scorrimento */
+    .discipline-grid,
+    .courses-grid-premium {
+        padding-bottom: 34px;
+        margin-bottom: -20px;
+    }
+
     .discipline-grid {
         margin-top: 0;
-        gap: 0.6rem;
+        gap: 12px;
     }
 
-    .discipline-card {
-        grid-template-columns: 104px 1fr;
-        column-gap: 0.9rem;
+    .discipline-grid > .discipline-card {
+        flex-basis: 80%;
     }
 
+    .discipline-card,
     .discipline-card:hover {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        border: 0;
+        border-radius: 22px;
+        background: #0f2f50;
+        box-shadow: 0 14px 32px rgba(18, 59, 99, 0.2);
         transform: none;
+    }
+
+    /* Foto in alto che sfuma nel pannello blu del testo */
+    .discipline-media {
+        position: relative;
+        aspect-ratio: 6 / 5;
+        min-height: 0;
+        background: #0f2f50;
+    }
+
+    .discipline-media::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 38%;
+        background: linear-gradient(180deg, rgba(15, 47, 80, 0), #0f2f50);
+        pointer-events: none;
     }
 
     .discipline-card:hover .discipline-media img {
         transform: none;
     }
 
-    .discipline-media {
-        min-height: 112px;
+    .discipline-icon {
+        display: flex;
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        width: 42px;
+        height: 42px;
+        margin: 0;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        background: rgba(15, 47, 80, 0.35);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        box-shadow: none;
+        color: #fff;
+        font-size: 1rem;
     }
 
     .discipline-name {
-        font-size: 1rem;
-        margin-bottom: 0.15rem;
-        padding: 0.8rem 0.9rem 0 0;
+        position: relative;
+        margin: -1.1rem 0 0.4rem;
+        padding: 0 1.2rem;
+        align-self: stretch;
+        font-size: 1.3rem;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        color: #fff;
     }
 
     .discipline-desc {
+        padding: 0 1.2rem 1.35rem;
+        align-self: stretch;
         font-size: 0.84rem;
         line-height: 1.5;
-        padding: 0 0.9rem 0.8rem 0;
+        color: rgba(255, 255, 255, 0.82);
     }
 
-    /* I quattro corsi: carosello */
+    /* I quattro corsi: carosello con le tappe del percorso */
+    .courses-grid-premium + .carousel-dots,
+    .discipline-grid + .carousel-dots {
+        margin-bottom: 0.25rem;
+    }
+
+    .discipline-grid + .carousel-dots + .courses-subhead {
+        margin-top: 2.25rem;
+    }
+
     .courses-grid-premium {
-        margin-top: 1.75rem;
+        margin-top: 0;
+        counter-reset: tappa;
     }
 
     .course-card-premium,
     .course-card-premium:hover {
+        counter-increment: tappa;
         transform: none;
-        border-radius: 20px;
+        border: 0;
+        border-radius: 22px;
+        box-shadow: 0 12px 30px rgba(18, 59, 99, 0.12);
     }
 
     .course-image-wrap {
-        height: 170px;
+        height: 180px;
+    }
+
+    .course-image-wrap::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 45%;
+        background: linear-gradient(180deg, rgba(13, 39, 65, 0), rgba(13, 39, 65, 0.35));
+        pointer-events: none;
+    }
+
+    .course-card-premium:hover .course-image-wrap img {
+        transform: none;
     }
 
     .age-badge {
@@ -1609,7 +1732,21 @@ section.bg-light {
     }
 
     .course-card-premium .card-body {
-        padding: 1.1rem 1.15rem 1.2rem;
+        position: relative;
+        padding: 1.15rem 1.2rem 1.25rem;
+    }
+
+    /* Numero della tappa (01 → 04) in filigrana */
+    .course-card-premium .card-body::before {
+        content: "0" counter(tappa);
+        position: absolute;
+        top: 0.55rem;
+        right: 1.1rem;
+        font-size: 2.6rem;
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        color: rgba(77, 163, 255, 0.16);
     }
 
     .level-tag {
@@ -1619,8 +1756,9 @@ section.bg-light {
     }
 
     .course-card-premium .course-title {
-        font-size: 1.25rem;
+        font-size: 1.3rem;
         margin-bottom: 0.5rem;
+        letter-spacing: -0.01em;
     }
 
     .course-card-premium .course-description {
@@ -1629,7 +1767,7 @@ section.bg-light {
     }
 
     .course-card-premium .card-footer {
-        padding: 0.8rem 1.15rem;
+        padding: 0.85rem 1.2rem;
     }
 
     #corsi .section-cta-wrap {

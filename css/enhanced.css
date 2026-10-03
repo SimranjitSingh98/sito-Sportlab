@@ -936,7 +936,8 @@ section.bg-light {
     background: var(--bg-white);
     border: 1px solid rgba(77, 163, 255, 0.18);
     border-radius: var(--border-radius);
-    padding: 2rem 1.75rem;
+    padding: 0 1.75rem 2rem;
+    overflow: hidden;
     text-align: center;
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
@@ -948,10 +949,32 @@ section.bg-light {
     border-color: var(--primary-blue);
 }
 
+.discipline-media {
+    margin: 0 -1.75rem;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--bg-box);
+}
+
+.discipline-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.discipline-card:hover .discipline-media img {
+    transform: scale(1.05);
+}
+
 .discipline-icon {
+    position: relative;
     width: 56px;
     height: 56px;
-    margin: 0 auto 1.25rem;
+    margin: -28px auto 1rem;
+    border: 4px solid var(--bg-white);
+    box-shadow: var(--shadow-sm);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -982,8 +1005,40 @@ section.bg-light {
         margin-top: 2.5rem;
     }
 
+    /* Card orizzontale: foto a sinistra, testo a destra */
     .discipline-card {
-        padding: 1.75rem 1.5rem;
+        display: grid;
+        grid-template-columns: 38% 1fr;
+        grid-template-areas:
+            "media name"
+            "media desc";
+        align-content: center;
+        column-gap: 1.5rem;
+        padding: 0;
+        text-align: left;
+    }
+
+    .discipline-media {
+        grid-area: media;
+        margin: 0;
+        aspect-ratio: auto;
+        min-height: 190px;
+    }
+
+    .discipline-icon {
+        display: none;
+    }
+
+    .discipline-name {
+        grid-area: name;
+        align-self: end;
+        padding-right: 1.5rem;
+    }
+
+    .discipline-desc {
+        grid-area: desc;
+        align-self: start;
+        padding-right: 1.5rem;
     }
 }
 
@@ -1496,41 +1551,39 @@ section.bg-light {
         margin-bottom: 1.5rem;
     }
 
-    /* Le tre discipline: righe compatte con icona a sinistra */
+    /* Le tre discipline: righe compatte con foto a sinistra */
     .discipline-grid {
         margin-top: 0;
         gap: 0.6rem;
     }
 
     .discipline-card {
-        display: grid;
-        grid-template-columns: 42px 1fr;
+        grid-template-columns: 104px 1fr;
         column-gap: 0.9rem;
-        align-items: center;
-        padding: 0.9rem 1rem;
-        text-align: left;
     }
 
     .discipline-card:hover {
         transform: none;
     }
 
-    .discipline-icon {
-        grid-row: span 2;
-        width: 42px;
-        height: 42px;
-        margin: 0;
-        font-size: 1rem;
+    .discipline-card:hover .discipline-media img {
+        transform: none;
+    }
+
+    .discipline-media {
+        min-height: 112px;
     }
 
     .discipline-name {
         font-size: 1rem;
         margin-bottom: 0.15rem;
+        padding: 0.8rem 0.9rem 0 0;
     }
 
     .discipline-desc {
         font-size: 0.84rem;
         line-height: 1.5;
+        padding: 0 0.9rem 0.8rem 0;
     }
 
     /* I quattro corsi: carosello */

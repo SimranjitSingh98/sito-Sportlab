@@ -7,7 +7,7 @@
     <script>
         // Vecchi link news.html?slug=... → pagina statica dell'articolo
         (function () {
-            var note = ["coppa-italia-skate4all-zona-sud-pontecagnano-2026", "sindaco-incontra-sportlab-2026", "campionato-regionale-strada-campania-2026"];
+            var note = ["aldo-siani-bronzo-campionati-italiani-strada-torino-2026", "coppa-italia-skate4all-zona-sud-pontecagnano-2026", "sindaco-incontra-sportlab-2026", "campionato-regionale-strada-campania-2026"];
             var slug = new URLSearchParams(location.search).get('slug');
             if (slug && note.indexOf(slug) !== -1) location.replace('/news/' + slug + '.html');
         })();
@@ -132,6 +132,19 @@
                     <!-- Grid News -->
                     <div class="news-grid visible" id="newsGrid" data-statico>
                         <!-- NEWS-ELENCO:INIZIO (generato da .github/scripts/genera_news.py) -->
+                    <article class="news-card" data-anno="2026">
+                        <div class="news-card-media">
+                            <img src="images/trasferte2026/aldo-siani-bronzo-campionati-italiani-torino-2026.webp" alt="Aldo Siani di ASD Sport Lab con l&#x27;allenatore Guido Camardella ai Campionati Italiani di pattinaggio corsa su strada Torino 2026" loading="lazy" width="1600" height="1320">
+                        </div>
+                        <div class="news-card-content">
+                            <div class="news-card-meta">
+                                <span class="news-date"><i class="far fa-calendar-alt"></i> <time datetime="2026-07-17">17/07/2026</time></span>
+                            </div>
+                            <h3><a href="/news/aldo-siani-bronzo-campionati-italiani-strada-torino-2026.html">Aldo Siani è bronzo tricolore ai Campionati Italiani su Strada di Torino</a></h3>
+                            <p>Aldo Siani di ASD Sport Lab è bronzo negli 80 m sprint Ragazzi ai Campionati Italiani di pattinaggio corsa su strada di Torino. Prima medaglia tricolore.</p>
+                            <a href="/news/aldo-siani-bronzo-campionati-italiani-strada-torino-2026.html" class="news-card-link" aria-hidden="true" tabindex="-1">Leggi notizia <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
                     <article class="news-card" data-anno="2026">
                         <div class="news-card-media">
                             <img src="images/eventi/coppa-italia-skate4all-2026.webp" alt="Locandina della Coppa Italia Skate4All Zona Sud, gara di pattinaggio inclusivo del 4 luglio 2026 al pattinodromo di Via Umbria 12 a Pontecagnano Faiano" loading="lazy" width="1080" height="1350">

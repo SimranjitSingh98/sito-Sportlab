@@ -174,10 +174,11 @@ def pagina_articolo(news, header, menu, footer, wa):
                         <footer class="news-detail-footer">
                             <i class="fas fa-info-circle"></i> <span>{esc(news['nota'])}</span>
                         </footer>''' if news.get('nota') else '')
-    # Copertine verticali (es. locandine): mostrate intere invece che ritagliate
-    verticale = ' news-detail-cover-wrapper--verticale' if dim and dim[1] > dim[0] else ''
+    # Copertine verticali o quasi quadrate (locandine, foto in posa): mostrate intere,
+    # perché il ritaglio a 450px di altezza taglierebbe scritte e teste
+    intera = ' news-detail-cover-wrapper--intera' if dim and dim[1] > dim[0] * 0.75 else ''
     copertina = (f'''
-                        <div class="news-detail-cover-wrapper{verticale}">
+                        <div class="news-detail-cover-wrapper{intera}">
                             <img src="{esc(cover)}" alt="{esc(alt_copertina(news))}" class="news-detail-cover"{dim_attr}>
                         </div>''' if cover else '')
 

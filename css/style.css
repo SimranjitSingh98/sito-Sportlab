@@ -4764,14 +4764,14 @@ p { margin-bottom: 1.2rem; }
     object-fit: cover;
     display: block;
 }
-/* Copertina verticale (locandina): intera, centrata, mai ritagliata */
-.news-detail-cover-wrapper--verticale {
+/* Copertina verticale o quasi quadrata: intera, centrata, mai ritagliata */
+.news-detail-cover-wrapper--intera {
     width: fit-content;
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
-.news-detail-cover-wrapper--verticale .news-detail-cover {
+.news-detail-cover-wrapper--intera .news-detail-cover {
     width: auto;
     max-width: 100%;
     max-height: min(85vh, 900px);

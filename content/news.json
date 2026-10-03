@@ -6,6 +6,18 @@
       "news": [
         {
           "stato": "in-evidenza",
+          "titolo": "Aldo Siani è bronzo tricolore ai Campionati Italiani su Strada di Torino",
+          "titolo_seo": "Aldo Siani bronzo ai Campionati Italiani Strada 2026",
+          "data": "17/07/2026",
+          "descrizioneBreve": "Aldo Siani di ASD Sport Lab è bronzo negli 80 m sprint Ragazzi ai Campionati Italiani di pattinaggio corsa su strada di Torino. Prima medaglia tricolore.",
+          "descrizioneCompleta": "Torino, 17 luglio 2026. Arriva dal Piemonte la giornata più importante nella storia di ASD Sport Lab: Aldo Siani ha conquistato la medaglia di bronzo negli 80 metri sprint in corsia, categoria Ragazzi 12 maschile, ai Campionati Italiani di pattinaggio corsa su strada. È la prima medaglia tricolore della società di Pontecagnano Faiano, un risultato che resterà come spartiacque tra quello che il club è stato finora e quello che può diventare.\n\nIl peso di questo bronzo va oltre i confini di Pontecagnano. Erano decenni che un atleta campano non saliva su un podio così prestigioso in una gara di velocità: un dato che da solo racconta quanto sia raro arrivare fin lassù partendo dal nostro territorio.\n\nGli 80 metri in corsia sono la gara più breve e più spietata del programma. Una partenza, pochi secondi di accelerazione pura, un traguardo che arriva prima ancora di riprendere fiato. Chi sbaglia il primo appoggio ha già chiuso la sua gara. Aldo ha tenuto i nervi saldi dalla batteria alla finale e ha chiuso al terzo posto tra i migliori dodicenni d'Italia, con una lucidità che a quell'età si vede di rado.\n\nDietro una medaglia tricolore ci sono mesi di lavoro quotidiano al pattinodromo di Via Lazio a Pontecagnano Faiano. Il metodo dell'allenatore Guido Camardella, che ha seguito Aldo a Torino dal riscaldamento fino alla premiazione, sta dando i suoi frutti: ripetute, partenze provate decine di volte, tecnica di spinta curata fino a diventare automatica. Un percorso costruito con la fiducia della dirigenza e del presidente Pierluigi Di Somma, che in questi anni ha scelto di investire sulla crescita tecnica dei ragazzi.\n\nBuona prova anche per gli altri atleti scesi in pista a Torino, che hanno affrontato il livello più alto del panorama nazionale portando a casa esperienza preziosa. La squadra sta crescendo passo dopo passo, alzando gli obiettivi man mano che arrivano le conferme. Questa stagione è stata il primo banco di prova a certe altezze, un anno di apprendimento in cui ogni gara ha insegnato qualcosa.\n\nSi torna a casa motivati, concentrati e con una voglia enorme di migliorare. Bravo Aldo: questo bronzo è di tutta la squadra.",
+          "nota": "Complimenti ad Aldo, a Guido e a tutta la squadra. Il primo podio tricolore della nostra storia! 🥉🛼",
+          "cover": "images/trasferte2026/aldo-siani-bronzo-campionati-italiani-torino-2026.webp",
+          "cover_alt": "Aldo Siani di ASD Sport Lab con l'allenatore Guido Camardella ai Campionati Italiani di pattinaggio corsa su strada Torino 2026",
+          "slug": "aldo-siani-bronzo-campionati-italiani-strada-torino-2026"
+        },
+        {
+          "stato": "in-evidenza",
           "titolo": "Coppa Italia Skate4All Zona Sud, Pontecagnano Faiano capitale del pattinaggio inclusivo del Sud Italia",
           "titolo_seo": "Coppa Italia Skate4All 2026 a Pontecagnano Faiano",
           "data": "05/07/2026",

@@ -46,7 +46,9 @@ def data_leggibile(d):
 
 def riassunto(news, massimo=155):
     """Occhiello (descrizioneBreve), oppure l'inizio del testo, tagliato su una parola."""
-    testo = re.sub(r'\s+', ' ', news.get('descrizioneBreve') or news.get('descrizioneCompleta') or '').strip()
+    testo = news.get('descrizioneBreve') or '\n'.join(
+        p for p in paragrafi(news.get('descrizioneCompleta')) if not p.startswith('## '))
+    testo = re.sub(r'\s+', ' ', testo).strip()
     if len(testo) <= massimo:
         return testo
     return testo[:massimo - 1].rsplit(' ', 1)[0].rstrip(' ,.;:') + '…'
@@ -171,7 +173,11 @@ def pagina_articolo(news, header, menu, footer, wa):
         ],
     }
 
-    corpo = '\n'.join(f'                            <p>{esc(p)}</p>' for p in paragrafi(news.get('descrizioneCompleta')))
+    # Una riga che inizia con "## " diventa un sottotitolo <h2>, le altre sono paragrafi
+    corpo = '\n'.join(
+        f'                            <h2>{esc(p[3:])}</h2>' if p.startswith('## ')
+        else f'                            <p>{esc(p)}</p>'
+        for p in paragrafi(news.get('descrizioneCompleta')))
     nota = (f'''
                         <footer class="news-detail-footer">
                             <i class="fas fa-info-circle"></i> <span>{esc(news['nota'])}</span>

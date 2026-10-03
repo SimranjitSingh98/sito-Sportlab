@@ -4789,6 +4789,13 @@ p { margin-bottom: 1.2rem; }
 .news-detail-body p:last-child {
     margin-bottom: 0;
 }
+.news-detail-body h2 {
+    font-size: clamp(1.2rem, 2.5vw, 1.45rem);
+    color: var(--secondary-blue);
+    font-weight: 800;
+    line-height: 1.35;
+    margin: 2.5rem 0 1rem;
+}
 
 /* Article footer note */
 .news-detail-footer {

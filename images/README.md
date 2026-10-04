@@ -9,6 +9,7 @@ Nomi dei file: minuscoli, con i trattini, formato `.webp` (lato lungo massimo 20
 | `partner/` | loghi FISR, CONI, Comune | home, sezione partner |
 | `home/` | foto delle sezioni della home (hero, missione, valori, agonismo, prova, media, locandine) | `index.html` |
 | `corsi/` | una foto per corso (cuccioli, amatori, giovanissimi-esordienti, agonismo, adulti) | `index.html` |
+| `pattinaggio-artistico/` | foto della pagina del corso di artistico; in `miniature/` le anteprime quadrate 600px della galleria (al click si apre la foto intera) | `pattinaggio-artistico-salerno.html` |
 | `staff/` | foto dello staff, una per persona | `index.html` |
 | `galleria/` | foto della pagina galleria | `gallery.html` |
 | `news/foto/` | copertine e gallerie degli articoli: `<evento>.webp` oppure `<evento>-01.webp`, `-02`… | `content/news.json` |

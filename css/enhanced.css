@@ -3096,3 +3096,746 @@ body:has(.gallery-lightbox[open]) {
         font-size: 1.55rem;
     }
 }
+
+/* ==========================================================================
+   PAGINE DISCIPLINA (pattinaggio-artistico-salerno.html e le prossime)
+   ========================================================================== */
+.disc-hero {
+    padding: calc(85px + 3.5rem) 0 5rem;
+    background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-white) 100%);
+}
+
+.disc-hero .news-breadcrumb {
+    justify-content: flex-start;
+    margin-bottom: 2rem;
+}
+
+.disc-hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.disc-hero h1 {
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    margin-bottom: 1.25rem;
+}
+
+.disc-hero .lead {
+    margin-bottom: 2rem;
+}
+
+.disc-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 2.25rem;
+}
+
+.disc-fact {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    background: var(--bg-white);
+    border: 1px solid rgba(77, 163, 255, 0.18);
+    border-radius: 14px;
+    box-shadow: var(--shadow-sm);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--secondary-blue);
+}
+
+.disc-fact i {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--bg-box);
+    color: var(--primary-blue);
+}
+
+.disc-fact strong {
+    display: block;
+    font-weight: 700;
+}
+
+.disc-hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.disc-hero-img img,
+.disc-split-img img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Testo lungo: paragrafi e titoli leggibili */
+.disc-text h2 {
+    font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+    letter-spacing: -0.5px;
+}
+
+.disc-text h3 {
+    font-size: 1.2rem;
+    margin: 1.75rem 0 0.6rem;
+}
+
+.disc-text p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.disc-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.disc-split--rev .disc-split-img {
+    order: 2;
+}
+
+/* Specialità e benefici: griglie di schede */
+.disc-cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+}
+
+.disc-card {
+    padding: 1.75rem 1.5rem;
+    background: var(--bg-white);
+    border: 1px solid rgba(77, 163, 255, 0.18);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+}
+
+.disc-card i {
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+.disc-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+}
+
+.disc-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* Gruppi e orari */
+.disc-groups {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+
+.disc-group {
+    background: var(--bg-white);
+    border: 1px solid rgba(77, 163, 255, 0.18);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.disc-group img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.disc-group-body {
+    padding: 1.75rem 1.75rem 2rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.disc-group-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: flex-start;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    background: var(--accent-color);
+    color: var(--secondary-blue);
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.disc-group h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.75rem;
+}
+
+.disc-group p {
+    color: var(--text-muted);
+}
+
+.disc-group ul {
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.disc-group li {
+    display: flex;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+}
+
+.disc-group li i {
+    color: var(--primary-blue);
+    margin-top: 0.3rem;
+}
+
+/* Percorso a tappe */
+.disc-steps {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+    margin: 1.5rem 0 0;
+    counter-reset: tappa;
+}
+
+.disc-steps li {
+    position: relative;
+    padding: 0.2rem 0 0 3.25rem;
+    counter-increment: tappa;
+}
+
+.disc-steps li::before {
+    content: counter(tappa);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2.2rem;
+    height: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--secondary-blue);
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.95rem;
+}
+
+.disc-steps strong {
+    display: block;
+    color: var(--secondary-blue);
+}
+
+.disc-steps span {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Dove siamo */
+.disc-place {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3rem;
+    align-items: center;
+    padding: 3rem;
+    border-radius: var(--border-radius-lg);
+    background: var(--secondary-blue);
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.disc-place h2 {
+    color: #fff;
+    font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+}
+
+.disc-place p {
+    font-size: 1.05rem;
+}
+
+.disc-place strong {
+    color: #fff;
+}
+
+.disc-place-box {
+    padding: 1.75rem;
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.disc-place-box p {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.98rem;
+}
+
+.disc-place-box i {
+    color: var(--accent-color);
+    margin-top: 0.3rem;
+    width: 1rem;
+    text-align: center;
+}
+
+.disc-place-box .btn {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+/* Altre discipline in fondo */
+.disc-others {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+/* Link "Scopri il corso" nelle card discipline della home */
+.discipline-name a:hover {
+    color: var(--primary-blue);
+}
+
+.discipline-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--primary-blue);
+}
+
+.discipline-link:hover {
+    gap: 0.65rem;
+}
+
+/* Classi di impaginazione della pagina disciplina */
+.disc-intro {
+    padding-top: 3rem;
+}
+
+.disc-narrow {
+    max-width: 820px;
+    margin: 0 auto;
+}
+
+.disc-note {
+    margin: 1.5rem 0 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+}
+
+.disc-no-border {
+    border-bottom: 0;
+}
+
+.disc-place-section {
+    padding-top: 0;
+}
+
+.disc-page .section-header .section-intro {
+    margin-bottom: 0;
+}
+
+.disc-page .faq-container {
+    margin-top: 2rem !important;
+}
+
+.disc-gallery {
+    max-width: 900px;
+    margin: 2.5rem auto 0;
+}
+
+/* Foto delle agoniste: in quadrato resta intera la figura, dai capelli ai pattini */
+.disc-group img.disc-group-img--tall {
+    object-position: 50% 88%;
+}
+
+.disc-final {
+    background: var(--secondary-blue);
+    text-align: center;
+}
+
+.disc-final .container {
+    max-width: 760px;
+}
+
+.disc-final h2 {
+    color: #fff;
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+}
+
+.disc-final p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.disc-final .disc-final-others {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    margin: 2.5rem 0 0;
+}
+
+@media (max-width: 900px) {
+    .disc-hero {
+        padding: calc(85px + 1.5rem) 0 3.5rem;
+    }
+
+    .disc-hero .news-breadcrumb {
+        margin-bottom: 1.25rem;
+    }
+
+    .disc-hero-grid,
+    .disc-split,
+    .disc-place {
+        grid-template-columns: 1fr;
+        gap: 2.25rem;
+    }
+
+    .disc-hero-img {
+        max-width: 460px;
+    }
+
+    .disc-split-img,
+    .disc-split--rev .disc-split-img {
+        order: -1;
+        max-width: 520px;
+    }
+
+    .disc-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .disc-groups {
+        grid-template-columns: 1fr;
+        max-width: 560px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .disc-place {
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* ── TELEFONO: pagina più corta, foto più basse, tutto a portata di pollice ── */
+@media (max-width: 640px) {
+    .disc-page .section {
+        padding: 3rem 0;
+    }
+
+    .disc-page .disc-intro {
+        padding-top: 1.5rem;
+    }
+
+    .disc-page .disc-place-section {
+        padding-top: 0;
+    }
+
+    .disc-page .disc-no-border {
+        padding-bottom: 2rem;
+    }
+
+    .disc-page h2.section-title,
+    .disc-text h2,
+    .disc-place h2,
+    .disc-final h2 {
+        font-size: 1.55rem;
+        letter-spacing: -0.3px;
+    }
+
+    .disc-page .section-header {
+        margin-bottom: 0;
+    }
+
+    .disc-page .section-intro {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .disc-text h3 {
+        font-size: 1.05rem;
+        margin-top: 1.25rem;
+    }
+
+    .disc-text p,
+    .disc-place p {
+        font-size: 0.98rem;
+        line-height: 1.7;
+    }
+
+    /* Apertura: titolo, dati chiave e pulsante visibili subito */
+    .disc-hero {
+        padding: calc(85px + 1rem) 0 2.5rem;
+    }
+
+    .disc-hero .news-breadcrumb {
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .disc-hero h1 {
+        font-size: 1.95rem;
+        letter-spacing: -0.5px;
+        margin-bottom: 0.9rem;
+    }
+
+    .disc-hero .lead {
+        font-size: 0.98rem;
+        line-height: 1.6;
+        margin-bottom: 1.25rem;
+    }
+
+    .disc-facts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .disc-fact {
+        gap: 0.55rem;
+        padding: 0.6rem 0.65rem;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        line-height: 1.35;
+    }
+
+    .disc-fact i {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+
+    .disc-hero-cta {
+        gap: 0.6rem;
+    }
+
+    .disc-hero-cta .btn {
+        width: 100%;
+        min-height: 52px;
+        padding: 0.9rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    .disc-hero-grid {
+        gap: 1.75rem;
+    }
+
+    .disc-hero-img {
+        max-width: none;
+    }
+
+    .disc-hero-img img {
+        aspect-ratio: 1 / 1;
+        object-position: 50% 75%;
+        border-radius: 20px;
+    }
+
+    .disc-split {
+        gap: 1.5rem;
+    }
+
+    .disc-split-img {
+        max-width: none;
+    }
+
+    .disc-split-img img {
+        aspect-ratio: 4 / 3;
+        object-position: 50% 55%;
+        border-radius: 20px;
+    }
+
+    /* Specialità e benefici: due per riga, schede compatte */
+    .disc-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.6rem;
+        margin-top: 1.5rem;
+    }
+
+    .disc-card {
+        padding: 1rem 0.9rem;
+        border-radius: 14px;
+    }
+
+    .disc-card i {
+        font-size: 1.15rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .disc-card h3 {
+        font-size: 0.95rem;
+        margin-bottom: 0.35rem;
+    }
+
+    .disc-card p {
+        font-size: 0.82rem;
+        line-height: 1.5;
+    }
+
+    .disc-note {
+        font-size: 0.8rem;
+        margin-top: 1rem;
+    }
+
+    /* Gruppi e orari */
+    .disc-groups {
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+    }
+
+    .disc-group {
+        border-radius: 20px;
+    }
+
+    .disc-group img {
+        aspect-ratio: 4 / 3;
+    }
+
+    .disc-group img.disc-group-img--tall {
+        aspect-ratio: 1 / 1;
+    }
+
+    .disc-group-body {
+        padding: 1.25rem 1.25rem 1.5rem;
+    }
+
+    .disc-group-time {
+        font-size: 0.88rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .disc-group h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .disc-group p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .disc-group li {
+        font-size: 0.9rem;
+    }
+
+    .disc-steps {
+        gap: 0.75rem;
+        margin-top: 1rem;
+    }
+
+    .disc-steps li {
+        padding-left: 2.75rem;
+    }
+
+    .disc-steps li::before {
+        width: 1.9rem;
+        height: 1.9rem;
+        font-size: 0.85rem;
+    }
+
+    .disc-steps span {
+        font-size: 0.9rem;
+    }
+
+    .disc-place {
+        gap: 1.5rem;
+        padding: 1.75rem 1.25rem;
+        border-radius: 20px;
+    }
+
+    .disc-place-box {
+        padding: 1.25rem;
+    }
+
+    .disc-place-box p {
+        font-size: 0.92rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .disc-place-box .btn {
+        min-height: 52px;
+    }
+
+    /* Galleria: tre miniature per riga, come le gallerie delle news */
+    .disc-gallery {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+        margin-top: 1.5rem;
+    }
+
+    .disc-gallery .news-gallery-link {
+        border-radius: 10px;
+        box-shadow: none;
+    }
+
+    .disc-page .faq-container {
+        margin-top: 1.5rem !important;
+    }
+
+    .disc-final p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .disc-final .btn-large {
+        width: 100%;
+        min-height: 52px;
+    }
+
+    .disc-final .disc-final-others {
+        margin-top: 2rem;
+    }
+
+    .disc-others .btn-sm {
+        min-height: 44px;
+        padding: 0.5rem 1.1rem;
+    }
+
+    /* Card discipline in home: link più facile da toccare */
+    .discipline-link {
+        min-height: 44px;
+        margin-top: 0.4rem;
+    }
+}
+
+/* Telefoni piccoli (iPhone SE e simili) */
+@media (max-width: 360px) {
+    .disc-hero h1 {
+        font-size: 1.7rem;
+    }
+
+    .disc-fact {
+        font-size: 0.76rem;
+    }
+
+    .disc-fact i {
+        display: none;
+    }
+}

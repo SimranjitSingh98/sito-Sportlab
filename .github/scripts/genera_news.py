@@ -595,6 +595,7 @@ def scrivi_sitemap(elenco):
     voci = [
         (f'{SITO}/', ultima_modifica('index.html'), 'weekly', '1.0'),
         (f'{SITO}/news.html', ultima_modifica('news.html'), 'weekly', '0.8'),
+        (f'{SITO}/pattinaggio-artistico-salerno.html', ultima_modifica('pattinaggio-artistico-salerno.html'), 'monthly', '0.9'),
         (f'{SITO}/gallery.html', ultima_modifica('gallery.html'), 'monthly', '0.6'),
     ]
     # Per gli articoli conta il contenuto: lastmod = dateModified

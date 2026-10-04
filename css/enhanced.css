@@ -4040,3 +4040,73 @@ a.disc-card:hover {
         display: none;
     }
 }
+
+/* ════════════════════════════════════════════════════════════════
+   TELEFONO — aree da toccare di almeno 44px e testi leggibili
+   (stesso aspetto: cresce solo la zona sensibile al tocco)
+   ════════════════════════════════════════════════════════════════ */
+
+/* Pulsante del menu: l'icona resta uguale, l'area diventa 44x44 */
+.mobile-menu-btn {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    margin-right: -10px;
+    line-height: 44px;
+    text-align: center;
+}
+
+.close-menu-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 640px) {
+    /* Percorso di navigazione (Home › Corsi): zona di tocco più alta senza spostare nulla */
+    .news-breadcrumb a {
+        display: inline-block;
+        padding: 11px 0;
+        margin: -11px 0;
+    }
+
+    /* Link del footer */
+    .footer-nav {
+        gap: 0 1.25rem;
+    }
+
+    .footer-nav a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+    }
+
+    /* Piccoli link e pulsanti della home */
+    .press-link,
+    .maps-link {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .year-stats-toggle {
+        min-height: 44px;
+    }
+
+    .event-results {
+        min-height: 40px;
+        padding: 0.45rem 0.9rem;
+    }
+
+    /* Etichette in maiuscolo: almeno 11px */
+    .global-trust-bar .trust-label,
+    .storia-stat-label,
+    .title-card-label,
+    #perche-noi .benefit-floating-card .label,
+    #staff .role-badge,
+    .level-tag {
+        font-size: 0.7rem;
+    }
+}

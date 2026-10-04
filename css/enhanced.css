@@ -3502,6 +3502,135 @@ body:has(.gallery-lightbox[open]) {
     margin: 2.5rem 0 0;
 }
 
+/* Foto d'apertura orizzontale (es. una gara) */
+.disc-hero-img--wide img {
+    aspect-ratio: 4 / 3;
+}
+
+/* Tre gruppi affiancati */
+.disc-groups--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.disc-groups--3 .disc-group img {
+    aspect-ratio: 4 / 3;
+}
+
+.disc-groups--3 .disc-group-body {
+    padding: 1.5rem 1.5rem 1.75rem;
+}
+
+/* Risultati: numeri grandi, ogni scheda porta alla news */
+.disc-stats {
+    margin-bottom: 4rem;
+}
+
+a.disc-card {
+    display: block;
+    color: inherit;
+    transition: var(--transition);
+}
+
+a.disc-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-blue);
+    box-shadow: var(--shadow-hover);
+}
+
+.disc-stat-num {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    color: var(--primary-blue);
+    margin-bottom: 0.6rem;
+}
+
+.disc-text a:not(.btn) {
+    color: var(--primary-blue);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Ultime news della disciplina */
+.disc-news {
+    margin-top: 2.5rem;
+}
+
+.disc-news-all {
+    margin-top: 2rem;
+}
+
+/* Elenco con spunte nei testi lunghi */
+.disc-checks {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.2rem;
+    display: grid;
+    gap: 0.85rem;
+}
+
+.disc-checks li {
+    position: relative;
+    padding-left: 1.75rem;
+    line-height: 1.7;
+}
+
+.disc-checks li::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 0.1rem;
+    color: var(--primary-blue);
+    font-size: 0.9rem;
+}
+
+.disc-checks strong {
+    color: var(--secondary-blue);
+}
+
+/* Allenamento agonisti: foto + strada, poi a secco e forza affiancati */
+.disc-train {
+    margin-top: 4rem;
+}
+
+.disc-text h3:first-child {
+    margin-top: 0;
+}
+
+.disc-train-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.disc-train-grid .disc-text {
+    padding: 2rem;
+    background: var(--bg-white);
+    border: 1px solid rgba(77, 163, 255, 0.18);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.disc-train-end {
+    max-width: 760px;
+    margin: 2.5rem auto 0;
+    text-align: center;
+    font-weight: 600;
+    color: var(--secondary-blue);
+}
+
+/* Percorso per età (le card spostate dalla home) */
+#percorso .section-cta-wrap {
+    margin-top: 3rem;
+}
+
 @media (max-width: 900px) {
     .disc-hero {
         padding: calc(85px + 1.5rem) 0 3.5rem;
@@ -3532,7 +3661,12 @@ body:has(.gallery-lightbox[open]) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .disc-groups {
+    .disc-train-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .disc-groups,
+    .disc-groups--3 {
         grid-template-columns: 1fr;
         max-width: 560px;
         margin-left: auto;
@@ -3797,6 +3931,75 @@ body:has(.gallery-lightbox[open]) {
 
     .disc-page .faq-container {
         margin-top: 1.5rem !important;
+    }
+
+    .disc-train {
+        margin-top: 2rem;
+    }
+
+    .disc-train-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .disc-train-grid .disc-text {
+        padding: 1.25rem;
+        border-radius: 18px;
+    }
+
+    .disc-checks {
+        gap: 0.65rem;
+    }
+
+    .disc-checks li {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        padding-left: 1.5rem;
+    }
+
+    .disc-train-end {
+        margin-top: 1.5rem;
+        font-size: 0.98rem;
+    }
+
+    .disc-hero-img--wide img {
+        aspect-ratio: 4 / 3;
+        object-position: 50% 50%;
+    }
+
+    .disc-groups--3 .disc-group-body {
+        padding: 1.25rem 1.25rem 1.5rem;
+    }
+
+    .disc-stats {
+        margin-bottom: 2.5rem;
+    }
+
+    .disc-stat-num {
+        font-size: 1.6rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .disc-news {
+        margin-top: 1.5rem;
+    }
+
+    .disc-news-all .btn {
+        width: 100%;
+        min-height: 48px;
+    }
+
+    #percorso .section-cta-wrap {
+        margin-top: 1.5rem;
+    }
+
+    #percorso .section-cta-wrap .btn {
+        width: 100%;
+        white-space: normal;
+        padding: 1rem 1.25rem;
+        font-size: 0.95rem;
+        line-height: 1.35;
     }
 
     .disc-final p {

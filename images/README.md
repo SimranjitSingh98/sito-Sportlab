@@ -8,7 +8,8 @@ Nomi dei file: minuscoli, con i trattini, formato `.webp` (lato lungo massimo 20
 | `loghi/` | logo Sport Lab (`sportlab.webp`) e icone quadrate 48/180/512 px (favicon, anteprime social) | tutte le pagine |
 | `partner/` | loghi FISR, CONI, Comune | home, sezione partner |
 | `home/` | foto delle sezioni della home (hero, missione, valori, agonismo, prova, media, locandine) | `index.html` |
-| `corsi/` | una foto per corso (cuccioli, amatori, giovanissimi-esordienti, agonismo, adulti) | `index.html` |
+| `corsi/` | una foto per disciplina (card in home) e per gruppo d'età (cuccioli, amatori, giovanissimi-esordienti, agonismo) | `index.html`, `pattinaggio-corsa-salerno.html` |
+| `pattinaggio-corsa/` | foto della pagina del corso di corsa (versioni `-720` per i telefoni); in `miniature/` le anteprime della galleria, che al click apre le foto originali delle news | `pattinaggio-corsa-salerno.html` |
 | `pattinaggio-artistico/` | foto della pagina del corso di artistico; in `miniature/` le anteprime quadrate 600px della galleria (al click si apre la foto intera) | `pattinaggio-artistico-salerno.html` |
 | `staff/` | foto dello staff, una per persona | `index.html` |
 | `galleria/` | foto della pagina galleria | `gallery.html` |

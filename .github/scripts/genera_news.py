@@ -35,8 +35,12 @@ CARTELLA_OG = Path('images/news/anteprime')
 OG_W, OG_H = 1200, 630
 # Larghezza delle miniature: la card più grande (prima news su telefono) è ~360px, x2 per gli schermi retina
 CARD_W = 720
+# Sul telefono le card sono righe con una foto di ~108px: basta una miniatura da 360
+CARD_SM_W = 360
 # Copertina dell'articolo: la colonna è 780px, 1200 basta anche per i telefoni retina
 COVER_W = 1200
+# Oltre questo peso la copertina viene ricompressa anche se non va rimpicciolita
+COVER_MAX_BYTES = 250_000
 # Miniature della galleria: 3 colonne in 780px (o 2 sul telefono), ~600px coprono anche i retina
 CARTELLA_MINIATURE = Path('images/news/miniature')
 MINI_W = 600
@@ -190,6 +194,7 @@ def crea_miniatura(news):
     per una miniatura, soprattutto sul telefono."""
     if not news.get('cover') or not Path(news['cover']).exists():
         return None
+    riduci(news['cover'], CARTELLA_OG / f"{news['slug']}-card-sm.webp", CARD_SM_W, qualita=76)
     return riduci(news['cover'], CARTELLA_OG / f"{news['slug']}-card.webp", CARD_W)
 
 
@@ -197,7 +202,10 @@ def crea_copertina(news):
     """WebP largo COVER_W per la copertina dell'articolo (è l'immagine più grande della pagina)."""
     if not news.get('cover') or not Path(news['cover']).exists():
         return None
-    return riduci(news['cover'], CARTELLA_OG / f"{news['slug']}-cover.webp", COVER_W, qualita=80)
+    # Foto verticali: lato lungo al massimo COVER_W (1200x1600 -> 900x1200), bastano anche ai retina
+    w, h = misure(news['cover'])
+    larghezza = COVER_W if w >= h else min(COVER_W, round(COVER_W * w / h))
+    return riduci(news['cover'], CARTELLA_OG / f"{news['slug']}-cover.webp", larghezza, qualita=78)
 
 
 def miniatura_galleria(src):
@@ -316,11 +324,13 @@ def pagina_articolo(news, elenco, header, menu, footer, wa):
             </section>''' if altre else '')
     # Copertina: il browser sceglie la versione giusta per lo schermo (card, ridotta o originale)
     cover_src, srcset = cover, ''
-    ridotta = crea_copertina(news) if dim and dim[0] > COVER_W else None
+    # Anche una foto già larga COVER_W può pesare troppo (es. 1200x1600 da 700 KB): si ricomprime
+    pesante = news.get('cover') and Path(news['cover']).stat().st_size > COVER_MAX_BYTES
+    ridotta = crea_copertina(news) if dim and (dim[0] > COVER_W or pesante) else None
     if ridotta:
         mini = news.get('miniatura')
         varianti = ([f'/{mini[0]} {mini[1]}w'] if mini and mini[1] < ridotta[1] else []) + [
-            f'/{ridotta[0]} {ridotta[1]}w', f'{cover} {dim[0]}w']
+            f'/{ridotta[0]} {ridotta[1]}w'] + ([f'{cover} {dim[0]}w'] if dim[0] > ridotta[1] else [])
         cover_src = f'/{ridotta[0]}'
         srcset = f' srcset="{esc(", ".join(varianti))}" sizes="(max-width: 820px) 100vw, 780px"'
     copertina = (f'''
@@ -518,8 +528,14 @@ def card(news, nascosta=False, radice='', subito=False):
         dim = misure(src) if src else None
     dim_attr = f' width="{dim[0]}" height="{dim[1]}"' if dim else ''
     caricamento = ' fetchpriority="high"' if subito else ' loading="lazy"'
+    # Miniatura piccola per le righe del telefono; la prima card della pagina News lì è grande
+    piccola = CARTELLA_OG / f"{news['slug']}-card-sm.webp"
+    srcset = ''
+    if mini and piccola.exists():
+        sizes = '(max-width: 640px) 92vw, 360px' if subito else '(max-width: 640px) 120px, 360px'
+        srcset = f' srcset="{radice}{piccola.as_posix()} {CARD_SM_W}w, {radice}{esc(src)} {dim[0]}w" sizes="{sizes}"'
     media = (f'''<div class="news-card-media">
-                            <img src="{radice}{esc(src)}" alt="{esc(alt_copertina(news))}"{caricamento}{dim_attr}{stile_copertina(news)}>
+                            <img src="{radice}{esc(src)}"{srcset} alt="{esc(alt_copertina(news))}"{caricamento}{dim_attr}{stile_copertina(news)}>
                         </div>''' if news.get('cover') else '''<div class="news-card-media news-card-media--placeholder">
                             <span class="news-cover-placeholder"><i class="fas fa-newspaper"></i></span>
                         </div>''')
@@ -595,6 +611,7 @@ def scrivi_sitemap(elenco):
     voci = [
         (f'{SITO}/', ultima_modifica('index.html'), 'weekly', '1.0'),
         (f'{SITO}/news.html', ultima_modifica('news.html'), 'weekly', '0.8'),
+        (f'{SITO}/pattinaggio-corsa-salerno.html', ultima_modifica('pattinaggio-corsa-salerno.html'), 'monthly', '0.9'),
         (f'{SITO}/pattinaggio-artistico-salerno.html', ultima_modifica('pattinaggio-artistico-salerno.html'), 'monthly', '0.9'),
         (f'{SITO}/gallery.html', ultima_modifica('gallery.html'), 'monthly', '0.6'),
     ]
@@ -631,7 +648,7 @@ def main():
             vecchia.unlink()
             print(f'Rimossa {vecchia}')
     slug_validi = {n['slug'] for n in elenco}
-    for suffisso in ('-og.jpg', '-card.webp', '-cover.webp'):
+    for suffisso in ('-og.jpg', '-card.webp', '-card-sm.webp', '-cover.webp'):
         for img in CARTELLA_OG.glob(f'*{suffisso}'):
             if img.name[:-len(suffisso)] not in slug_validi:
                 img.unlink()
